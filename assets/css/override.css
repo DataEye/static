@@ -1,0 +1,29 @@
+rc-table th, .rc-table td {
+  padding: 8px;
+}
+.table th {
+  padding: 12px 8px;
+  background-color: #eef2f9;
+}
+.table > thead > tr > th {
+  border-bottom: 0;
+}
+.panel-track .summary-table {
+  margin-bottom: 3px;
+  margin-top: 10px;
+}
+.panel-track .summary-table th {
+  background-color: #e1ebff;
+  color: #272c3b;
+  padding: 18px 8px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.rc-table th {
+  font-weight: normal;
+}
+.mixed-panel-sub-tabs .active, .mixed-panel-sub-tabs .active:hover, .mixed-panel-sub-tabs .active:focus {
+  color: #fff;
+  background-color: #1faeb9;
+  border-color: #1faeb9;
+}

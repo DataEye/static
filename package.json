@@ -1,0 +1,85 @@
+{
+  "name": "static",
+  "version": "0.0.1",
+  "description": "base repo for all DataEye project static assets",
+  "scripts": {
+    "test": "jest",
+    "build-tracking": "node node_modules/webpack/bin/webpack -p --config=webpack/tracking.js",
+    "build-tracking-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/tracking.js",
+    "serve-tracking": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/tracking.js"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "dejs": "latest",
+    "es6-promise": "^3.0.2",
+    "eventemitter3": "^1.1.1",
+    "gregorian-calendar": "*",
+    "gregorian-calendar-format": "*",
+    "highcharts": "^4.2.1",
+    "history": "1.13.1",
+    "immutable": "^3.7.6",
+    "lodash": "^3.10.1",
+    "moment": "^2.11.1",
+    "numeral": "^1.5.3",
+    "object-assign": "^4.0.1",
+    "rc-calendar": "^5.2.1",
+    "rc-menu": "^4.9.0",
+    "rc-pagination": "^1.2.1",
+    "rc-table": "^3.6.1",
+    "rc-time-picker": "^1.0.0",
+    "react": "0.14.3",
+    "react-bootstrap": "^0.28.1",
+    "react-dom": "0.14.2",
+    "react-redux": "4.0.0",
+    "react-router": "1.0.0",
+    "react-select": "0.9.1",
+    "react-tween-state": "^0.1.4",
+    "redux": "3.0.4",
+    "redux-logger": "2.0.4",
+    "superagent": "latest",
+    "superagent-mocker": "latest"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.26",
+    "babel-eslint": "^4.1.5",
+    "babel-jest": "^6.0.1",
+    "babel-loader": "~6.0.1",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "bundle-loader": "^0.5.4",
+    "css-loader": "~0.16.0",
+    "eslint": "^1.9.0",
+    "eslint-config-airbnb": "^1.0.0",
+    "eslint-plugin-react": "^3.8.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "~0.8.4",
+    "gulp": "^3.9.0",
+    "gulp-hasher": "^0.1.0",
+    "gulp-html-replace": "^1.5.4",
+    "gulp-rename": "^1.2.2",
+    "jest-cli": "^0.8.0",
+    "react-addons-test-utils": "^0.14.3",
+    "style-loader": "~0.12.3",
+    "url-loader": "^0.5.7",
+    "webpack": "~1.11.0",
+    "webpack-dev-server": "^1.10.1",
+    "yargs": "^3.32.0"
+  },
+  "engines": {
+    "node": ">=5.0.0",
+    "npm": ">=3.3.7"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "collectCoverage": true,
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
+  }
+}

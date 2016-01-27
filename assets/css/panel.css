@@ -1,0 +1,47 @@
+.panel-track {
+  border-color: #ced4e3;
+}
+
+.panel-track > .panel-heading {
+  color: #50567b;
+  font-weight: bold;
+  padding: 0 10px;
+  margin: 0;
+  height: 32px;
+  line-height: 32px;
+  background: #E6E8EA;
+  background-image: -ms-linear-gradient(top,#E8EEF9,#E2E5F3);
+  background-image: -moz-linear-gradient(top,#E8EEF9,#E2E5F3);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#E8EEF9),color-stop(1,#E2E5F3));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E8EEF9',endColorstr='#E2E5F3',GradientType='0');
+  border-bottom: 1px solid #B7BDCB;
+  border-radius: 2px 2px 0 0;
+  text-shadow: 0px 1px 0px #FFFFFF;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.panel-track > .panel-body {
+  padding: 0;
+}
+
+.panel-track > .panel-body > table {
+  margin-bottom: 0;
+}
+
+.panel-track > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #b3afaf;
+}
+
+.panel-track > .panel-heading .badge {
+  color: #d9edf7;
+  background-color: #31708f;
+}
+
+.panel-track > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #b3afaf;
+}
+
+.panel-track > .panel-footer {
+  background-color: #ffffff;
+}

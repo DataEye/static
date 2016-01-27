@@ -1,0 +1,229 @@
+#appCenter {
+  width: 1100px;
+  min-height: 600px;
+  margin: 0 auto;
+}
+
+#appCenter hr {
+  border: 1px solid #e4e4ec;
+}
+
+#appCenter .content-header {
+  font-size: 12px;
+  padding: 30px 0px 0px 0px;
+}
+
+#appCenter .content-header .add-app-btn {
+  float: left;
+  padding: 6px 20px;
+  margin-right: 8px;
+}
+
+#appCenter .content-header .game-type-choice {
+  float: left;
+  width: 150px;
+  margin-right: 10px;
+}
+
+#appCenter .content-header>span {
+  float: left;
+  padding: 7px 10px;
+}
+
+.app-cell {
+  position: relative;
+  display: inline-block;
+  width: 340px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  box-shadow: 1px -1px 5px 1px #cad0de;
+}
+
+.app-cell:nth-child(3n+2) {
+  margin-left: 36px;
+  margin-right: 36px;
+}
+
+.app-cell .app-manage {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  padding: 6px 6px 0px 0px;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+}
+
+.app-cell:hover .app-manage {
+  opacity: 1;
+}
+
+.app-cell .authorized-logo {
+  position: absolute;
+  left: 0;
+  padding: 3px 0px 0px 3px;
+}
+
+.app-cell:hover .app-info {
+  border-color: #757dbb;
+}
+
+.app-cell .app-info {
+  padding: 40px 20px;
+  overflow: hidden;
+  border-radius: 6px 6px 0px 0px;
+  border-width: 1px 1px 0px 1px;
+  border-style: solid;
+  border-color: transparent;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+}
+
+.app-cell .app-info div {
+  float: left;
+}
+
+.app-cell .app-info .sketch {
+  padding-left: 15px;
+}
+
+.app-cell .app-info .title {
+  font-size: 18px;
+  color: #444444;
+  margin-bottom: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 195px;
+  white-space: nowrap;
+}
+
+.app-cell .app-info .item {
+  font-size: 12px;
+  color: #666666;
+}
+
+.app-cell .app-info .item:last-child {
+  margin-bottom: 0px;
+}
+
+.app-cell .actions {
+  background-color: #646bad;
+}
+
+.app-cell .actions a {
+  display: inline-block;
+  width: 50%;
+  padding: 10px 0px;
+  border: 1px solid #757dbb;
+  border-left: 1px solid #8b91c8;
+  border-right: 1px solid #6870b1;
+  background-color: #767dba;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.app-cell .actions a:first-child {
+  border-left: none;
+}
+
+.app-cell .actions a:last-child {
+  border-right: none;
+}
+
+.app-cell .actions a:hover {
+  background-color: #646bad;
+}
+
+.add-app {
+  color: #8b92a5;
+}
+
+.add-app .circle {
+  display: inline-block;
+  width: 110px;
+  height: 110px;
+  border: 1px dashed #cfd1e6;
+  border-radius: 50%;
+  margin: 20px 0px;
+}
+
+.add-app i.fa {
+  color: #cfd1e6;
+  font-size: 50px;
+  line-height: 110px;
+}
+
+.import-list {
+  height: 240px;
+  overflow-y: scroll;
+}
+
+.import-list a {
+  display: inline-block;
+  padding: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #666666;
+  width: 20%;
+  font-size: 12px;
+  -moz-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+
+.import-list a:hover {
+  background-color: #949CD6;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.create-app .title {
+  float: left;
+  height: 88px;
+  line-height: 88px;
+}
+
+.create-app .title .name {
+  margin: 0px 0px 0px 12px;
+}
+
+.send-email-content {
+  padding: 20px;
+  background-color: #f5f6fa;
+  border: 1px solid #e3e5f2;
+  border-radius: 5px;
+}
+
+.create-app .integration {
+  position: relative;
+  width: 135px;
+  height: 135px;
+  border: 1px solid #e3e5f2;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.create-app .integration p {
+  margin: 25px 0 0 0;
+}
+
+.create-app .integration .activatedAmount {
+  color: #2bafbc;
+  font-size: 18px;
+}
+
+.create-app .integration>i {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 17px;
+  background: url("../img/tip.png");
+}
+
+.stepTitle > a{
+  color: #34405b;
+}
