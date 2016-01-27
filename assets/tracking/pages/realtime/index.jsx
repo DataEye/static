@@ -77,6 +77,11 @@ export default React.createClass({
     return <ChangingNumber num={val} formatter={utils.asPercentage}/>
   },
 
+  getLevel(i) {
+    return this.props.states.coreLtv.breadCrumbRowList[i]
+  },
+
+
   render() {
     const analysisSharedColumns = [
       {title: '点击', dataIndex: 'y0', width: '15%', key: '1'},
@@ -104,8 +109,7 @@ export default React.createClass({
         ],
         rowKey: (row) => row.x,
         showSwitcher: false,
-        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency],
-        summaryFormatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
+        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
       }
     ]
 
@@ -114,7 +118,7 @@ export default React.createClass({
         url: '/overviewCampaignRealTimeData.do',
         data: (row) => {
           return Object.assign({}, this.state, {
-            channel: row.id
+            channel: !row ? this.getLevel(0).id : row.id
           })
         },
         columns: [
@@ -138,7 +142,7 @@ export default React.createClass({
         url: '/overviewPublisherRealTimeData.do',
         data: (row) => {
           return Object.assign({}, this.state, {
-            campaign: row.id,
+            campaign: !row ? this.getLevel(1).id : row.id
           })
         },
         columns: [
@@ -163,7 +167,7 @@ export default React.createClass({
         data: (row) => {
           return Object.assign({}, this.state, {
             publisher: row.x,
-            campaign: this.props.states.coreLtv.breadCrumbRowList[1].id
+            campaign: !row ? this.getLevel(1).id : row.id
           })
         },
         columns: [
@@ -238,9 +242,9 @@ export default React.createClass({
       Object.assign({
         tabName: '活跃',
         data: () => {
-          this.setState({eventId: 12})
+          this.setState({eventId: 9})
           return Object.assign({}, this.state, {
-            eventId: 12
+            eventId: 9
           })
         }
       }, tabShared),
