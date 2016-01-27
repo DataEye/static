@@ -21,7 +21,7 @@ var PUBLIC_PATH = isProduction ? 'https://www.dataeye.com/static/' : (DEV_SERVER
 var FONTS_PATH = `${BUILD_DIR}/fonts`
 var IMG_PATH = `${BUILD_DIR}/img`
 var STYLE_BUNDLE_PATH = isProduction ?
-  `${BUILD_DIR}/css/index.min.css` : `${BUILD_DIR}/css/index.css`
+  `${BUILD_DIR}/css/bundle.[chunkHash].css` : `${BUILD_DIR}/css/bundle.css`
 var PLUGINS = isProduction ? [
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin()
@@ -52,7 +52,7 @@ module.exports = function(projectName) {
     IMG_PATH,
     STYLE_BUNDLE_PATH,
     ENTRY_PATH : `./assets/${projectName}/index.js`,
-    APP_BUNDLE_PATH : isProduction ? `${JS_DIR}/app.min.js` : `${JS_DIR}/app.js`,
-    VENDOR_BUNDLE_PATH : isProduction ? `${JS_DIR}/common.min.js` : `${JS_DIR}/common.js`
+    APP_BUNDLE_PATH : isProduction ? `${JS_DIR}/app.[chunkHash].js` : `${JS_DIR}/app.js`,
+    VENDOR_BUNDLE_PATH : isProduction ? `${JS_DIR}/common.[chunkHash].js` : `${JS_DIR}/common.js`
   }
 }
