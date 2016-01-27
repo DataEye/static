@@ -26,7 +26,7 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader', {
           // 需要重写，否则路径不对
-          publicPath: '../../'
+          publicPath: config.PUBLIC_PATH
         })
       },
       {
