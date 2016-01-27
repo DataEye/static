@@ -24,9 +24,9 @@ export default React.createClass({
   componentWillReceiveProps(nextProps) {
     const delta = nextProps.num - this.props.num || 0
     if (delta >= 0) {
-      this.setState({delta: `+${delta}`, color: 'green'})
+      this.setState({delta: `+${delta}`})
     } else if (delta < 0) {
-      this.setState({delta: `${delta}`, color: 'red'})
+      this.setState({delta: '+0'})
     }
     this.animate()
   },
@@ -45,7 +45,7 @@ export default React.createClass({
 
   render() {
     const animation = {
-      color: this.state.color,
+      color: 'green',
       opacity: this.getTweeningValue('start'),
       top: `${(this.getTweeningValue('start') * 2).toString()}px`,
       fontSize: '12px',

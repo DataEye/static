@@ -18,7 +18,9 @@ export default React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    this.getAppIDList()
+    if (this.props.appid !== nextProps.appid) {
+      this.getAppIDList()
+    }
   },
 
   getAppOptions(appList) {

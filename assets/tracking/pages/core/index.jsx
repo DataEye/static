@@ -76,19 +76,19 @@ export default React.createClass({
 
   setActiveTypeRatioClick(activeType) {
     this.setState({activeTypeRatioClick: activeType}, function() {
-      this.refs.coreRatioClick.onTabClick(0)
+      this.refs.coreRatioClick.reload()
     })
   },
 
   setActiveTypeRatioActive(activeType) {
     this.setState({activeTypeRatioActive: activeType}, function() {
-      this.refs.coreRatioActive.onTabClick(0)
+      this.refs.coreRatioActive.reload()
     })
   },
 
   setActiveTypeRatioRevenue(activeType) {
     this.setState({activeTypeRatioRevenue: activeType}, function() {
-      this.refs.coreRatioRevenue.onTabClick(0)
+      this.refs.coreRatioRevenue.reload()
     })
   },
 
@@ -96,37 +96,60 @@ export default React.createClass({
     return (<span className="currency">{utils.asCurrency(currency)}</span>)
   },
 
+  getLevel(i) {
+    return this.props.states.coreLtv.breadCrumbRowList[i]
+  },
+
   render() {
     const ltvSharedColumns = [
       {title: '点击', dataIndex: 'y0', width: '15%', key: '1',
-        render: (val, row, index) => {
+        render: (val) => {
           return (<span>{utils.asInteger(val)}</span>)
         }
       },
       {title: '激活', dataIndex: 'y1', width: '15%', key: '2',
-        render: (val, row, index) => {
+        render: (val) => {
           return (<span>{utils.asInteger(val)}</span>)
         }
       },
       {title: '转化率', dataIndex: 'y2', width: '15%', key: '3',
-        render: (val, row, index) => {
+        render: (val) => {
           return (<span>{utils.asPercentage(val)}</span>)
         }
       },
       {title: '付费', dataIndex: 'y3', width: '15%', key: '4',
-        render: (val, row, index) => {
+        render: (val) => {
           return (<span className="currency">{utils.asCurrency(val)}</span>)
         }
       },
       {title: '人均LTV', dataIndex: 'y4', width: '15%', key: '5',
-        render: (val, row, index) => {
+        render: (val) => {
           return (<span>{utils.asInteger(val)}</span>)
         }
       }
     ]
 
+    const summary = (
+      <tr>
+        <th>合计</th>
+        <th>4</th>
+        <th>3</th>
+        <th>2</th>
+        <th>2</th>
+        <th>2</th>
+      </tr>
+    )
+
+    const ltvSharedConfig = {
+      rowKey: (row) => row.x,
+      showSwitcher: false,
+      avgFields: ['y1'],
+      summary: summary
+      // formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency]
+    }
+
     const ltvLvl0 = [
-      {
+      _.assign({
         url: '/overviewChannelLtv.do',
         data: () => {
           return this.state
@@ -141,19 +164,15 @@ export default React.createClass({
           }},
           ...ltvSharedColumns
         ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        avgFields: ['y1'],
-        formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency]
-      }
+      }, ltvSharedConfig)
     ]
 
     const ltvLvl1 = [
-      {
+      _.assign({
         url: '/overviewCampaignLtv.do',
         data: (row) => {
           return Object.assign({}, this.state, {
-            channel: row.id
+            channel: !row ? this.getLevel(0).id : row.id
           })
         },
         columns: [
@@ -166,19 +185,15 @@ export default React.createClass({
           }},
           ...ltvSharedColumns
         ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        avgFields: ['y1'],
-        formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency]
-      }
+      }, ltvSharedConfig)
     ]
 
     const ltvLvl2 = [
-      {
+      _.assign({
         url: '/overviewPublisherLtv.do',
         data: (row) => {
           return Object.assign({}, this.state, {
-            campaign: row.id,
+            campaign: !row ? this.getLevel(1).id : row.id
           })
         },
         columns: [
@@ -190,21 +205,17 @@ export default React.createClass({
             )
           }},
           ...ltvSharedColumns
-        ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        avgFields: ['y1'],
-        formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency]
-      }
+        ]
+      }. ltvSharedConfig)
     ]
 
     const ltvLvl3 = [
-      {
+      _.assign({
         url: '/overviewSiteLtv.do',
         data: (row) => {
           return Object.assign({}, this.state, {
             publisher: row.x,
-            campaign: this.props.states.coreLtv.breadCrumbRowList[1].id
+            campaign: !row ? this.getLevel(1).id : row.id
           })
         },
         columns: [
@@ -215,11 +226,15 @@ export default React.createClass({
           }},
           ...ltvSharedColumns
         ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        avgFields: ['y1'],
-        formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency]
-      }
+      }, ltvSharedConfig)
+    ]
+
+    const trendingColumns = [
+      {title: '点击', dataIndex: 'y0', width: '15%', key: '1'},
+      {title: '激活', dataIndex: 'y1', width: '15%', key: '2'},
+      {title: '转化率', dataIndex: 'y2', width: '15%', key: '3'},
+      {title: '付费', dataIndex: 'y3', width: '15%', key: '4'},
+      {title: '人均LTV', dataIndex: 'y4', width: '15%', key: '5'}
     ]
 
     const trendingLvl0 = [
@@ -228,13 +243,7 @@ export default React.createClass({
         data: () => {
           return this.state
         },
-        columns: [
-          {title: '点击', dataIndex: 'y0', width: '15%', key: '1'},
-          {title: '激活', dataIndex: 'y1', width: '15%', key: '2'},
-          {title: '转化率', dataIndex: 'y2', width: '15%', key: '3'},
-          {title: '付费', dataIndex: 'y3', width: '15%', key: '4'},
-          {title: '人均LTV', dataIndex: 'y4', width: '15%', key: '5'}
-        ],
+        columns: trendingColumns,
         subTabName: '汇总',
         rowKey: (row) => row.x,
         showSwitcher: false,
@@ -245,13 +254,7 @@ export default React.createClass({
             data: () => {
               return this.state
             },
-            columns: [
-              {title: '点击', dataIndex: 'y0', width: '15%', key: '1'},
-              {title: '激活', dataIndex: 'y1', width: '15%', key: '2'},
-              {title: '转化率', dataIndex: 'y2', width: '15%', key: '3'},
-              {title: '付费', dataIndex: 'y3', width: '15%', key: '4'},
-              {title: '人均LTV', dataIndex: 'y4', width: '15%', key: '5'}
-            ],
+            columns: trendingColumns,
             rowKey: (row) => row.x,
             showSwitcher: false
           }
@@ -364,6 +367,7 @@ export default React.createClass({
     )
 
     let props = this.props
+
     return (
       <div>
         <ContainerHeader>
