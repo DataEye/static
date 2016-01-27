@@ -13,6 +13,7 @@
     "dejs": "latest",
     "es6-promise": "^3.0.2",
     "eventemitter3": "^1.1.1",
+    "font-awesome": "^4.5.0",
     "gregorian-calendar": "*",
     "gregorian-calendar-format": "*",
     "highcharts": "^4.2.1",

@@ -50,5 +50,6 @@ module.exports = {
     }),
     new ExtractTextPlugin(config.STYLE_BUNDLE_PATH, {allChunks: true}),
     new webpack.optimize.CommonsChunkPlugin('vendor', config.VENDOR_BUNDLE_PATH)
-  ].concat(config.PLUGINS)
+  ].concat(config.PLUGINS),
+  devtool: '#source-map'
 }
