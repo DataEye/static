@@ -14,6 +14,7 @@ import Loading from 'dejs/lib/loading'
 import NoData from 'dejs/lib/no-data'
 import ErrorTip from 'dejs/lib/error'
 import EventEmitter from 'eventemitter3'
+import * as tools from '../../helpers/tools.js'
 
 export default React.createClass({
   propTypes: {
@@ -56,7 +57,8 @@ export default React.createClass({
     // [汇总、分渠道]
     subTabs: PropTypes.array,
     //Show chart initially if false
-    showSwitcher: PropTypes.bool
+    showSwitcher: PropTypes.bool,
+    glance: PropTypes.element
   },
 
   getDefaultProps() {
@@ -188,6 +190,22 @@ export default React.createClass({
     )
   },
 
+  getGlance() {
+    if (!this.props.glance) return null
+
+    const names = tools.extractAttr(this.props.glance, 'k')
+    const values = tools.extractAttr(this.props.glance, 'v')
+    const nameLabel = names.join(' | ')
+    const valueLabel = values.join(' | ')
+
+    return (
+      <div style={{paddingBottom: '10px'}}>
+        <span>{`${nameLabel}: `}</span>
+        <span style={{color: 'red'}}>{valueLabel}</span>
+      </div>
+    )
+  },
+
   getTable() {
     if (!this.props.rowKey) {
       throw new Error(`rowKey应该配置一个函数`)
@@ -250,6 +268,7 @@ export default React.createClass({
             {this.getSwitcher()}
           </div>
         )}
+        {this.getGlance()}
         <Chart
           datalist={this.props.chartData}
           seriesNames={this.props.chartNames}
@@ -274,6 +293,7 @@ export default React.createClass({
             {this.getSwitcher()}
           </div>
         )}
+        {this.getGlance()}
         {this.getBreadCrumb()}
         {this.getSummary()}
         {this.getTable()}

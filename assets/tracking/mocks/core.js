@@ -295,10 +295,10 @@ export function mockCoreLTVTopNByTotal(mock) {
           'y0': 'num'
         },
         'content': [{
-          'y0': 4774,
+          'y0': 4774.2342355,
           'x': '激活推广'
         }, {
-          'y0': 47,
+          'y0': 47.2342342,
           'x': '注册设备'
         }, {
           'y0': 36,

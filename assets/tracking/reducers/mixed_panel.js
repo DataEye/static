@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import * as CONSTS from '../helpers/constants.jsx'
+import * as tools from '../helpers/tools.js'
 
 const SUFFIX = {
   OK: '_ok',
@@ -20,6 +21,17 @@ function getPagedDataByType(opts, isServerPagination) {
 // 获取图例名称
 function getChartNames(json) {
   return json.name || json.content.name
+}
+
+//Todo set computed columns in config
+function getTotalPercentage(ary) {
+  let answer = 0
+  const click = tools.sumAttr(ary, 'y0')
+  const activated = tools.sumAttr(ary, 'y1')
+  if (click && activated) {
+    answer = activated / click
+  }
+  return answer
 }
 
 function computeSummary(cols = [], list = [], avgFields = []) {
@@ -44,6 +56,9 @@ function computeSummary(cols = [], list = [], avgFields = []) {
       })
     }
   })
+  if (summary.y2) {
+    summary.y2 = getTotalPercentage(list)
+  }
   if (avgFields.length && checkedNum) {
     _.each(avgFields, (field) => {
       summary[field] = summary[field] / checkedNum
@@ -137,6 +152,7 @@ export default function(state = CONSTS.MIXED_PANEL_INITIAL_STATE, action) {
     }, state.serverPagination)
 
     switchTabBaseData = {
+      glance: payload.glance,
       chartData: payload.content,
       chartNames: getChartNames(payload),
       datalist: datalist,
