@@ -3,6 +3,7 @@ import {Table} from 'react-bootstrap'
 import Pagination from 'rc-pagination'
 import Select from 'rc-select'
 import {PAGE_OPTIONS} from './../../../../helpers/constants.jsx'
+Select.Option = 'div'
 
 export default React.createClass({
   propTypes: {

@@ -11,11 +11,20 @@
 .table {
   width: 100%;
 }
-.table th {
+.table > thead > tr > th {
   color: #414141;
   background-color: #f9f9f9;
   padding: 15px 10px;
   border: 1px solid #ededed;
+  text-align: center;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  vertical-align: middle;
 }
 .table tr {
   border-bottom: 1px solid #ededed;

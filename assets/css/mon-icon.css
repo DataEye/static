@@ -2,7 +2,7 @@
   float: left;
   width: 30px;
   height: 30px;
-  background: url(../img/icon.png?v=1) no-repeat left top;
+  background: url(../img/icon.png) no-repeat left top;
   overflow: hidden;
   font-size: 0;
   text-indent: -99999px;
