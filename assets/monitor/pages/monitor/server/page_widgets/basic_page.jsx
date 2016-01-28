@@ -15,11 +15,12 @@ export default React.createClass({
     states: PropTypes.object,
     params: PropTypes.object,
     pageNav: PropTypes.string,
-    actionName: React.PropTypes.string,
-    idName: React.PropTypes.string,
-    searchKey: React.PropTypes.string,
-    moduleId: React.PropTypes.number,
-    hasModuleSelect: React.PropTypes.bool
+    actionName: PropTypes.string,
+    idName: PropTypes.string,
+    searchKey: PropTypes.string,
+    moduleId: PropTypes.number,
+    hasModuleSelect: PropTypes.bool,
+    reloadData: PropTypes.bool
   },
 
   getDefaultProps() {
@@ -84,6 +85,10 @@ export default React.createClass({
 
     if (this.props.hasModuleSelect && this.props.moduleId !== nextProps.moduleId) {
       Object.assign(this.postData, {moduleId: nextProps.moduleId})
+      this.query(this.postData)
+    }
+
+    if (this.props.reloadData !== nextProps.reloadData && nextProps.reloadData) {
       this.query(this.postData)
     }
   },

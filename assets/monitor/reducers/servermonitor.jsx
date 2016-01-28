@@ -81,7 +81,8 @@ export default function(state = {
   case 'show_group' :
     return Object.assign({}, state, {
       group:{
-        loading: true,
+        isLoading: true,
+        error: false,
         totalRecord:0,
         totalItems: [],
         currentPageItems:[]
@@ -94,7 +95,7 @@ export default function(state = {
     let endIndex = pageSize > content.length ? content.length : pageSize
     return Object.assign({}, state, {
       group:{
-        loading:false,
+        isLoading:false,
         totalRecord:content.length,
         totalItems: [
           ...content
@@ -105,7 +106,12 @@ export default function(state = {
   }
 
   case 'show_group_error' :
-    return state
+    return Object.assign({}, state, {
+      group:{
+        isLoading: false,
+        error: true
+      }
+    })
 
   case 'next_group_page' : {
     let pageID = action.payload.pageID
@@ -150,14 +156,22 @@ export default function(state = {
   case 'add_group_error' :
     return state
 
+  case 'add_server' : {
+    return Object.assign({}, state, {
+      addServerStatus: 'start'
+    })
+  }
+
   case 'add_server_ok' : {
     return Object.assign({}, state, {
-
+      addServerStatus: 'success'
     })
   }
 
   case 'add_server_error' :
-    return state
+    return Object.assign({}, state, {
+      addServerStatus: 'error'
+    })
 
   case 'delete_group_ok' : {
     let currentPageItems = state.group.currentPageItems
