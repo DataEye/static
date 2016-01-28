@@ -130,7 +130,7 @@ export default React.createClass({
       },
       {title: '平均活跃', dataIndex: 'y3', key: '4', width: '8%',
         render: (val) => {
-          return (<span>{utils.asInteger(val)}</span>)
+          return (<span>{utils.asNumber(val)}</span>)
         }
       },
       {title: '付费数', dataIndex: 'y4', key: '5', width: '8%',
@@ -159,7 +159,7 @@ export default React.createClass({
       rowKey: (row) => row.x,
       showSwitcher: false,
       formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage,
-        utils.asInteger, utils.asInteger, this.formatCurrency, utils.asInteger, utils.asInteger]
+        utils.asNumber, utils.asInteger, this.formatCurrency, utils.asInteger, utils.asInteger]
     }
 
     let analysisLvl0 = [
@@ -287,6 +287,7 @@ export default React.createClass({
       }, tabShared),
       Object.assign({
         tabName: '平均活跃',
+        chart: {tooltipValueFormatter: utils.asNumber},
         data: () => {
           this.setState({eventId: 12})
           return Object.assign({}, this.state, {

@@ -40,10 +40,10 @@ export default React.createClass({
     return ({
       uid: window.App.uid,
       appid: this.props.params.appid,
-      // startdate: moment().add(-14, 'days').format('YYYYMMDD'),
-      // enddate: moment().add(-1, 'days').format('YYYYMMDD'),
-      startdate: moment().add(-118, 'days').format('YYYYMMDD'),
-      enddate: moment().add(-88, 'days').format('YYYYMMDD'),
+      startdate: moment().add(-14, 'days').format('YYYYMMDD'),
+      enddate: moment().add(-1, 'days').format('YYYYMMDD'),
+      // startdate: moment().add(-118, 'days').format('YYYYMMDD'),
+      // enddate: moment().add(-88, 'days').format('YYYYMMDD'),
       interval: 7,
       topn: 10,
       activeType: 1
@@ -126,7 +126,7 @@ export default React.createClass({
       },
       {title: '人均LTV', dataIndex: 'y4', width: '15%', key: '5',
         render: (val) => {
-          return (<span>{utils.asInteger(val)}</span>)
+          return (<span>{utils.asNumber(val)}</span>)
         }
       }
     ]
@@ -135,7 +135,7 @@ export default React.createClass({
       rowKey: (row) => row.x,
       showSwitcher: false,
       avgFields: ['y4'],
-      formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency, utils.asInteger]
+      formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency, utils.asNumber]
     }
 
     const ltvLvl0 = [
@@ -246,7 +246,7 @@ export default React.createClass({
             },
             columns: trendingColumns,
             rowKey: (row) => row.x,
-            showSwitcher: false
+            showSwitcher: false,
           }
         ]
       }
