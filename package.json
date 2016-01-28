@@ -29,6 +29,7 @@
     "rc-calendar": "^5.2.1",
     "rc-menu": "^4.9.0",
     "rc-pagination": "^1.2.1",
+    "rc-select": "^5.9.1",
     "rc-table": "^3.6.1",
     "rc-time-picker": "^1.0.0",
     "react": "0.14.3",
@@ -40,8 +41,10 @@
     "react-tween-state": "^0.1.4",
     "redux": "3.0.4",
     "redux-logger": "2.0.4",
+    "store": "*",
     "superagent": "latest",
-    "superagent-mocker": "latest"
+    "superagent-mocker": "latest",
+    "velocity-animate": "^1.2.3"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",

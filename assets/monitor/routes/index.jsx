@@ -17,7 +17,6 @@ import BusinessView from '../pages/monitor/server/business_view.jsx'
 import GroupView from '../pages/monitor/server/group_view.jsx'
 import GroupMgmt from '../pages/monitor/server/groupMgmt.jsx'
 import AlarmSet from '../pages/alarm/alarmset.jsx'
-import Test from '../pages/cmdb/test/index.jsx'
 
 export default (
   <Router>
@@ -27,7 +26,6 @@ export default (
       <Route path="configuration/devices/add_update/:id" component={AddUpdateDevice}/>
       <Route path="configuration/business" component={Business}/>
       <Route path="configuration/employee" component={Employee}/>
-      <Route path="configuration/test" component={Test}/>
       <Route path="server/roomView/:id" component={IdcView}/>
       <Route path="server/businessView/:id" component={BusinessView}/>
       <Route path="server/groupingView/:id" component={GroupView}/>

@@ -12,8 +12,8 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      pageid: 1,
-      pagesize: 10,
+      pageID: 1,
+      pageSize: 10,
       searchType: 0,
       searchkey: ''
     }
@@ -38,12 +38,12 @@ export default React.createClass({
     })
   },
 
-  pageChange(pageid, pagesize) {
+  pageChange(pageID, pageSize) {
     this.props.actions.deviceQuery({
       searchType:this.state.searchType,
       searchKey:this.state.searchKey,
-      pageid:pageid,
-      pagesize: pagesize
+      pageID:pageID,
+      pageSize: pageSize
     })
   },
 
@@ -51,8 +51,8 @@ export default React.createClass({
     this.props.actions.deviceQuery({
       searchType:this.state.searchType,
       searchKey:this.state.searchKey,
-      pageid:this.state.pageid,
-      pagesize:this.state.pagesize,
+      pageID:this.state.pageID,
+      pageSize:this.state.pageSize,
     })
   },
 

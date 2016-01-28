@@ -17,8 +17,8 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      pageid: 1,
-      pagesize: 10,
+      pageID: 1,
+      pageSize: 10,
       searchKey: '',
       groupName:''
     }
@@ -36,20 +36,20 @@ export default React.createClass({
     })
 
     this.query(this.state.searchKey,
-      this.state.pageid, this.state.pagesize)
+      this.state.pageID, this.state.pageSize)
 
     this.props.actions.servermonitorLoadServerList()
   },
 
   search: function(searchKey) {
-    let pageid = 1
+    let pageID = 1
     this.setState({
-      pageid:pageid,
-      pagesize:this.state.pagesize,
+      pageID:pageID,
+      pageSize:this.state.pageSize,
       searchKey:searchKey
     })
 
-    this.query(searchKey, pageid, this.state.pagesize)
+    this.query(searchKey, pageID, this.state.pageSize)
   },
 
   clear: function() {
@@ -58,21 +58,21 @@ export default React.createClass({
     )
   },
 
-  pageChange: function(pageid, pagesize) {
+  pageChange: function(pageID, pageSize) {
     this.setState({
-      pageid:pageid,
-      pagesize:pagesize
+      pageID:pageID,
+      pageSize:pageSize
     })
-    this.query(this.state.searchKey, pageid, pagesize)
+    this.query(this.state.searchKey, pageID, pageSize)
   },
 
-  query: function(searchKey, pageid, pagesize, orderBy, order) {
+  query: function(searchKey, pageID, pageSize, orderBy, order) {
     let groupID = this.props.params.groupId
     this.props.actions.servermonitorQueryGroupServer({
       groupID:groupID,
       searchKey:searchKey,
-      pageid:pageid,
-      pagesize:pagesize,
+      pageID:pageID,
+      pageSize:pageSize,
       orderBy:orderBy,
       order:order
     })

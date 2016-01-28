@@ -90,8 +90,8 @@ export default function(state = {
 
   case 'show_group_ok' : {
     let content = action.payload.content
-    let pagesize = action.payload.pagesize
-    let endIndex = pagesize > content.length ? content.length : pagesize
+    let pageSize = action.payload.pageSize
+    let endIndex = pageSize > content.length ? content.length : pageSize
     return Object.assign({}, state, {
       group:{
         loading:false,
@@ -108,11 +108,11 @@ export default function(state = {
     return state
 
   case 'next_group_page' : {
-    let pageid = action.payload.pageid
-    let pagesize = action.payload.pagesize
-    let startIndex = (pageid - 1) * pagesize
-    let endIndex = pageid * pagesize > state.totalRecord ?
-      state.totalRecord : pageid * pagesize
+    let pageID = action.payload.pageID
+    let pageSize = action.payload.pageSize
+    let startIndex = (pageID - 1) * pageSize
+    let endIndex = pageID * pageSize > state.totalRecord ?
+      state.totalRecord : pageID * pageSize
 
     return Object.assign({}, state, {
       group: {

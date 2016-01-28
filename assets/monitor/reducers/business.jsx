@@ -13,8 +13,8 @@ export default function(state = {
 
   case 'get_business_ok' : {
     let items = action.payload.content
-    let pagesize = action.meta.original.pagesize
-    let endIndex = pagesize < items.length ? pagesize : items.length
+    let pageSize = action.meta.original.pageSize
+    let endIndex = pageSize < items.length ? pageSize : items.length
 
     return Object.assign({}, state, {
       totalRecord:items.length,
@@ -35,11 +35,11 @@ export default function(state = {
     return state
 
   case 'next_page' : {
-    let pageid = action.payload.pageid
-    let pagesize = action.payload.pagesize
-    let startIndex = (pageid - 1) * pagesize
-    let endIndex = pageid * pagesize > state.totalRecord ?
-      state.totalRecord : pageid * pagesize
+    let pageID = action.payload.pageID
+    let pageSize = action.payload.pageSize
+    let startIndex = (pageID - 1) * pageSize
+    let endIndex = pageID * pageSize > state.totalRecord ?
+      state.totalRecord : pageID * pageSize
 
     return Object.assign({}, state, {
       currentPageItems: state.totalItems.slice(startIndex, endIndex)

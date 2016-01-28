@@ -12,8 +12,8 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      pageid: 1,
-      pagesize: 10,
+      pageID: 1,
+      pageSize: 10,
       searchkey: ''
     }
   },
@@ -34,16 +34,16 @@ export default React.createClass({
     })
   },
 
-  pageChange(pageid, pagesize) {
+  pageChange(pageID, pageSize) {
     this.setState({
-      pageid:pageid,
-      pagesize:pagesize
+      pageID:pageID,
+      pageSize:pageSize
     })
 
     this.props.actions.employeeQuery({
       searchKey:this.state.searchKey,
-      pageid:pageid,
-      pagesize: pagesize
+      pageID:pageID,
+      pageSize: pageSize
     })
   },
 

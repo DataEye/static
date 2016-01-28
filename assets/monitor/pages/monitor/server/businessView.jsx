@@ -17,8 +17,8 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      pageid: 1,
-      pagesize: 10,
+      pageID: 1,
+      pageSize: 10,
       searchKey: '',
       moduleId: '-1'
     }
@@ -29,18 +29,18 @@ export default React.createClass({
     this.props.actions.servermonitorGetModule({
       busiId: busiId
     })
-    this.query(this.state.searchKey, this.state.pageid,
-      this.state.pagesize, this.state.moduleId)
+    this.query(this.state.searchKey, this.state.pageID,
+      this.state.pageSize, this.state.moduleId)
   },
 
   search: function(searchKey) {
-    let pageid = 1
+    let pageID = 1
     this.setState({
-      pageid: pageid,
+      pageID: pageID,
       searchKey: searchKey
     })
 
-    this.query(searchKey, pageid, this.state.pagesize,
+    this.query(searchKey, pageID, this.state.pageSize,
       this.state.moduleId)
   },
 
@@ -50,21 +50,21 @@ export default React.createClass({
     )
   },
 
-  pageChange: function(pageid, pagesize) {
+  pageChange: function(pageID, pageSize) {
     this.setState({
-      pageid: pageid,
-      pagesize: pagesize
+      pageID: pageID,
+      pageSize: pageSize
     })
-    this.query(this.state.searchKey, pageid, pagesize, this.state.moduleId)
+    this.query(this.state.searchKey, pageID, pageSize, this.state.moduleId)
   },
 
-  query: function(searchKey, pageid, pagesize, moduleId, orderBy, order) {
+  query: function(searchKey, pageID, pageSize, moduleId, orderBy, order) {
     let busiId = this.props.params.busiId
     this.props.actions.servermonitorQueryBusiServer({
       busiId: busiId,
       searchKey: searchKey,
-      pageid: pageid,
-      pagesize: pagesize,
+      pageID: pageID,
+      pageSize: pageSize,
       orderBy: orderBy,
       order: order,
       moduleId: moduleId
@@ -74,8 +74,8 @@ export default React.createClass({
   selectModule: function(value) {
     this.setState({moduleId:value})
 
-    this.query(this.state.searchKey, this.state.pageid,
-      this.state.pagesize, value)
+    this.query(this.state.searchKey, this.state.pageID,
+      this.state.pageSize, value)
   },
 
   render() {

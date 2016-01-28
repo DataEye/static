@@ -14,8 +14,8 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      pageid: 1,
-      pagesize: 10
+      pageID: 1,
+      pageSize: 10
     }
   },
 
@@ -23,21 +23,21 @@ export default React.createClass({
     this.query()
   },
 
-  pageChange: function(pageid, pagesize) {
+  pageChange: function(pageID, pageSize) {
     this.setState({
-      pageid: pageid,
-      pagesize: pagesize
+      pageID: pageID,
+      pageSize: pageSize
     })
     this.props.actions.servermonitorNextPage({
-      pageid: pageid,
-      pagesize: pagesize
+      pageID: pageID,
+      pageSize: pageSize
     })
   },
 
   query: function() {
     this.props.actions.servermonitorQueryGroup({
-      pageid: this.state.pageid,
-      pagesize: this.state.pagesize
+      pageID: this.state.pageID,
+      pageSize: this.state.pageSize
     })
   },
 

@@ -14,7 +14,8 @@ export default React.createClass({
   addServer() {
     this.props.actions.servermonitorAddServer(
       {
-        serverID:this.state.serverId
+        serverID:this.state.serverId,
+        groupID:this.props.params.id
       }
     )
     this.setState({showModal: false})
@@ -27,7 +28,7 @@ export default React.createClass({
   },
 
   close() {
-    this.setState({showModal: false, serverId: null})
+    this.setState({showModal: false})
   },
 
   open() {
@@ -47,6 +48,7 @@ export default React.createClass({
   },
 
   render() {
+    debugger
     return (
       <div className="static-modal">
         <button className="btn-custom btn-large btn-blue" onClick={this.open}>{this.props.text}</button>

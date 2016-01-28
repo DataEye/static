@@ -12,8 +12,8 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      pageid: 1,
-      pagesize: 10,
+      pageID: 1,
+      pageSize: 10,
       searchKey: ''
     }
   },
@@ -22,13 +22,13 @@ export default React.createClass({
 
   },
 
-  handlePageChange(pageid, pagesize) {
-    this.props.actions.businessNextPage(pageid, pagesize)
+  handlePageChange(pageID, pageSize) {
+    this.props.actions.businessNextPage(pageID, pageSize)
   },
 
   componentWillMount: function() {
     this.props.actions.businessGetBusinessList({
-      pageSize:this.state.pagesize
+      pageSize:this.state.pageSize
     })
 
     this.props.actions.businessGetEmployeeSelectData()

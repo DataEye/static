@@ -8,6 +8,7 @@ import {ajaxSetup} from './utils/ajax.jsx'
 
 polyfill()
 
+debugger
 ajaxSetup({
   contextPath: App.CONTEXT_PATH || ''
 })

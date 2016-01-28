@@ -34,7 +34,7 @@ export default React.createClass({
 
   search: function(searchKey) {
     this.setState({
-      pageId:1,
+      pageID:1,
       pageSize:this.state.pageSize,
       searchkey:searchKey
     })
@@ -48,10 +48,10 @@ export default React.createClass({
     )
   },
 
-  pageChange: function(pageId, pageSize) {
+  pageChange: function(pageID, pageSize) {
     this.setState({
-      pageid:pageId,
-      pagesize:pageSize
+      pageID:pageID,
+      pageSize:pageSize
     })
     this.query()
   },
@@ -61,8 +61,8 @@ export default React.createClass({
     this.props.actions.servermonitorQueryIdcServer({
       idcId:idcId,
       searchkey:this.state.searchKey,
-      pageid:this.state.pageId,
-      pagesize:this.state.pageSize,
+      pageID:this.state.pageID,
+      pageSize:this.state.pageSize,
       orderBy:'hostName',
       order:0
     })
