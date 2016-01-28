@@ -15,7 +15,7 @@
   color: #414141;
   background-color: #f9f9f9;
   padding: 15px 10px;
-  border: 1px solid #ededed;
+  border: 1px solid #ededed !important;
   text-align: center;
 }
 .table > thead > tr > th,
@@ -43,7 +43,7 @@
   text-align: left;
 }
 .table tr td.ip p {
-  margin: 5px 0;
+  margin: 1px 0;
 }
 .rc-pagination {
   border: none;
