@@ -1,0 +1,128 @@
+#header{
+  position:relative;
+  background: #57a3f1;
+  color: #FFFFFF;
+  z-index: 100;
+}
+#header .logo{
+  float: left;
+  height: 60px;
+  width: 260px;
+  padding: 14px 15px;
+  background-color: #4491e1;
+}
+#header .logo span{
+  display: inline-block;
+  width: 100%;
+  height: 32px;
+  overflow: hidden;
+  background: url(../img/logo.png) no-repeat center center;
+}
+#header .control-left-menu{
+  float: left;
+  width: 60px;
+  height: 60px;
+  padding: 15px;
+  background: url(../img/control_left_menu.png) no-repeat center center;
+  border-left: 1px solid #6cb2fc;
+  border-right: 1px solid #6cb2fc;
+  transition: all ease 0.3s;
+}
+#header .control-left-menu:hover{
+  background-color: #4391e1;
+}
+.left-hidden #header .control-left-menu {
+  background-color: #4391e1;
+}
+.left-hidden .sidebar {
+  margin-left: -260px;
+}
+.left-hidden .main-wrapper {
+  margin-left: 0;
+}
+.user, .logout{
+  height: 40px;
+  margin:10px 15px 10px 0px;
+}
+#footer{
+  height: 60px;
+  background-color: #eaedf1;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+.top-tool {
+    float: right;
+    line-height: 32px;
+    padding: 0 10px;
+}
+.top-tool a {
+    float:left;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+}
+.main-wrapper{
+    margin-left: 260px;
+    transition: margin ease 0.3s;
+}
+#main-container{
+    /*padding: 20px;*/
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #2b3541;
+}
+.first-menu-selected{
+  background-color: #4391e1;
+}
+
+#main-container .container-header > .header {
+  padding: 15px 23px;
+  background-color: #FFFFFF;
+  color: #777;
+}
+#main-container .container-header > .space {
+  height: 20px;
+  background-color: #eaedf2;
+  box-shadow: inset 0px 1px 5px #ccc;
+}
+#main-container .container-header .title1{
+  font-size: 18px;
+}
+#main-container .container-header .title2{
+  font-size: 16px;
+}
+#main-container .container-header .title3{
+  font-size: 14px;
+}
+#main-container .container-header .title4{
+  font-size: 12px;
+}
+#main-container .container-header .server-info{
+  width: 300px;
+}
+#main-container .container-header .host-name{
+  color: #4a4a4a;
+  font-size: 26px;
+}
+#main-container .container-header .ip{
+  font-size: 14px;
+}
+#main-container .container-header .go-back{
+  margin-top: 15px;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 30px;
+  color: #FFFFFF;
+  background: #57a3f1 url("../img/close.png") no-repeat center center;
+  background-size: 50% 50%;
+  transition: all ease 0.2s;
+}
+#main-container .container-header .go-back:hover{
+  background-color: #4491e1;
+}
+#main-container .content {
+  padding: 30px;
+}

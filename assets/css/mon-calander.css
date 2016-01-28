@@ -1,0 +1,43 @@
+.rc-calendar-today-btn {
+  display: none !important;
+}
+.rc-calendar-input-wrap{
+  display: none !important;
+}
+.rc-calendar-ok-btn{
+  text-decoration: none !important;
+  padding: 6px 15px !important;
+  color: #FFFFFF !important;
+  background-color: #57a3f1;
+}
+.rc-calendar-ok-btn-disabled{
+  background-color: #ccc;
+}
+.com-calander {
+  position: relative;
+  display: inline-block;
+  z-index: 100000;
+}
+.com-calander .rc-calendar {
+  position: absolute;
+  top: 34px;
+}
+.clander-date-show {
+  display: inline-block;
+  padding: 6px 10px;
+  background-color: #FFFFFF;
+  border: 1px solid #D5D6D8;
+  border-radius: 2px;
+  color: #777777;
+  font-size: 14px;
+  cursor: pointer;
+}
+.clander-date-show .on-open {
+  border-color: #57a3f2;
+}
+.clander-date-show .on-open .fa{
+  color: #57a3f2;
+}
+.clander-date-show .date {
+  margin: 0 7px;
+}

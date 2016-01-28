@@ -1,0 +1,33 @@
+.icon{
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: url(../img/icon.png?v=1) no-repeat left top;
+  overflow: hidden;
+  font-size: 0;
+  text-indent: -99999px;
+}
+.icon-equipment{
+  background-position: 0 0;
+}
+.icon-summary{
+  background-position: 0 -30px;
+}
+.icon-devices{
+  background-position: 0 -60px;
+}
+.icon-business{
+  background-position: 0 -90px;
+}
+.icon-employee{
+  background-position: 0 -120px;
+}
+.icon-serverMonitoring{
+  background-position: 0 -150px;
+}
+.icon-roomView{
+  background-position: 0 -180px;
+}
+.icon-businessView{
+  background-position: 0 -210px;
+}

@@ -1,0 +1,42 @@
+.panel {
+  box-shadow: none;
+}
+.panel-info {
+  border: none;
+}
+.panel-body {
+  padding: 0;
+  margin: 30px 0px;
+}
+.table {
+  width: 100%;
+}
+.table th {
+  color: #414141;
+  background-color: #f9f9f9;
+  padding: 15px 10px;
+  border: 1px solid #ededed;
+}
+.table tr {
+  border-bottom: 1px solid #ededed;
+}
+.table tr:hover {
+  background-color: #f9fafc;
+}
+.table tr td {
+  text-align: center;
+  color: #67686a;
+  padding: 5px 0px;
+}
+.table tr td.ip{
+  width: 15%;
+  padding-left: 3%;
+  text-align: left;
+}
+.table tr td.ip p {
+  margin: 5px 0;
+}
+.rc-pagination {
+  border: none;
+  padding-bottom: 20px;
+}
