@@ -56,6 +56,11 @@ export default React.createClass({
         }
       })
     }
+    let choicedTab = this.state.choicedTab
+    this.setState({choicedTab: ''})
+    setTimeout(() =>{
+      this.setState({choicedTab: choicedTab})
+    }, 1)
   },
 
   choiceTab(tabName) {
@@ -105,7 +110,6 @@ export default React.createClass({
       //  console.log('硬件状态')
       //  break
       default :
-        console.log('tab切换有问题')
       }
     }
 
