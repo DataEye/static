@@ -71,7 +71,6 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    //debugger
     this.onTabClick(0)
   },
 

@@ -48,7 +48,6 @@ export default React.createClass({
   },
 
   render() {
-    debugger
     return (
       <div className="static-modal">
         <button className="btn-custom btn-large btn-blue" onClick={this.open}>{this.props.text}</button>
