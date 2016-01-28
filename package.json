@@ -6,7 +6,10 @@
     "test": "jest",
     "build-tracking": "node node_modules/webpack/bin/webpack -p --config=webpack/tracking.js",
     "build-tracking-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/tracking.js",
-    "serve-tracking": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/tracking.js"
+    "serve-tracking": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/tracking.js",
+    "build-monitor": "node node_modules/webpack/bin/webpack -p --config=webpack/monitor.js",
+    "build-monitor-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/monitor.js",
+    "serve-monitor": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/monitor.js"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
@@ -26,6 +29,7 @@
     "rc-calendar": "^5.2.1",
     "rc-menu": "^4.9.0",
     "rc-pagination": "^1.2.1",
+    "rc-select": "^5.9.1",
     "rc-table": "^3.6.1",
     "rc-time-picker": "^1.0.0",
     "react": "0.14.3",
@@ -37,8 +41,10 @@
     "react-tween-state": "^0.1.4",
     "redux": "3.0.4",
     "redux-logger": "2.0.4",
+    "store": "*",
     "superagent": "latest",
-    "superagent-mocker": "latest"
+    "superagent-mocker": "latest",
+    "velocity-animate": "^1.2.3"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",

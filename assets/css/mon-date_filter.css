@@ -1,0 +1,25 @@
+.filter {
+  font-size: 14px;
+  color: #6e6e6e;
+}
+.filter .type {
+  display: inline-block;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.filter .type .fa {
+  color: #cccccc;
+  margin-right: 5px;
+}
+.filter .type.selected-type .fa {
+  color: #41cac0;
+}
+.filter .clander {
+  margin-left: 25px;
+}
+.filter .contrast {
+  color: #6e6e6e;
+  border: 1px solid #D5D6D8;
+  padding: 6px 10px;
+  cursor: pointer;
+}
