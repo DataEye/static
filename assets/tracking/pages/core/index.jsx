@@ -40,8 +40,10 @@ export default React.createClass({
     return ({
       uid: window.App.uid,
       appid: this.props.params.appid,
-      startdate: moment().add(-14, 'days').format('YYYYMMDD'),
-      enddate: moment().add(-1, 'days').format('YYYYMMDD'),
+      // startdate: moment().add(-14, 'days').format('YYYYMMDD'),
+      // enddate: moment().add(-1, 'days').format('YYYYMMDD'),
+      startdate: moment().add(-118, 'days').format('YYYYMMDD'),
+      enddate: moment().add(-88, 'days').format('YYYYMMDD'),
       interval: 7,
       topn: 10,
       activeType: 1
@@ -129,23 +131,11 @@ export default React.createClass({
       }
     ]
 
-    const summary = (
-      <tr>
-        <th>合计</th>
-        <th>4</th>
-        <th>3</th>
-        <th>2</th>
-        <th>2</th>
-        <th>2</th>
-      </tr>
-    )
-
     const ltvSharedConfig = {
       rowKey: (row) => row.x,
       showSwitcher: false,
-      avgFields: ['y1'],
-      summary: summary
-      // formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency]
+      avgFields: ['y4'],
+      formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency, utils.asInteger]
     }
 
     const ltvLvl0 = [

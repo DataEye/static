@@ -78,9 +78,8 @@ export default React.createClass({
   },
 
   getLevel(i) {
-    return this.props.states.coreLtv.breadCrumbRowList[i]
+    return this.props.states.realtimeAnalysis.breadCrumbRowList[i]
   },
-
 
   render() {
     const analysisSharedColumns = [
@@ -91,8 +90,14 @@ export default React.createClass({
       {title: '今日累计付费', dataIndex: 'y4', width: '15%', key: '5'}
     ]
 
+    const analysisSharedConfig = {
+      rowKey: (row) => row.x,
+      showSwitcher: false,
+      formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
+    }
+
     const analysisLvl0 = [
-      {
+      _.assign({
         url: '/overviewChannelRealTimeData.do',
         data: () => {
           return this.state
@@ -106,15 +111,12 @@ export default React.createClass({
             )
           }},
           ...analysisSharedColumns
-        ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
-      }
+        ]
+      }, analysisSharedConfig)
     ]
 
     const ltvLvl1 = [
-      {
+      _.assign({
         url: '/overviewCampaignRealTimeData.do',
         data: (row) => {
           return Object.assign({}, this.state, {
@@ -130,15 +132,12 @@ export default React.createClass({
             )
           }},
           ...analysisSharedColumns
-        ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
-      }
+        ]
+      }, analysisSharedConfig)
     ]
 
     const ltvLvl2 = [
-      {
+      _.assign({
         url: '/overviewPublisherRealTimeData.do',
         data: (row) => {
           return Object.assign({}, this.state, {
@@ -154,15 +153,12 @@ export default React.createClass({
             )
           }},
           ...analysisSharedColumns
-        ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
-      }
+        ]
+      }, analysisSharedConfig)
     ]
 
     const ltvLvl3 = [
-      {
+      _.assign({
         url: '/overviewSiteRealTimeData.do',
         data: (row) => {
           return Object.assign({}, this.state, {
@@ -177,11 +173,8 @@ export default React.createClass({
             )
           }},
           ...analysisSharedColumns
-        ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
-      }
+        ]
+      }, analysisSharedConfig)
     ]
 
     const tabShared = {

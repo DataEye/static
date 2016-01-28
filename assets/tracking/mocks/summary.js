@@ -106,7 +106,6 @@ export function overviewInstallRatio(mock) {
           'y0': 2,
           'x': '自然安装'
         }]
-
       }
     }
   })
