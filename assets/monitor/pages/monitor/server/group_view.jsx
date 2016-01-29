@@ -32,7 +32,13 @@ export default React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    this.setState({reloadData: nextProps.states.servermonitor.addServerStatus === 'success'})
+    if (!this.props.states.servermonitor.addServer) return
+    const currentAddServerStatus = this.props.states.servermonitor.addServer.status
+    const nextAddServerStatus = nextProps.states.servermonitor.addServer.status
+    if (currentAddServerStatus !== nextAddServerStatus && nextAddServerStatus === 'error') {
+      alert(nextProps.states.servermonitor.addServer.errorInfo)
+    }
+    this.setState({reloadData: nextProps.states.servermonitor.addServer.status === 'success'})
   },
 
   render() {

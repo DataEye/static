@@ -160,7 +160,7 @@ export default React.createClass({
       ajax({
         method: 'post',
         url: '/getOmpMenu.do',
-        data: {uid: 1, itemId: topItem},
+        data: {itemId: topItem},
         success: (msg) => {
           if (this.isMounted()) {
             this.setState({

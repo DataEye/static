@@ -44,7 +44,7 @@ export default React.createClass({
       //要加在左侧菜单所以使用reload
       window.location.reload()
     } else if (currentAddGroupStatus !== nextAddGroupStatus && nextAddGroupStatus === 'error') {
-      alert(nextProps.states.servermonitor.addGroup.errorInfo.content)
+      alert(nextProps.states.servermonitor.addGroup.errorInfo)
     }
   },
 

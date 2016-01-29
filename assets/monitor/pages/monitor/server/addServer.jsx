@@ -12,10 +12,14 @@ export default React.createClass({
   },
 
   addServer() {
+    if (!this.state.serverId) {
+      alert('您没有选择机器！')
+      return
+    }
     this.props.actions.servermonitorAddServer(
       {
-        serverID:this.state.serverId,
-        groupID:this.props.params.id
+        serverID: this.state.serverId,
+        groupID: this.props.params.id
       }
     )
     this.setState({showModal: false})

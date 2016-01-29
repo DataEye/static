@@ -43,18 +43,14 @@ export default React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    debugger
-    if (!this.props.states) return
-    debugger
     if (!this.props.states.servermonitor.deleteGroup) return
     const currentDeleteGroupStatus = this.props.states.servermonitor.deleteGroup.status
     const nextDeleteGroupStatus = nextProps.states.servermonitor.deleteGroup.status
-
     if (currentDeleteGroupStatus !== nextDeleteGroupStatus && nextDeleteGroupStatus === 'success') {
-      //要加在左侧菜单所以使用reload
+      //要加载左侧菜单所以使用reload
       window.location.reload()
     } else if (currentDeleteGroupStatus !== nextDeleteGroupStatus && nextDeleteGroupStatus === 'error') {
-      alert(nextProps.states.servermonitor.deleteGroup.errorInfo.content)
+      alert(nextProps.states.servermonitor.deleteGroup.errorInfo)
     }
   },
 
@@ -90,13 +86,15 @@ export default React.createClass({
             </tbody>
           </Table>
         </div>
-        <Pagination total={this.props.total}
-                    current={this.state.pageID}
-                    pageSize={this.state.pageSize}
-                    onChange={this.onPageChange}
-                    pageSizeOptions={['10', '20', '50']}
-                    onShowSizeChange={this.changePageSize}
-        />
+        {this.props.total / 10 <= 1 ? '' :
+          <Pagination total={this.props.total}
+                      current={this.state.pageID}
+                      pageSize={this.state.pageSize}
+                      onChange={this.onPageChange}
+                      pageSizeOptions={['10', '20', '50']}
+                      onShowSizeChange={this.changePageSize}
+            />
+        }
       </div>
     )
   }
