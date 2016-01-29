@@ -485,7 +485,7 @@ export default React.createClass({
           level0={clickInstallLvl0}
         />
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-6" style={{minHeight: '514px'}}>
             <MixedPanelContainer
               id="summaryActiveRate"
               ref="summaryActiveRate"
@@ -496,7 +496,7 @@ export default React.createClass({
               level0={activeRate}
             />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6" style={{minHeight: '514px'}}>
             <MixedPanelContainer
               id="summaryRatioInstall"
               ref="summaryRatioInstall"
