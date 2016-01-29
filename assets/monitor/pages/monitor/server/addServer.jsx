@@ -32,7 +32,7 @@ export default React.createClass({
   },
 
   open() {
-    this.setState({showModal: true})
+    this.setState({showModal: true, serverID: null})
     this.props.actions.servermonitorLoadServerList()
   },
 
@@ -58,19 +58,22 @@ export default React.createClass({
           </Modal.Header>
           <Modal.Body>
             <form className="form-horizontal">
-              <div>
-                <span>分组名称:</span>
-                <span>{this.state.groupName}</span>
+              <div className="form-group">
+                <label className="control-label col-xs-2">分组名称:</label>
+                <div className="col-xs-9" style={{paddingTop: 6}}>
+                  <span>{this.state.groupName}</span>
+                </div>
               </div>
-
-              <div>
-                <span>选择机器:</span>
-                <Select name="form-field-name"
-                        value={this.state.serverId}
-                        options={this.props.states.servermonitor.serverList}
-                        onChange={this.onChange}
-                        placeholder="选择机器"
-                        />
+              <div className="form-group">
+                <label className="control-label col-xs-2">选择机器:</label>
+                <div className="col-xs-9">
+                  <Select name="form-field-name"
+                          value={this.state.serverId}
+                          options={this.props.states.servermonitor.serverList}
+                          onChange={this.onChange}
+                          placeholder="选择机器"
+                    />
+                </div>
               </div>
             </form>
           </Modal.Body>
