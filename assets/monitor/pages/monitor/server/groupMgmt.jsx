@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react'
-import Loading from '../../../components/loading.jsx'
+import Loading from 'dejs/lib/loading'
+import Error from 'dejs/lib/error'
+import NoData from 'dejs/lib/no-data'
 import TableComponent from './groupTable.jsx'
 import AddGroup from './addGroup.jsx'
 import ContentHeader from '../../../widgets/container_header.jsx'
@@ -19,7 +21,7 @@ export default React.createClass({
     }
   },
 
-  componentWillMount() {
+  componentDidMount() {
     this.query()
   },
 
@@ -41,7 +43,27 @@ export default React.createClass({
     })
   },
 
+  getComponentByStatus(element, error, isEmpty, done) {
+    if (error) return <Error error={error} />
+
+    //<div></div>是由于Loading的children不能为空而加的
+    if (isEmpty) {
+      return done ? <NoData /> : <div></div>
+    }
+
+    return element
+  },
+
   render() {
+    let datagrid = (
+      <TableComponent
+        actions={this.props.actions}
+        states={this.props.states}
+        total={this.props.states.servermonitor.group.totalRecord}
+        data={this.props.states.servermonitor.group.currentPageItems}
+        pageChange={this.pageChange}
+        />
+    )
     return (
       <div>
           <ContentHeader>
@@ -53,13 +75,10 @@ export default React.createClass({
                 <AddGroup text="添加分组" actions={this.props.actions}
                           states={this.props.states}/>
               </div>
-              <Loading loading={this.props.states.servermonitor.group.loading}>
-                <TableComponent
-                  actions={this.props.actions}
-                  total={this.props.states.servermonitor.group.totalRecord}
-                  data={this.props.states.servermonitor.group.currentPageItems}
-                  pageChange={this.pageChange}
-                />
+              <Loading done={!this.props.states.servermonitor.group.isLoading}>
+                {this.getComponentByStatus(datagrid, this.props.states.servermonitor.group.error,
+                  this.props.states.servermonitor.group.currentPageItems.length === 0,
+                  !this.props.states.servermonitor.group.isLoading)}
               </Loading>
            </div>
         </div>

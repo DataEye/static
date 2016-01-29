@@ -133,7 +133,8 @@ export default React.createClass({
             <Tabs choiceTab={this.choiceTab} tabs={TABS} choicedTab={this.state.choicedTab} title="特性类别" />
           </div>
           <div className="serverInfo">
-            {!charts && !this.state.contrastComfirm ? <div className="text-center">请选择日期并点击“比较"按钮来查看折线图</div> : ''}
+            {!charts && !this.state.contrastComfirm && this.state.chartType === 'contrast' ?
+              <div className="text-center">请选择日期并点击“比较"按钮来查看折线图</div> : ''}
             {
               charts ? charts : ''
             }

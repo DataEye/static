@@ -5,6 +5,8 @@ var path = require('path')
 var projectName = path.basename(__filename, '.js')
 var config = require('./const')(projectName)
 
+var PUBLIC_PATH = config.IS_PRODUCTION ? 'https://www.dataeye.com/static/' : (config.DEV_SERVER_HOST + '/')
+
 module.exports = {
   entry: {
     vendor: config.DEPS,
@@ -13,7 +15,7 @@ module.exports = {
   output: {
     filename: config.APP_BUNDLE_PATH,
     // 必须加上否则在js中require图片之后src路径不对
-    publicPath: config.PUBLIC_PATH
+    publicPath: PUBLIC_PATH
   },
   module: {
     loaders:[

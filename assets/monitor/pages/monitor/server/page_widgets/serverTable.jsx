@@ -65,8 +65,8 @@ export default React.createClass({
                 <tr key={item.serverID}>
                   <td>{item.hostName}</td>
                   <td className="ip">
-                    <p>(内){privateIp}</p>
-                    <p>(外){publicIp}</p>
+                    <p>(内) {privateIp}</p>
+                    <p>(外) {publicIp}</p>
                   </td>
                   <td>{item.machineRoom}</td>
                   <td>{item.business}</td>

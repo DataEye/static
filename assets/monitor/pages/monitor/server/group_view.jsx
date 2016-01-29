@@ -14,7 +14,8 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      searchkey: ''
+      searchkey: '',
+      reloadData: false
     }
   },
 
@@ -30,6 +31,16 @@ export default React.createClass({
     )
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.states.servermonitor.addServer) return
+    const currentAddServerStatus = this.props.states.servermonitor.addServer.status
+    const nextAddServerStatus = nextProps.states.servermonitor.addServer.status
+    if (currentAddServerStatus !== nextAddServerStatus && nextAddServerStatus === 'error') {
+      alert(nextProps.states.servermonitor.addServer.errorInfo)
+    }
+    this.setState({reloadData: nextProps.states.servermonitor.addServer.status === 'success'})
+  },
+
   render() {
     return (
       <BasicPage actions={this.props.actions}
@@ -39,6 +50,7 @@ export default React.createClass({
                  searchKey={this.state.searchKey}
                  actionName="servermonitorQueryGroupServer"
                  idName="groupID"
+                 reloadData={this.state.reloadData}
         >
         <div>
           <Search className="pull-left"

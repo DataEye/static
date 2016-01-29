@@ -53,7 +53,7 @@
 }
 .btn-custom {
   height: 36px;
-  line-height: 36px;
+  /*line-height: 36px;*/
   text-align: center;
   outline: none;
   border: none;
