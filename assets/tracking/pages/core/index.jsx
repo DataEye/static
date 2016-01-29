@@ -146,11 +146,17 @@ export default React.createClass({
         },
         columns: [
           {title: '全部', dataIndex: 'x', key: '0', width: '10%', render: (val, row, index) => {
-            return (
-              <span>
-                <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
-              </span>
-            )
+            let answer
+            if (row.id && row.id === '-') {
+              answer = (<span>{val}</span>)
+            } else {
+              answer = (
+                <span>
+                  <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
+                </span>
+              )
+            }
+            return answer
           }},
           ...ltvSharedColumns
         ],
@@ -229,18 +235,18 @@ export default React.createClass({
 
     const trendingLvl0 = [
       {
-        url: '/overviewTotalTopNChannelLtv.do',
+        url: '/overviewTopNChannelLtv.do',
         data: () => {
           return this.state
         },
         columns: trendingColumns,
-        subTabName: '汇总',
+        subTabName: '分渠道',
         rowKey: (row) => row.x,
         showSwitcher: false,
         children: [
           {
-            url: '/overviewTopNChannelLtv.do',
-            tabName: '分渠道',
+            url: '/overviewTotalTopNChannelLtv.do',
+            tabName: '汇总',
             data: () => {
               return this.state
             },

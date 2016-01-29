@@ -30,8 +30,8 @@ export default React.createClass({
     return ({
       uid: window.App.uid,
       appid: this.props.params.appid,
-      startdate: moment().add(-7, 'days').format('YYYYMMDD'),
-      enddate: moment().add(-1, 'days').format('YYYYMMDD'),
+      startdate: moment().add(-118, 'days').format('YYYYMMDD'),
+      enddate: moment().add(-88, 'days').format('YYYYMMDD'),
       topn: 10,
       activeType: 1,
       eventId: 1
@@ -142,17 +142,17 @@ export default React.createClass({
         render: (val) => {
           return (<span className="currency">{utils.asCurrency(val)}</span>)
         }
-      },
-      {title: '平均ARPU', dataIndex: 'y6', key: '7', width: '8%',
-        render: (val) => {
-          return (<span>{utils.asInteger(val)}</span>)
-        }
-      },
-      {title: '平局ARPPU', dataIndex: 'y7', key: '8', width: '8%',
-        render: (val) => {
-          return (<span>{utils.asInteger(val)}</span>)
-        }
       }
+      // {title: '平均ARPU', dataIndex: 'y6', key: '7', width: '8%',
+      //   render: (val) => {
+      //     return (<span>{utils.asInteger(val)}</span>)
+      //   }
+      // },
+      // {title: '平均ARPPU', dataIndex: 'y7', key: '8', width: '8%',
+      //   render: (val) => {
+      //     return (<span>{utils.asInteger(val)}</span>)
+      //   }
+      // }
     ]
 
     const analysisSharedConfig = {
@@ -170,11 +170,17 @@ export default React.createClass({
         },
         columns: [
           {title: '广告网络', dataIndex: 'x', key: '0', width: '12%', render: (val, row, index) => {
-            return (
-              <span>
-                <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
-              </span>
-            )
+            let answer
+            if (row.id && row.id === '-') {
+              answer = (<span>{val}</span>)
+            } else {
+              answer = (
+                <span>
+                  <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
+                </span>
+              )
+            }
+            return answer
           }},
           ...analysisSharedColumns
         ]
@@ -240,14 +246,14 @@ export default React.createClass({
     ]
 
     const tabShared = {
-      url: '/overviewTotalChannelSummaryByEventid.do',
+      url: '/overviewChannelSummaryByEventid.do',
       rowKey: (row) => row.x,
-      subTabName: '汇总',
+      subTabName: '分渠道',
       showSwitcher: false,
       children: [
         {
-          url: '/overviewChannelSummaryByEventid.do',
-          tabName: '分渠道',
+          url: '/overviewTotalChannelSummaryByEventid.do',
+          tabName: '汇总',
           data: () => {
             return this.state
           },

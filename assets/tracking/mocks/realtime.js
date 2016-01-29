@@ -27,11 +27,11 @@ export function overviewChannelRealTimeData(mock) {
           'x': 'yingyongbao'
         }, {
           'y0': 10,
-          'y1': 4,
+          'y1': 'N/A',
           'y2': 0.4,
           'y3': 0.1667,
           'y4': 1,
-          'x': 'yuanlin2'
+          'x': '自然流量'
         }]
       }
     }

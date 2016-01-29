@@ -36,7 +36,7 @@ export default React.createClass({
               {this.props.tips.map((tip) => {
                 return (
                   <tr key={tip.id}>
-                    <td className="text-left">{tip.metricName}</td>
+                    <td className="text-left tipName">{tip.metricName}</td>
                     <td className="text-left">{tip.metricDefinition}</td>
                   </tr>
                 )

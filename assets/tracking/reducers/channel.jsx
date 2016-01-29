@@ -122,8 +122,8 @@ export default function(state = {
       customChannels: [
         ...state.customChannels,
         {
-          id: action.payload.content.id,
-          name: action.payload.name,
+          channelId: action.payload.content.channelId,
+          name: action.payload.content.name,
           type: 1
         }
       ]
