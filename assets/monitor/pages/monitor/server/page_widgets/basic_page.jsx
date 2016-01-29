@@ -7,6 +7,7 @@ import PageNav from '../../../../widgets/page_nav.jsx'
 import ContentHeader from '../../../../widgets/container_header.jsx'
 import ServerInfo from './server_info/index.jsx'
 import {DEFAULT_PAGESIZE} from './../../../../helpers/constants.jsx'
+import Search from '../../../../widgets/search_bar.jsx'
 
 export default React.createClass({
   propTypes: {
@@ -41,6 +42,22 @@ export default React.createClass({
     }
   },
 
+  search(searchKey) {
+    this.setState({
+      searchKey
+    })
+    this.postData.searchKey = searchKey
+    this.query(this.postData)
+  },
+
+  clear() {
+    this.setState({
+      searchKey: ''
+    })
+    this.postData.searchKey = ''
+    this.query(this.postData)
+  },
+
   query: function(postData) {
     this.props.actions[this.props.actionName](postData)
   },
@@ -61,7 +78,7 @@ export default React.createClass({
     this.postData = {
       pageID: this.state.pageID,
       pageSize: this.state.pageSize,
-      searchKey: this.props.searchKey
+      searchKey: this.state.searchKey
     }
 
     if (this.props.hasModuleSelect) {
@@ -73,13 +90,10 @@ export default React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      this.setState({isChartView: false})
+      this.refs.searchKey.setState({value: ''})
+      this.setState({isChartView: false, searchKey: ''})
+      this.postData.searchKey = ''
       this.postData[this.props.idName] = nextProps.params.id
-      this.query(this.postData)
-    }
-
-    if (this.props.searchKey !== nextProps.searchKey) {
-      Object.assign(this.postData, {searchKey: nextProps.searchKey})
       this.query(this.postData)
     }
 
@@ -138,6 +152,10 @@ export default React.createClass({
             <div className="main">
               <div className="content-header clearfix form-horizontal">
                 {this.props.children}
+                <Search search={this.search}
+                        clear={this.clear}
+                        ref="searchKey"
+                  />
               </div>
               <Loading done={!this.props.states.servermonitor.server.isLoading}>
                 {dataList}

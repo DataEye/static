@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react'
 import BasicPage from './page_widgets/basic_page.jsx'
-import Search from '../../../widgets/search_bar.jsx'
 import Select from 'react-select'
 
 export default React.createClass({
@@ -32,9 +31,6 @@ export default React.createClass({
 
   selectModule(value) {
     this.setState({moduleId: value})
-
-    Object.assign(this.postData, {moduleId: value})
-    this.query(this.postData)
   },
 
   componentDidMount() {
@@ -49,7 +45,6 @@ export default React.createClass({
                  states={this.props.states}
                  params={this.props.params}
                  pageNav={this.props.pageNav}
-                 searchKey={this.state.searchKey}
                  actionName="servermonitorQueryBusiServer"
                  idName="busiId"
                  moduleId={this.state.moduleId}
@@ -67,10 +62,6 @@ export default React.createClass({
                     placeholder="模块选择"
               />
           </div>
-          <Search search={this.search}
-                  clear={this.clear}
-                  ref="searchKey"
-                  value={this.state.searchKey} />
         </div>
       </BasicPage>
     )
