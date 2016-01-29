@@ -50,7 +50,7 @@ export default React.createClass({
           />
           {this.props.label}
         </label>
-        <div className="delete-icon">
+        <div className="delete-cross">
           <i
             style={{display: this.state.showDelete ? 'inline-block' : 'none'}}
             onClick={this.delCustom}

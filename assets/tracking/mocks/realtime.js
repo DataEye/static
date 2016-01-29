@@ -12,7 +12,7 @@ export function overviewChannelRealTimeData(mock) {
           'y4': '今日累计付费'
         },
         'content': [{
-          'y0': 2845,
+          'y0': (Math.random() * 1000) / 100,
           'y1': 246,
           'y2': 0.0865,
           'y3': 0,
