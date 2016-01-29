@@ -14,21 +14,8 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      searchkey: '',
       reloadData: false
     }
-  },
-
-  search: function(searchKey) {
-    this.setState({
-      searchKey: searchKey
-    })
-  },
-
-  clear: function() {
-    this.setState(
-      {searchKey:''}
-    )
   },
 
   componentWillReceiveProps(nextProps) {
@@ -47,25 +34,17 @@ export default React.createClass({
                  states={this.props.states}
                  params={this.props.params}
                  pageNav={this.props.pageNav}
-                 searchKey={this.state.searchKey}
                  actionName="servermonitorQueryGroupServer"
                  idName="groupID"
                  reloadData={this.state.reloadData}
         >
-        <div>
-          <Search className="pull-left"
-                  search={this.search}
-                  clear={this.clear}
-                  ref="searchKey"
-                  value={this.state.searchKey} />
-          <div className="pull-right">
-            <AddServer text="添加机器"
-                       actions={this.props.actions}
-                       states={this.props.states}
-                       params={this.props.params}
-                       pageNav={this.props.pageNav}
-              />
-          </div>
+        <div className="pull-right">
+          <AddServer text="添加机器"
+                     actions={this.props.actions}
+                     states={this.props.states}
+                     params={this.props.params}
+                     pageNav={this.props.pageNav}
+            />
         </div>
       </BasicPage>
     )
