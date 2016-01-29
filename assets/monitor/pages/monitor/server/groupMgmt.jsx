@@ -58,6 +58,7 @@ export default React.createClass({
     let datagrid = (
       <TableComponent
         actions={this.props.actions}
+        states={this.props.states}
         total={this.props.states.servermonitor.group.totalRecord}
         data={this.props.states.servermonitor.group.currentPageItems}
         pageChange={this.pageChange}

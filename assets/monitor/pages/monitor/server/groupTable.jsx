@@ -5,10 +5,11 @@ import Delete from '../../../widgets/delete.jsx'
 
 export default React.createClass({
   propTypes: {
-    actions:React.PropTypes.object,
+    actions: React.PropTypes.object,
     data: React.PropTypes.array.isRequired,
     pageChange: React.PropTypes.func.isRequired,
-    total:React.PropTypes.number
+    total: React.PropTypes.number,
+    states: React.PropTypes.object
   },
 
   getInitialState() {
@@ -41,6 +42,18 @@ export default React.createClass({
     })
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.states.servermonitor.deleteGroup) return
+    const currentDeleteGroupStatus = this.props.states.servermonitor.deleteGroup.status
+    const nextDeleteGroupStatus = nextProps.states.servermonitor.deleteGroup.status
+    if (currentDeleteGroupStatus !== nextDeleteGroupStatus && nextDeleteGroupStatus === 'success') {
+      //要加载左侧菜单所以使用reload
+      window.location.reload()
+    } else if (currentDeleteGroupStatus !== nextDeleteGroupStatus && nextDeleteGroupStatus === 'error') {
+      alert(nextProps.states.servermonitor.deleteGroup.errorInfo)
+    }
+  },
+
   render() {
     return (
       <div className="panel panel-info">
@@ -60,8 +73,8 @@ export default React.createClass({
                   <tr key={item.groupID}>
                     <td>{item.groupName}</td>
                     <td>
-                      <Delete btntext="删除" title="删除分组"
-                              prompt="确认删除该业务吗?"
+                      <Delete btntext={<i className="fa fa-trash-o"></i>} title="删除分组"
+                              prompt="确认删除该分组吗?"
                               itemId={item.groupID}
                               delfunc={this.handleDelete}
                       />
@@ -73,13 +86,15 @@ export default React.createClass({
             </tbody>
           </Table>
         </div>
-        <Pagination total={this.props.total}
-                    current={this.state.pageID}
-                    pageSize={this.state.pageSize}
-                    onChange={this.onPageChange}
-                    pageSizeOptions={['10', '20', '50']}
-                    onShowSizeChange={this.changePageSize}
-        />
+        {this.props.total / 10 <= 1 ? '' :
+          <Pagination total={this.props.total}
+                      current={this.state.pageID}
+                      pageSize={this.state.pageSize}
+                      onChange={this.onPageChange}
+                      pageSizeOptions={['10', '20', '50']}
+                      onShowSizeChange={this.changePageSize}
+            />
+        }
       </div>
     )
   }
