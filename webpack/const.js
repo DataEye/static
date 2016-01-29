@@ -17,11 +17,8 @@ var NODE_ENV = isProduction ? 'production' : 'development'
 var BUILD_DIR = 'assets-dist'
 // TODO 加入到官网
 // require图片时使用这个publicPath，css loader有自己的publicPath
-var PUBLIC_PATH = isProduction ? 'https://www.dataeye.com/static/' : (DEV_SERVER_HOST + '/')
 var FONTS_PATH = `${BUILD_DIR}/fonts`
 var IMG_PATH = `${BUILD_DIR}/img`
-var STYLE_BUNDLE_PATH = isProduction ?
-  `${BUILD_DIR}/css/bundle.[chunkHash].css` : `${BUILD_DIR}/css/bundle.css`
 var PLUGINS = isProduction ? [
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin()
@@ -40,10 +37,13 @@ module.exports = function(projectName) {
   `)
 
   var JS_DIR = `${BUILD_DIR}/${projectName}`
+  // css文件加入系统名称，防止混乱
+  var STYLE_BUNDLE_PATH = isProduction ?
+    `${BUILD_DIR}/css/${projectName}.bundle.[chunkHash].css` : `${BUILD_DIR}/css/bundle.css`
   return {
+    IS_PRODUCTION: isProduction,
     NODE_ENV,
     BUILD_DIR,
-    PUBLIC_PATH,
     DEV_SERVER_HOST,
     BUILD_DIR,
     PLUGINS,

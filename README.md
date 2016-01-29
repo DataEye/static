@@ -51,3 +51,39 @@ npm run build-${projectName}
 
 友情提醒：
 操作正式环境请先备份。
+
+## 依赖说明
+
+如果引入的依赖为前端线上依赖，请加入到dependencies节点。
+如果引入的依赖为开发工具依赖，请加入到devDependencies节点。
+dependencies依赖会全部打包成bundle.{md5}.js，所以请不要引入不必要的依赖。
+在开发阶段和发布阶段，依赖不完全相同，请注意修改webpack/const在发布时来移除开发阶段相关依赖。
+
+## 新项目注意事项
+
+比如现在开启了新项目应用统计分析，那么需要完成以下操作：
+
+### 创建assets/app
+
+所有的脚本文件放在此目录
+
+### 创建webpack/app.js
+
+webpack配置文件放在这里
+
+### 修改package.json，加入相关脚本
+
+scripts节点加入如下配置：
+
+```js
+"lint-app": "node webpack/lint.js app",
+"build-app": "node webpack/lint.js app && node node_modules/webpack/bin/webpack -p --config=webpack/app.js",
+"build-app-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/app.js",
+"serve-app": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/app.js"
+```
+
+pre-commit节点加入如下配置：
+
+```js
+"lint-app"
+```
