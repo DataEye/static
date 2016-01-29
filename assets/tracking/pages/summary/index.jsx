@@ -485,7 +485,7 @@ export default React.createClass({
           level0={clickInstallLvl0}
         />
         <div className="row">
-          <div className="col-md-6" style={{minHeight: '514px'}}>
+          <div className="col-md-6">
             <MixedPanelContainer
               id="summaryActiveRate"
               ref="summaryActiveRate"
@@ -494,9 +494,10 @@ export default React.createClass({
               title="转化对比"
               layout="chart"
               level0={activeRate}
+              style={{minHeight: '514px'}}
             />
           </div>
-          <div className="col-md-6" style={{minHeight: '514px'}}>
+          <div className="col-md-6">
             <MixedPanelContainer
               id="summaryRatioInstall"
               ref="summaryRatioInstall"
@@ -505,6 +506,7 @@ export default React.createClass({
               title="安装占比"
               layout="chart"
               level0={ratioInstall}
+              style={{minHeight: '514px'}}
             />
           </div>
         </div>
