@@ -34,7 +34,7 @@ export default React.createClass({
   getInitialState() {
     return {
       showModal: false,
-      omPerson:'-1'
+      omPerson:''
     }
   },
 
@@ -60,15 +60,15 @@ export default React.createClass({
             <form className="form-horizontal">
               <Input ref="name"
                 type="text"
-                label="业务名称"
-                labelClassName="col-xs-2"
-                wrapperClassName="col-xs-8"
+                label="业务名称:"
+                labelClassName="col-xs-2 text-right"
+                wrapperClassName="col-xs-7"
               />
 
               <div className="form-group">
-                <label className="col-xs-2">运维人:</label>
+                <label className="col-xs-2 text-right">运维人:</label>
                 <Select name="form-field-name"
-                        className="col-xs-7"
+                        className="col-xs-7 "
                         value={this.state.omPerson}
                         options={this.props.employeeList}
                         onChange={(value)=>{this.setState({omPerson:value})}}

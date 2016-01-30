@@ -1,6 +1,8 @@
 export default function(state = {
   loading: false,
+  loadingSelectData:false,
   totalRecord:0,
+  currentPage:1,
   isSaved: false,
   isDeleted:false,
   items: [],
@@ -31,18 +33,23 @@ export default function(state = {
       items: [
         ...action.payload.content.content
       ],
-      loading: false
+      loading: false,
+      currentPage:action.meta.original.pageID
     })
 
   case 'show_device_error' :
     return state
 
-  case 'init_select_data' :
-    return state
+  case 'init_select_data' : {
+    return Object.assign({}, state, {
+      loadingSelectData:true
+    })
+  }
 
   case 'init_select_data_ok' :
     let content = action.payload.content
     return Object.assign({}, state, {
+      loadingSelectData:false,
       initData:{
         deviceTypeList:content.devType,
         cpuTypeList:content.cpuType,
@@ -60,50 +67,6 @@ export default function(state = {
 
   case 'init_select_data_error' :
     return state
-
-  case 'get_edit_data' :
-    let devices = state.items
-    const index = devices.findIndex((element) => {
-      return element.id === action.payload.id
-    })
-    return Object.assign({}, state, {
-      editData:devices[index]
-    })
-
-  case 'clear_editData' :
-    return Object.assign({}, state, {
-      editData: {
-        devId: '',
-        devType: 1,
-        cabinat: 1,
-        cpuNum: 0,
-        cpuPhysicalCores: 0,
-        os: 1,
-        memory: 0,
-        privateIp: '',
-        publicIpList: [],
-        isp: 1,
-        deptId: 1,
-        module: 1,
-        backupAdmin: '',
-        hostName: '',
-        idcId: 0,
-        netCardNum: 0,
-        cpuType: 1,
-        cpuLogicCores: 0,
-        kernal: 1,
-        diskNum: 0,
-        diskSize: 0,
-        diskDir: '',
-        diskType: '',
-        diskVolue: '',
-        business: 1,
-        admin: '',
-        descs: '',
-        diskDetails:[],
-        busiModuleList:[]
-      }
-    })
 
   case 'add_device_error' :
     return Object.assign({}, state, {
