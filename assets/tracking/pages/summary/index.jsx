@@ -318,25 +318,25 @@ export default React.createClass({
             eventId: 6
           })
         },
-      }, tabShared),
-      Object.assign({
-        tabName: '平均ARPU',
-        data: () => {
-          this.setState({eventId: 13})
-          return Object.assign({}, this.state, {
-            eventId: 13
-          })
-        }
-      }, tabShared),
-      Object.assign({
-        tabName: '平均ARPPU',
-        data: () => {
-          this.setState({eventId: 14})
-          return Object.assign({}, this.state, {
-            eventId: 14
-          })
-        }
       }, tabShared)
+      // Object.assign({
+      //   tabName: '平均ARPU',
+      //   data: () => {
+      //     this.setState({eventId: 13})
+      //     return Object.assign({}, this.state, {
+      //       eventId: 13
+      //     })
+      //   }
+      // }, tabShared),
+      // Object.assign({
+      //   tabName: '平均ARPPU',
+      //   data: () => {
+      //     this.setState({eventId: 14})
+      //     return Object.assign({}, this.state, {
+      //       eventId: 14
+      //     })
+      //   }
+      // }, tabShared)
     ]
 
     let activeRate = [
