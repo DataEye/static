@@ -31,6 +31,7 @@ export default React.createClass({
             states={this.props.states}
             name={this.props.name}
             downloadUrl={this.props.downloadUrl}
+            downloadId={this.props.downloadId}
             trackUrl={this.props.trackUrl}
           />
           <Delete

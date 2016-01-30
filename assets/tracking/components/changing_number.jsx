@@ -30,6 +30,7 @@ export default React.createClass({
       this.setState({delta: '+0'})
     }
     this.animate()
+    this.setState({num: nextProps.num})
   },
 
   animate() {
