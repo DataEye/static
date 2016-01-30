@@ -1,7 +1,7 @@
 import React from 'react'
 import {Table} from 'react-bootstrap'
 import Pagination from 'rc-pagination'
-import Delete from '../../../widgets/delete.jsx'
+import Delete from '../../../../widgets/delete.jsx'
 
 export default React.createClass({
   propTypes: {

@@ -52,9 +52,11 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   border-radius: 0;
   height: 40px;
   line-height: 38px;
+  color: rgb(103, 104, 106);
 }
 .select-wrapper .Select-placeholder {
   line-height: 38px;
+  color: rgb(103, 104, 106);
 }
 .select-wrapper .Select-option {
   padding: 8px 10px;

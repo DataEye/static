@@ -3,7 +3,7 @@
   position: relative;
   margin: 0 auto;
   width: 280px;
-  border: 1px solid #efefef;
+  border: 1px solid #cdcdcd;
 }
 .search-bar>input {
   display: inline-block;
