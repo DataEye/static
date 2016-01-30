@@ -42,7 +42,7 @@ export default React.createClass({
         onMouseOver={this.mouseOver}
         onMouseOut={this.mouseOut}
       >
-        <label className="vertical-align">
+        <label>
           <input
             onClick={this.handleClick}
             type="radio"
@@ -51,7 +51,7 @@ export default React.createClass({
           />
           {this.props.label}
         </label>
-        <div className="vertical-align delete-icon">
+        <div className="delete-cross">
           <i
             style={{display: this.state.showDelete ? 'inline-block' : 'none'}}
             onClick={this.delCustom}

@@ -124,11 +124,17 @@ export default React.createClass({
         },
         columns: [
           {title: '全部', dataIndex: 'x', key: '0', width: '10%', render: (val, row, index) => {
-            return (
-              <span>
-                <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
-              </span>
-            )
+            let answer
+            if (row.id && row.id === '-') {
+              answer = (<span>{val}</span>)
+            } else {
+              answer = (
+                <span>
+                  <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
+                </span>
+              )
+            }
+            return answer
           }},
           ...analysisSharedColumns
         ]
@@ -198,18 +204,18 @@ export default React.createClass({
     ]
 
     const tabShared = {
-      url: '/overviewTotalTopNChannelRealTimeData.do',
+      url: '/overviewTopNChannelRealTimeData.do',
       columns: [
         {title: 'Total', dataIndex: 'y0', key: '0', width: '100%'},
       ],
       rowKey: (row) => row.x,
       formatters: [utils.asInteger],
-      subTabName: '汇总',
+      subTabName: '分渠道',
       showSwitcher: false,
       children: [
         {
-          url: '/overviewTopNChannelRealTimeData.do',
-          tabName: '分渠道',
+          url: '/overviewTotalTopNChannelRealTimeData.do',
+          tabName: '汇总',
           data: () => {
             return this.state
           },

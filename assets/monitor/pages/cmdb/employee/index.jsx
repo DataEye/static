@@ -20,26 +20,24 @@ export default React.createClass({
 
   componentWillMount: function() {
     this.props.actions.employeeQuery({
-      searchKey:this.state.searchKey
+      searchKey:this.state.searchKey,
+      pageID:1
     })
   },
 
   handleRequest(searchKey) {
     this.setState({
-      searchKey:searchKey
+      searchKey:searchKey,
+
     })
 
     this.props.actions.employeeQuery({
-      searchKey:searchKey
+      searchKey:searchKey,
+      pageID:1
     })
   },
 
   pageChange(pageID, pageSize) {
-    this.setState({
-      pageID:pageID,
-      pageSize:pageSize
-    })
-
     this.props.actions.employeeQuery({
       searchKey:this.state.searchKey,
       pageID:pageID,
@@ -68,7 +66,9 @@ export default React.createClass({
           <EmployeeTable
             total={this.props.states.employee.totalRecord}
             data={this.props.states.employee.items}
-            pageChange={this.pageChange} />
+            pageChange={this.pageChange}
+            pageID={this.props.states.employee.currentPage}
+          />
         </Loading>
       </div>
 

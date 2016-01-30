@@ -1,10 +1,11 @@
-export function query(payload) {
+export function query(info) {
   return {
-    payload,
+    payload:info,
     type: 'show_device',
     meta: {
       ajax: true,
-      url: '/getDeviceList.do'
+      url: '/getDeviceList.do',
+      original:info
     }
   }
 }

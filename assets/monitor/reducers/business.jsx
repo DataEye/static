@@ -95,6 +95,9 @@ export default function(state = {
   }
 
   case 'delete_business_error' :
+    if(action.payload.statusCode === 408) {
+      alert('业务已被使用,不能删除！')
+    }
     return state
 
   case 'add_module_ok' : {
@@ -172,6 +175,7 @@ export default function(state = {
   }
 
   case 'delete_module_error' :
+    alert(action.payload.content)
     return state
 
   default :

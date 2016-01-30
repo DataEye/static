@@ -9,26 +9,16 @@ export default React.createClass({
     reload:React.PropTypes.func,
     actions:React.PropTypes.object,
     total:React.PropTypes.number,
-    isDeleted:React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      data:[]
-    }
+    pageID:React.PropTypes.number
   },
 
   getInitialState() {
     return {
-      pageID:1,
       pageSize:10
     }
   },
 
   onPageChange(current) {
-    this.setState({
-      pageID: current
-    })
 
     this.props.pageChange(
       current,
@@ -43,11 +33,8 @@ export default React.createClass({
     this.props.reload()
   },
 
-  changePageSize() {
-
-  },
-
   render() {
+
     return (
         <div className="panel panel-info">
           <div className="panel-body">
@@ -104,7 +91,7 @@ export default React.createClass({
             </Table>
           </div>
           <Pagination total={this.props.total}
-                      current={this.state.pageID}
+                      current={this.props.pageID}
                       pageSize={this.state.pageSize}
                       onChange={this.onPageChange}
                       pageSizeOptions={['10', '20', '50']}

@@ -23,11 +23,12 @@ function getChartNames(json) {
   return json.name || json.content.name
 }
 
-//Todo set computed columns in config
+//Todo: set computed columns in config
 function getTotalPercentage(ary) {
   let answer = 0
-  const click = tools.sumAttr(ary, 'y0')
-  const activated = tools.sumAttr(ary, 'y1')
+  const filtered = ary.filter((val) => !val.id || val.id !== '-')
+  const click = tools.sumAttr(filtered, 'y0')
+  const activated = tools.sumAttr(filtered, 'y1')
   if (click && activated) {
     answer = activated / click
   }
@@ -51,7 +52,9 @@ function computeSummary(cols = [], list = [], avgFields = []) {
       checkedNum += 1
       _.each(keys, (key) => {
         if (_.isNumber(row[key])) {
-          summary[key] += row[key]
+          if (!row.id || row.id !== '-') {
+            summary[key] += row[key]
+          }
         }
       })
     }

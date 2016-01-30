@@ -137,12 +137,13 @@ export function overviewChannelSummaryByAppid(mock) {
           'x': 'jd_test'
         }, {
           'y0': 2868,
-          'y1': 0,
-          'y2': 0,
-          'y3': 0,
-          'y4': 0,
-          'y5': 0,
-          'x': 'yingyongbao'
+          'y1': 1,
+          'y2': 2,
+          'y3': 3,
+          'y4': 4,
+          'y5': 5,
+          'x': '自然流量',
+          'id': '-'
         }, {
           'y0': 10,
           'y1': 4,
@@ -171,9 +172,9 @@ export function queryCampaignSummary(mock) {
           'y2': '转化率',
           'y3': '平均日活跃',
           'y4': '付费数',
-          'y5': '付费额',
-          'y6': '平均ARPU',
-          'y7': '平均ARPPU'
+          'y5': '付费额'
+          // 'y6': '平均ARPU',
+          // 'y7': '平均ARPPU'
         },
         'content': [{
           'y1': 7,

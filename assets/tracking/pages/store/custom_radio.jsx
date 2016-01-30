@@ -50,12 +50,12 @@ export default React.createClass({
           />
           {this.props.label}
         </label>
-        <div
-          className="raido-delete-icon"
-          style={{display: this.state.showDelete ? 'inline-block' : 'none'}}
-          onClick={this.delCustom}
-        >
-          <i className="fa fa-times" />
+        <div className="delete-cross">
+          <i
+            style={{display: this.state.showDelete ? 'inline-block' : 'none'}}
+            onClick={this.delCustom}
+            className="fa fa-times"
+          />
         </div>
       </div>
     )

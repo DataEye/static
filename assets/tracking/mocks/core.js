@@ -12,12 +12,13 @@ export function mockOverviewChannelLtv(mock) {
           'y4': '人均LTV'
         },
         'content': [{
+          'id': '-',
           'y1': 0,
           'y2': 0,
           'y3': 700,
           'y4': 1.34,
           'y0': 0,
-          'x': 'hahh'
+          'x': '自然流量'
         }, {
           'y1': 246,
           'y2': 16.0679,

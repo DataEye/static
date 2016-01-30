@@ -11,13 +11,13 @@ const formatter2 = new GregorianCalendarFormat('yyyyMMdd')
 const now = new GregorianCalendar(zhCn)
 now.setTime(Date.now())
 
-// function disabledDate(current) {
-//   const date = new Date()
-//   date.setHours(0)
-//   date.setMinutes(0)
-//   date.setSeconds(0)
-//   return current.getTime() < date.getTime()  // can not select days before today
-// }
+function disabledDate(current) {
+  const date = new Date()
+  date.setHours(0)
+  date.setMinutes(0)
+  date.setSeconds(0)
+  return current.getTime() >= date.getTime()  // can not select days before today
+}
 
 function formatInput(v) {
   return v && formatter1.format(v)
@@ -89,7 +89,7 @@ export default React.createClass({
         locale={CalendarLocale}
         defaultValue={now}
         dateInutPlaceholder={['请输入开始日期', '请输入结束日期']}
-        // disabledDate={disabledDate}
+        disabledDate={disabledDate}
       />
     )
 

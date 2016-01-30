@@ -120,7 +120,7 @@ export default React.createClass({
             </Col>
           </Row>
         </ContainerHeader>
-        <Row className="add-form">
+        <Row className="add-form row-no-margin">
           <Col md={Consts.NUMBER_6} >
             <Panel header="默认广告网络" className="panel-track">
               {!this.props.states.channel.presetChannels.length ? empty : preset}

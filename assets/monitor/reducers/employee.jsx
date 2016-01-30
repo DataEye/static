@@ -1,7 +1,8 @@
 export default function(state = {
   loading: false,
   totalRecord:0,
-  items: []
+  items: [],
+  currentPage: 1
 }, action) {
   switch (action.type) {
   case 'show_employee' :
@@ -16,7 +17,8 @@ export default function(state = {
       totalRecord:content.totalRecord,
       items: [
         ...content.content
-      ]
+      ],
+      currentPage: action.meta.original.pageID
     })
   }
   case 'show_employee_error' :

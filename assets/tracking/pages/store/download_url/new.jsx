@@ -30,14 +30,23 @@ export default React.createClass({
   },
 
   createDownloadUrl() {
-    this.props.actions.storeCreateDownloadUrl({
-      appid: this.props.appid,
-      storeId: this.props.storeId,
-      name: this.refs.name.getValue().trim(),
-      link: this.refs.link.getValue().trim(),
-      uid: window.App.uid
-    })
-    this.close()
+    const name = this.refs.name.getValue().trim()
+    const link = this.refs.link.getValue().trim()
+
+    if (name && link) {
+      this.props.actions.storeCreateDownloadUrl({
+        appid: this.props.appid,
+        storeId: this.props.storeId,
+        name: name,
+        link: link,
+        uid: window.App.uid
+      })
+      this.close()
+    } else if (!name) {
+      alert('名称不能为空！')
+    } else if (!link) {
+      alert('地址不能为空！')
+    }
   },
 
   render() {
