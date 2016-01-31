@@ -68,17 +68,40 @@ export default function(state = {
   case 'init_select_data_error' :
     return state
 
+  case 'add_device_ok' :
+    alert('添加成功')
+    return Object.assign({}, state, {
+      isSaved:true
+    })
+
   case 'add_device_error' :
+    if (action.payload.statusCode === 406) {
+      alert('设备编号或者设备名称已存在，请重新输入')
+    }
+
+    if (action.payload.statusCode === 407) {
+      alert('ip已被其它设备使用')
+    }
+
     return Object.assign({}, state, {
       isSaved:false
     })
 
   case 'update_device_ok' :
+    alert('修改成功')
     return Object.assign({}, state, {
       isSaved: true
     })
 
   case 'update_device_error' :
+    if (action.payload.statusCode === 406) {
+      alert('设备编号或者设备名称已存在，请重新输入')
+    }
+
+    if (action.payload.statusCode === 407) {
+      alert('ip已被其它设备使用')
+    }
+
     return Object.assign({}, state, {
       isSaved:false
     })
@@ -95,6 +118,10 @@ export default function(state = {
     })
 
   case 'delete_device_error' :
+    console.log(action.payload.content)
+    if (action.payload.statusCode === 408) {
+      alert('设备已被业务使用,不能删除')
+    }
     return Object.assign({}, state, {
       isDeleted:false
     })

@@ -14,6 +14,16 @@ export default React.createClass({
     let name = this.refs.name.getValue()
     let value = this.state.omPerson
 
+    if(name === ''){
+      alert('请输入业务名称')
+      return
+    }
+
+    if(value === '') {
+      alert('请选择运维负责人')
+      return
+    }
+
     const index = this.props.employeeList.findIndex((element) => {
       return element.value === value
     })

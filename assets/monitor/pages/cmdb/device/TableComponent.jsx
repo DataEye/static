@@ -19,7 +19,6 @@ export default React.createClass({
   },
 
   onPageChange(current) {
-
     this.props.pageChange(
       current,
       this.state.pageSize
@@ -28,13 +27,12 @@ export default React.createClass({
 
   delDevice(devId) {
     this.props.actions.deviceDel({
-      devId:devId
+      deviceId:devId
     })
     this.props.reload()
   },
 
   render() {
-
     return (
         <div className="panel panel-info">
           <div className="panel-body">

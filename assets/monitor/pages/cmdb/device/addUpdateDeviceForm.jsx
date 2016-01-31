@@ -46,14 +46,12 @@ export default React.createClass({
       busiModuleList:[]
     }
   },
-
   componentWillMount: function() {
     let id = Number(this.props.id)
     if (id > 0) {
       this.setDeviceState()
     }
   },
-
   setDeviceState() {
     let items = this.props.states.device.items
     const index = items.findIndex((element) => {
@@ -75,7 +73,7 @@ export default React.createClass({
       id:editData.id,
       devId: editData.devId,
       devType: editData.devType,
-      cabinat: editData.cabinat,
+      cabinat: editData.cabinetId,
       cpuNum: editData.cpuNum,
       cpuPhysicalCores: editData.cpuPhysicalCores,
       os: editData.os,
@@ -107,17 +105,87 @@ export default React.createClass({
     })
   },
 
-  getParams() {
+  saveDevice() {
     let devId = this.refs.devId.getValue()
+    if (devId === '') {
+      alert('请输入设备编号')
+      return
+    }
+
+    let hostName = this.refs.hostName.getValue()
+    if (hostName === '') {
+      alert('请输入主机名称')
+      return
+    }
+
+    let netCardNum = this.refs.netCardNum.getValue()
+    if (netCardNum === '') {
+      alert('请输入网卡个数')
+      return
+    }
+
+
     let devType = this.state.devType
     let cabinetId = this.state.cabinetId
     let cpuNum = this.refs.cpuNum.getValue()
+    if (cpuNum === '') {
+      alert('请输入cpu个数')
+      return
+    }
+
     let cpuPhysicalCores = this.refs.cpuPhysicalCores.getValue()
+    if (cpuPhysicalCores === '') {
+      alert('请输入cpu物理核数')
+      return
+    }
+
+
+    let cpuType = this.state.cpuType
+    let cpuLogicCores = this.refs.cpuLogicCores.getValue()
+    if (cpuLogicCores === '') {
+      alert('请输入cpu逻辑核数')
+      return
+    }
+
     let os = this.state.os
     let memory = this.refs.memory.getValue()
-    let privateIp = this.refs.privateIp.getValue()
-    let publicIp = []
+    if (memory === '') {
+      alert('请输入内存大小')
+      return
+    }
 
+    let diskNum = this.refs.diskNum.getValue()
+    if (diskNum === '') {
+      alert('请输入磁盘个数')
+      return
+    }
+
+    let privateIp = this.refs.privateIp.getValue()
+
+    if (privateIp === '') {
+      alert('请输入内网IP')
+      return
+    }
+    let reg = new RegExp('^(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])$')
+    if (!reg.test(privateIp)) {
+      alert('请输入正确的内网IP')
+      return
+    }
+
+    let isprivateIpUsed = false
+    this.state.publicIpList.map((item) => {
+      if (item.ip === privateIp) {
+        isprivateIpUsed = true
+      }
+    })
+
+    if (isprivateIpUsed) {
+      alert('内网ip和外网ip不能重复')
+      return
+    }
+
+
+    let publicIp = []
     this.state.publicIpList.map((item) => {
       let ipInfo = {}
       ipInfo.ip = item.ip
@@ -134,26 +202,43 @@ export default React.createClass({
       ...publicIp
     ]
 
-    console.log(ipList)
     let deviceIps = JSON.stringify(ipList)
 
-    let deptId = this.state.deptId
-    let backupAdmin = this.state.backupAdmin
-
-    let hostName = this.refs.hostName.getValue()
-    let idcId = this.state.idcId
-    let netCardNum = this.refs.netCardNum.getValue()
-    let cpuType = this.state.cpuType
-    let cpuLogicCores = this.refs.cpuLogicCores.getValue()
-    let kernal = this.state.kernal
-    let diskNum = this.refs.diskNum.getValue()
     let diskSize = this.state.diskSize
+    if (diskSize === '') {
+      alert('请输入磁盘总大小')
+      return
+    }
+
+    if (this.state.diskDetails.length === 0) {
+      alert('请添加磁盘详细信息')
+      return
+    }
+
+    let admin = this.state.admin
+    if (admin === '') {
+      alert('请选择负责人')
+      return
+    }
+
+    let descs = this.refs.descs.getValue()
+    if (descs === '') {
+      alert('请输入描述信息')
+      return
+    }
+
+    let backupAdmin = this.state.backupAdmin
+    if (backupAdmin === '') {
+      alert('请选择备份负责人')
+      return
+    }
 
     let diskDetail = JSON.stringify(this.state.diskDetails)
 
-    let admin = this.state.admin
-    let descs = this.refs.descs.getValue()
+    let deptId = this.state.deptId
 
+    let idcId = this.state.idcId
+    let kernal = this.state.kernal
     let bmList = []
     this.state.busiModuleList.map((item) => {
       let busiModule = {}
@@ -173,7 +258,8 @@ export default React.createClass({
       admin:admin, descs:descs, deviceId:this.state.id,
       busiModules:busiModuleString
     }
-    return param
+
+    this.save(param)
   },
 
   addPublicIp(ip, ispId, ispName) {
@@ -257,31 +343,20 @@ export default React.createClass({
       busiModuleList:busiModuleList
     })
   },
-
-  checkParams() {
-
-  },
-
-  saveDevice() {
-    let param = this.getParams()
-    console.log(param)
-    this.checkParams(param)
-
+  save(param) {
     let id = Number(this.props.id)
     if (id >= 0) {
       this.props.actions.deviceUpdate(param)
     } else {
       this.props.actions.deviceAdd(param)
     }
-    //TODO 保存失败提示
-    window.location.hash = '/configuration/devices'
   },
-
   cancel() {
     window.location.hash = '/configuration/devices'
   },
 
   handleIdcChange(value) {
+    debugger
     this.setState({idcId: value})
     let data = []
     let initData = this.props.initData
@@ -290,8 +365,10 @@ export default React.createClass({
         data.push(item)
       }
     })
-    this.setState({cabinetId:data[0].value})
-    this.setState({cabinetList: data})
+    if (data.length > 0) {
+      this.setState({cabinetId:data[0].value})
+      this.setState({cabinetList: data})
+    }
   },
 
   render() {
@@ -334,7 +411,7 @@ export default React.createClass({
             </div>
 
             <Input ref="cpuNum"
-              type="text"
+              type="number"
               label="CPU个数："
               labelClassName="col-xs-3 text-right"
               wrapperClassName="col-xs-7"
@@ -343,7 +420,7 @@ export default React.createClass({
             />
 
             <Input ref="cpuPhysicalCores"
-              type="text"
+              type="number"
               label="CPU总物理核数："
               labelClassName="col-xs-3 text-right"
               wrapperClassName="col-xs-7"
@@ -360,16 +437,21 @@ export default React.createClass({
                       clearable={false}
                       searchable={false}
               />
+
             </div>
 
-            <Input ref="memory"
-              type="text"
-              label="总内存："
-              labelClassName="col-xs-3 text-right"
-              wrapperClassName="col-xs-7"
-              value={this.state.memory}
-              onChange={(e)=>{this.setState({memory:e.target.value})}}
-            />
+            <div className="form-group">
+              <div className="col-xs-10">
+                <Input ref="memory"
+                             type="number"
+                             label="总内存："
+                             labelClassName="col-xs-3 text-right"
+                             wrapperClassName="col-xs-9"
+                             value={this.state.memory}
+                             onChange={(e)=>{this.setState({memory:e.target.value})}}/>
+              </div>
+              <label className="label-control">（G）</label>
+            </div>
 
             <Input ref="privateIp"
               type="text"
@@ -390,7 +472,8 @@ export default React.createClass({
                     <th>运营商</th>
                     <th>
                       <AddPublicIp ispList={this.props.initData.ispList}
-                                   addPublicIp={this.addPublicIp} />
+                                   addPublicIp={this.addPublicIp}
+                                   publicIpList={this.state.publicIpList}/>
                     </th>
                   </tr>
                   </thead>
@@ -471,7 +554,7 @@ export default React.createClass({
 
             <Input
               ref="netCardNum"
-              type="text"
+              type="number"
               label="网卡个数："
               labelClassName="col-xs-3 text-right"
               wrapperClassName="col-xs-7"
@@ -491,7 +574,7 @@ export default React.createClass({
 
             <Input
               ref="cpuLogicCores"
-              type="text"
+              type="number"
               label="CPU总逻辑核数："
               labelClassName="col-xs-3 text-right"
               wrapperClassName="col-xs-7"
@@ -511,23 +594,24 @@ export default React.createClass({
 
             <Input
               ref="diskNum"
-              type="text"
+              type="number"
               label="磁盘个数："
               labelClassName="col-xs-3"
               wrapperClassName="col-xs-7 text-right"
               value={this.state.diskNum}
               onChange={(e)=>{this.setState({diskNum:e.target.value})}}
             />
-
-            <Input
-              ref="diskSize"
-              type="text"
-              label="磁盘总容量："
-              labelClassName="col-xs-3 text-right"
-              wrapperClassName="col-xs-7"
-              value={this.state.diskSize}
-              onChange={(e)=>{this.setState({diskSize:e.target.value})}}
-            />
+            <div className="col-xs-10">
+                <Input
+                ref="diskSize"
+                type="number"
+                label="磁盘总容量："
+                labelClassName="col-xs-3 text-right"
+                wrapperClassName="col-xs-9"
+                value={this.state.diskSize}
+                onChange={(e)=>{this.setState({diskSize:e.target.value})}}/>
+            </div>
+             <label className="label-control">（G）</label>
 
             <div className="form-group">
               <label className="col-xs-3 text-right">磁盘详情：</label>
@@ -582,7 +666,8 @@ export default React.createClass({
                     <th>
                       <AddBusinessModule busiList={this.props.initData.busiList}
                                          moduleList={this.props.initData.moduleList}
-                                         addBusiModule={this.addBusiModule} />
+                                         addBusiModule={this.addBusiModule}
+                                         busiModuleList={this.state.busiModuleList}/>
                     </th>
                   </tr>
                   </thead>

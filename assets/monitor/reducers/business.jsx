@@ -35,6 +35,7 @@ export default function(state = {
     return state
 
   case 'next_page' : {
+    debugger
     let pageID = action.payload.pageID
     let pageSize = action.payload.pageSize
     let startIndex = (pageID - 1) * pageSize
@@ -74,6 +75,7 @@ export default function(state = {
   }
 
   case 'add_business_error' :
+    alert(action.payload.content)
     return state
 
   case 'delete_business_ok' : {
@@ -138,6 +140,7 @@ export default function(state = {
   }
 
   case 'add_module_error' :
+    alert(action.payload.content)
     return state
 
   case 'delete_module_ok' : {
@@ -175,7 +178,9 @@ export default function(state = {
   }
 
   case 'delete_module_error' :
-    alert(action.payload.content)
+    if(action.payload.statusCode === 408) {
+      alert('模块已被使用,不能删除！')
+    }
     return state
 
   default :

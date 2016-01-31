@@ -13,7 +13,6 @@ export default React.createClass({
   componentWillMount: function() {
     this.props.actions.deviceInitSelectData()
   },
-
   render() {
     return (
       <div className="main">

@@ -23,7 +23,11 @@ export default React.createClass({
   },
 
   handlePageChange(pageID, pageSize) {
-    this.props.actions.businessNextPage(pageID, pageSize)
+    this.props.actions.businessNextPage(
+      {
+        pageID:pageID,
+        pageSize:pageSize
+      })
   },
 
   componentWillMount: function() {

@@ -7,12 +7,35 @@ export default React.createClass({
   propTypes: {
     busiList: PropTypes.array,
     moduleList:PropTypes.array,
-    addBusiModule:PropTypes.func
+    addBusiModule:PropTypes.func,
+    busiModuleList:PropTypes.array
   },
 
   addBusiModule() {
     let moduleId = this.state.module
     let busiId = this.state.business
+
+    if (busiId === '') {
+      alert('请选择业务')
+      return
+    }
+
+    if (moduleId === '') {
+      alert('请选择模块')
+      return
+    }
+
+    let isBusiAdded = false
+    this.props.busiModuleList.map((item) =>{
+      if (item.busiId === busiId && item.moduleId === moduleId) {
+        isBusiAdded = true
+      }
+    })
+
+    if (isBusiAdded) {
+      alert('该业务模块已添加')
+      return
+    }
 
     const m = this.props.moduleList.findIndex((element) => {
       return element.value === moduleId
