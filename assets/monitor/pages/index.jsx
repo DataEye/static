@@ -4,7 +4,7 @@
 import React, {PropTypes} from 'react'
 import Header from '../widgets/header.jsx'
 import SideMenu from '../widgets/sidebar.jsx'
-import Summary from './cmdb/summary/index.jsx'
+import Loading from 'dejs/lib/loading'
 
 export default React.createClass({
   propTypes: {
@@ -34,10 +34,9 @@ export default React.createClass({
   },
 
   render() {
-    let summary = <Summary actions={this.props.actions} states={this.props.states}/>
 
     // 作为入口页面接收redux所有的actions，不然子组件无法找到
-    const body = !this.props.children ? summary : React.cloneElement(this.props.children, {
+    const body = !this.props.children ? '' : React.cloneElement(this.props.children, {
       actions: this.props.actions,
       states: this.props.states,
       params: this.props.params,
@@ -55,7 +54,9 @@ export default React.createClass({
         <div className="page-wrapper">
           <div className="main-wrapper clearfix">
             <div id="main-container">
-              {body}
+              <Loading done={!!this.state.pageNav}>
+                {body}
+              </Loading>
             </div>
           </div>
         </div>
