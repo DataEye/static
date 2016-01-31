@@ -446,12 +446,13 @@ export default React.createClass({
 
             <div className="">
               <Input ref="memory"
-                           type="number"
-                           label="总内存："
-                           labelClassName="col-xs-3 control-label"
-                           wrapperClassName="col-xs-7"
-                           value={this.state.memory}
-                           onChange={(e)=>{this.setState({memory:e.target.value})}}/>
+                     addonAfter="G"
+                     type="number"
+                     label="总内存："
+                     labelClassName="col-xs-3 control-label"
+                     wrapperClassName="col-xs-7"
+                     value={this.state.memory}
+                     onChange={(e)=>{this.setState({memory:e.target.value})}}/>
             </div>
 
             <Input ref="privateIp"
@@ -616,6 +617,7 @@ export default React.createClass({
             />
               <Input
               ref="diskSize"
+              addonAfter="G"
               type="number"
               label="磁盘总容量："
               labelClassName="control-label col-xs-3"
