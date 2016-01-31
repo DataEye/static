@@ -1,5 +1,5 @@
 import React from 'react'
-import {Input, Button, Table} from 'react-bootstrap'
+import {Input, Table} from 'react-bootstrap'
 import Select from 'react-select'
 import AddPublicIp from './publicIpLine.jsx'
 import AddDisk from './diskDetailLine.jsx'

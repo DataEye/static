@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import {Modal, Button, Input} from 'react-bootstrap'
+import {Modal, Input} from 'react-bootstrap'
 import NewLink from '../../../widgets/new_link.jsx'
 import Select from 'react-select'
 

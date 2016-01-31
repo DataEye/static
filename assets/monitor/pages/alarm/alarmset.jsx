@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import Select from 'react-select'
-import {Input, Button} from 'react-bootstrap'
+import {Input} from 'react-bootstrap'
 import {ALARM_TYPE} from '../../helpers/constants.jsx'
 import Calander from '../../widgets/calander.jsx'
 
