@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react'
 import BasicPage from './page_widgets/basic_page.jsx'
-import Search from '../../../widgets/search_bar.jsx'
 import AddServer from './page_widgets/add_server.jsx'
 
 export default React.createClass({

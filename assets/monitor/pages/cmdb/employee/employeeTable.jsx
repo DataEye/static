@@ -21,7 +21,6 @@ export default React.createClass({
       current,
       this.state.pageSize
     )
-
   },
 
   changePageSize(pageSize) {

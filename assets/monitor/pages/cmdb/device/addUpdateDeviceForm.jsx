@@ -380,40 +380,43 @@ export default React.createClass({
               ref="devId"
               type="text"
               label="设备编号："
-              labelClassName="col-xs-3 text-right"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.devId}
               onChange={(e)=>{this.setState({devId:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">设备型号：</label>
-              <Select className="col-xs-7"
-                      labelKey="label"
-                      valueKey="value"
-                      value={this.state.devType}
-                      options={this.props.initData.deviceTypeList}
-                      onChange={(value)=>{this.setState({devType:value})}}
-                      clearable={false}
-                      searchable={false}
-                     />
+              <label className="col-xs-3 control-label">设备型号：</label>
+              <div className="col-xs-7">
+                <Select labelKey="label"
+                        valueKey="value"
+                        value={this.state.devType}
+                        options={this.props.initData.deviceTypeList}
+                        onChange={(value)=>{this.setState({devType:value})}}
+                        clearable={false}
+                        searchable={false}
+                  />
+              </div>
             </div>
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">机柜：</label>
-              <Select ref="cabinetId"
-                      name="cabinetId" className="col-xs-7"
-                      value={this.state.cabinetId}
-                      options={this.state.cabinetList}
-                      onChange={(value)=>{this.setState({cabinetId:value})}}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">机柜：</label>
+              <div className="col-xs-7">
+                <Select ref="cabinetId"
+                        name="cabinetId"
+                        value={this.state.cabinetId}
+                        options={this.state.cabinetList}
+                        onChange={(value)=>{this.setState({cabinetId:value})}}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <Input ref="cpuNum"
               type="number"
               label="CPU个数："
-              labelClassName="col-xs-3 text-right"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.cpuNum}
               onChange={(e)=>{this.setState({cpuNum:e.target.value})}}
@@ -422,48 +425,46 @@ export default React.createClass({
             <Input ref="cpuPhysicalCores"
               type="number"
               label="CPU总物理核数："
-              labelClassName="col-xs-3 text-right"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.cpuPhysicalCores}
               onChange={(e)=>{this.setState({cpuPhysicalCores:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">操作系统：</label>
-              <Select name="os" className="col-xs-7"
-                      value={this.state.os}
-                      options={this.props.initData.osTypeList}
-                      onChange={(value)=>{this.setState({os:value})}}
-                      clearable={false}
-                      searchable={false}
-              />
-
+              <label className="col-xs-3 control-label">操作系统：</label>
+              <div className="col-xs-7">
+                <Select name="os"
+                        value={this.state.os}
+                        options={this.props.initData.osTypeList}
+                        onChange={(value)=>{this.setState({os:value})}}
+                        clearable={false}
+                        searchable={false}
+                  />
+              </div>
             </div>
 
-            <div className="form-group">
-              <div className="col-xs-10">
-                <Input ref="memory"
-                             type="number"
-                             label="总内存："
-                             labelClassName="col-xs-3 text-right"
-                             wrapperClassName="col-xs-9"
-                             value={this.state.memory}
-                             onChange={(e)=>{this.setState({memory:e.target.value})}}/>
-              </div>
-              <label className="label-control">（G）</label>
+            <div className="">
+              <Input ref="memory"
+                           type="number"
+                           label="总内存："
+                           labelClassName="col-xs-3 control-label"
+                           wrapperClassName="col-xs-7"
+                           value={this.state.memory}
+                           onChange={(e)=>{this.setState({memory:e.target.value})}}/>
             </div>
 
             <Input ref="privateIp"
               type="text"
               label="内网Ip："
-              labelClassName="col-xs-3 text-right"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.privateIp}
               onChange={(e)=>{this.setState({privateIp:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">外网Ip：</label>
+              <label className="col-xs-3 control-label">外网Ip：</label>
               <div className="col-xs-7">
                 <Table hover className="text_center">
                   <thead>
@@ -504,29 +505,35 @@ export default React.createClass({
 
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">部门：</label>
-              <Select name="deptId" className="col-xs-7"
-                      value={this.state.deptId}
-                      options={this.props.initData.deptLit}
-                      onChange={(value)=>{this.setState({deptId:value})}}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">部门：</label>
+              <div className="col-xs-7">
+                <Select name="deptId"
+                        value={this.state.deptId}
+                        options={this.props.initData.deptLit}
+                        onChange={(value)=>{this.setState({deptId:value})}}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">负责人：</label>
-              <Select name="admin" className="col-xs-7"
-                      value={this.state.admin}
-                      options={this.props.initData.employeeList}
-                      onChange={(value)=>{this.setState({admin:value})}}/>
+              <label className="col-xs-3 control-label">负责人：</label>
+              <div className="col-xs-7">
+                <Select name="admin"
+                        value={this.state.admin}
+                        options={this.props.initData.employeeList}
+                        onChange={(value)=>{this.setState({admin:value})}}/>
+              </div>
             </div>
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">备份负责人：</label>
-              <Select name="backupAdmin" className="col-xs-7"
-                      value={this.state.backupAdmin}
-                      options={this.props.initData.employeeList}
-                      onChange={(value)=>{this.setState({backupAdmin:value})}}/>
+              <label className="col-xs-3 control-label">备份负责人：</label>
+              <div className="col-xs-7">
+                <Select name="backupAdmin"
+                        value={this.state.backupAdmin}
+                        options={this.props.initData.employeeList}
+                        onChange={(value)=>{this.setState({backupAdmin:value})}}/>
+              </div>
             </div>
           </div>
 
@@ -536,60 +543,66 @@ export default React.createClass({
               ref="hostName"
               type="text"
               label="主机名称："
-              labelClassName="col-xs-3 text-right"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.hostName}
               onChange={(e)=>{this.setState({hostName:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">机房：</label>
-              <Select name="idcId" className="col-xs-7"
-                      value={this.state.idcId}
-                      options={this.props.initData.idcList}
-                      onChange={this.handleIdcChange}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">机房：</label>
+              <div className="col-xs-7">
+                <Select name="idcId"
+                        value={this.state.idcId}
+                        options={this.props.initData.idcList}
+                        onChange={this.handleIdcChange}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <Input
               ref="netCardNum"
               type="number"
               label="网卡个数："
-              labelClassName="col-xs-3 text-right"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.netCardNum}
               onChange={(e)=>{this.setState({netCardNum:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">cpu型号：</label>
-              <Select name="cpuType" className="col-xs-7"
-                      value={this.state.cpuType}
-                      options={this.props.initData.cpuTypeList}
-                      onChange={(value)=>{this.setState({cpuType:value})}}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">cpu型号：</label>
+              <div className="col-xs-7">
+                <Select name="cpuType"
+                        value={this.state.cpuType}
+                        options={this.props.initData.cpuTypeList}
+                        onChange={(value)=>{this.setState({cpuType:value})}}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <Input
               ref="cpuLogicCores"
               type="number"
               label="CPU总逻辑核数："
-              labelClassName="col-xs-3 text-right"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.cpuLogicCores}
               onChange={(e)=>{this.setState({cpuLogicCores:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">内核版本：</label>
-              <Select name="kernal" className="col-xs-7"
-                      value={this.state.kernal}
-                      options={this.props.initData.kernalList}
-                      onChange={(value)=>{this.setState({kernal:value})}}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">内核版本：</label>
+              <div className="col-xs-7">
+                <Select name="kernal"
+                        value={this.state.kernal}
+                        options={this.props.initData.kernalList}
+                        onChange={(value)=>{this.setState({kernal:value})}}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <Input
@@ -601,20 +614,17 @@ export default React.createClass({
               value={this.state.diskNum}
               onChange={(e)=>{this.setState({diskNum:e.target.value})}}
             />
-            <div className="col-xs-10">
-                <Input
-                ref="diskSize"
-                type="number"
-                label="磁盘总容量："
-                labelClassName="col-xs-3 text-right"
-                wrapperClassName="col-xs-9"
-                value={this.state.diskSize}
-                onChange={(e)=>{this.setState({diskSize:e.target.value})}}/>
-            </div>
-             <label className="label-control">（G）</label>
+              <Input
+              ref="diskSize"
+              type="number"
+              label="磁盘总容量："
+              labelClassName="control-label col-xs-3"
+              wrapperClassName="col-xs-7"
+              value={this.state.diskSize}
+              onChange={(e)=>{this.setState({diskSize:e.target.value})}}/>
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">磁盘详情：</label>
+              <label className="control-label col-xs-3">磁盘详情：</label>
               <div className="col-xs-7">
                 <Table hover className="text_center">
                   <thead>
@@ -656,7 +666,7 @@ export default React.createClass({
             </div>
 
             <div className="form-group">
-              <label className="col-xs-3 text-right">业务/模块：</label>
+              <label className="control-label col-xs-3">业务/模块：</label>
               <div className="col-xs-7">
                 <Table hover className="text_center">
                   <thead>
@@ -700,17 +710,19 @@ export default React.createClass({
               ref="descs"
               type="text"
               label="描述："
-              labelClassName="col-xs-3 text-right"
+              labelClassName="control-label col-xs-3"
               wrapperClassName="col-xs-7"
               value={this.state.descs}
               onChange={(e)=>{this.setState({descs:e.target.value})}}
             />
           </div>
-
-          <div className="">
-            <Button onClick={this.cancel} >取消</Button>
-            <Button bsStyle="primary"
-                    onClick={this.saveDevice} >确定</Button>
+          <div className="col-md-6">
+            <div className="form-group">
+              <div className="col-xs-offset-3 col-xs-7">
+                <button className="btn-custom btn-small btn-white pull-left" onClick={this.cancel}>取消</button>
+                <button className="btn-custom btn-small btn-blue pull-left" onClick={this.saveDevice}>确定</button>
+              </div>
+            </div>
           </div>
         </form>
     )

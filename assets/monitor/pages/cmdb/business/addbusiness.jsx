@@ -14,12 +14,12 @@ export default React.createClass({
     let name = this.refs.name.getValue()
     let value = this.state.omPerson
 
-    if(name === ''){
+    if (name === '') {
       alert('请输入业务名称')
       return
     }
 
-    if(value === '') {
+    if (value === '') {
       alert('请选择运维负责人')
       return
     }
@@ -72,28 +72,24 @@ export default React.createClass({
                 type="text"
                 label="业务名称:"
                 labelClassName="col-xs-2 text-right"
-                wrapperClassName="col-xs-7"
+                wrapperClassName="col-xs-9"
               />
 
               <div className="form-group">
                 <label className="col-xs-2 text-right">运维人:</label>
-                <Select name="form-field-name"
-                        className="col-xs-7 "
-                        value={this.state.omPerson}
-                        options={this.props.employeeList}
-                        onChange={(value)=>{this.setState({omPerson:value})}}
-                />
+                <div className="col-xs-9 ">
+                  <Select name="form-field-name"
+                          value={this.state.omPerson}
+                          options={this.props.employeeList}
+                          onChange={(value)=>{this.setState({omPerson:value})}}
+                    />
+                </div>
               </div>
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close} className="btn-track">取消</Button>
-            <Button
-              bsStyle="primary"
-              onClick={this.addBusiness}
-              className="btn-track">
-              确定
-            </Button>
+            <button className="btn-custom btn-small btn-white pull-left" onClick={this.close}>取消</button>
+            <button className="btn-custom btn-small btn-blue pull-right" onClick={this.addBusiness}>确定</button>
           </Modal.Footer>
         </Modal>
       </div>

@@ -73,9 +73,8 @@ export default React.createClass({
                       <td>{item.busiName}</td>
                       <td>{item.moduleName}</td>
                       <td>
-                        <a href={'#/configuration/devices/add_update/' + item.id}>编辑</a>
-                          &nbsp;&nbsp;&nbsp;
-                        <DeleteDevice itemId={item.id} btntext="删除"
+                        <a href={'#/configuration/devices/add_update/' + item.id}><i className="fa fa-edit"></i></a>
+                        <DeleteDevice itemId={item.id} btntext={<i className="fa fa-trash-o"></i>}
                                 title="删除设备"
                                 prompt="确认删除设备吗？"
                                 delfunc={this.delDevice}

@@ -15,7 +15,7 @@ export default React.createClass({
   },
   render() {
     return (
-      <div className="main">
+      <div className="content clearfix">
         <Loading loading={this.props.states.device.loadingSelectData}>
           <AddUpdateDeviceForm
             id={this.props.params.id}

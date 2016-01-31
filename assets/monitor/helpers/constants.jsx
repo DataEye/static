@@ -64,10 +64,6 @@ export const MENU = {
       {
         'name': '员工管理',
         'title': 'employee'
-      },
-      {
-        'name': '表格测试',
-        'title': 'test'
       }
     ]
   },

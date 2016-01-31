@@ -45,6 +45,7 @@
 }
 .search-btn {
   display: inline-block;
+  font-size: 14px;
   width: 90px;
   text-align: center;
   line-height: 40px;

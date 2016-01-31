@@ -26,7 +26,7 @@ export default React.createClass({
       maxFrequency:'',
       alarmType:'',
       shieldStart:'',
-      shieldEnd:'',
+      shieldEnd:''
     }
   },
 
@@ -112,29 +112,33 @@ export default React.createClass({
       maxFrequency:maxFrequency,
       alarmType:alarmType,
       shieldStart:shieldStart,
-      shieldEnd:shieldEnd,
+      shieldEnd:shieldEnd
     })
   },
 
   render() {
     return (
-      <div className="main">
+      <div className="content clearfix">
         <form>
           <div className="form-horizontal">
             <div className="row ">
-                <div className="col-md-6 ">
-                  <label className="col-xs-3 text-right">特性：</label>
-                  <Select name="feature" className="col-xs-7"
-                          value={this.state.feature}
-                          options={this.props.states.alarm.featureList}
-                          onChange={(value)=>{this.setState({feature:value})}}/>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label className="col-xs-2 control-label">特性：</label>
+                    <div className="col-xs-7">
+                      <Select name="feature"
+                              value={this.state.feature}
+                              options={this.props.states.alarm.featureList}
+                              onChange={(value)=>{this.setState({feature:value})}}/>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="col-md-6">
                   <Input ref="object"
                          type="text"
                          label="监控对象："
-                         labelClassName="col-xs-3 text-right"
+                         labelClassName="col-xs-2"
                          wrapperClassName="col-xs-7"
                          value={this.state.object}
                          onChange={(e)=>{this.setState({object:e.target.value})}}/>
@@ -143,29 +147,41 @@ export default React.createClass({
 
             <div className="row ">
               <div className="col-md-6">
-                <label className="col-xs-3 text-right">设备：</label>
-                <Select name="device" className="col-xs-7"
-                        value={this.state.device}
-                        options={this.props.states.alarm.deviceList}
-                        onChange={(value)=>{this.setState({device:value})}}/>
+                <div className="form-group">
+                  <label className="col-xs-2 control-label">设备：</label>
+                  <div className="col-xs-7">
+                    <Select name="device"
+                            value={this.state.device}
+                            options={this.props.states.alarm.deviceList}
+                            onChange={(value)=>{this.setState({device:value})}}/>
+                  </div>
+                </div>
               </div>
            </div>
 
           <div className="row">
             <div className="col-md-6">
-              <label className="col-xs-3 text-right">业务：</label>
-              <Select name="business" className="col-xs-7"
-                      value={this.state.business}
-                      options={this.props.states.alarm.businessList}
-                      onChange={this.handleBusiChange}/>
+              <div className="form-group">
+                <label className="col-xs-2 control-label">业务：</label>
+                <div className="col-xs-7">
+                  <Select name="business"
+                          value={this.state.business}
+                          options={this.props.states.alarm.businessList}
+                          onChange={this.handleBusiChange}/>
+              </div>
+              </div>
             </div>
 
             <div className="col-md-6">
-              <label className="col-xs-3 text-right">模块：</label>
-              <Select name="module" className="col-xs-7"
-                      value={this.state.module}
-                      options={this.state.moduleList}
-                      onChange={(value)=>{this.setState({module:value})}}/>
+              <div className="form-group">
+                <label className="col-xs-2 control-label">模块：</label>
+                <div className="col-xs-7">
+                  <Select name="module"
+                          value={this.state.module}
+                          options={this.state.moduleList}
+                          onChange={(value)=>{this.setState({module:value})}}/>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -174,8 +190,8 @@ export default React.createClass({
               <Input ref="object"
                      type="number"
                      label="最大阀值："
-                     labelClassName="col-xs-3"
-                     wrapperClassName="col-xs-6"
+                     labelClassName="col-xs-2"
+                     wrapperClassName="col-xs-7"
                      value={this.state.maxThreshold}
                      onChange={(e)=>{this.setState({maxThreshold:e.target.value})}}/>
             </div>
@@ -183,7 +199,7 @@ export default React.createClass({
               <Input ref="object"
                      type="number"
                      label="最小阈值："
-                     labelClassName="col-xs-3"
+                     labelClassName="col-xs-2"
                      wrapperClassName="col-xs-7"
                      value={this.state.minThreshold}
                      onChange={(e)=>{this.setState({minThreshold:e.target.value})}}/>
@@ -195,7 +211,7 @@ export default React.createClass({
                 <Input ref="object"
                        type="number"
                        label="最大环比："
-                       labelClassName="col-xs-3"
+                       labelClassName="col-xs-2"
                        wrapperClassName="col-xs-7"
                        value={this.state.maxMoM}
                        onChange={(e)=>{this.setState({maxMoM:e.target.value})}}/>
@@ -204,19 +220,19 @@ export default React.createClass({
                   <Input ref="object"
                          type="number"
                          label="最小环比："
-                         labelClassName="col-xs-3"
+                         labelClassName="col-xs-2"
                          wrapperClassName="col-xs-7"
                          value={this.state.minMom}
                          onChange={(e)=>{this.setState({minMom:e.target.value})}}/>
                </div>
             </div>
 
-            <div className="form-group form-horizontal">
+            <div className="row">
               <div className="col-md-6">
                 <Input ref="object"
                        type="number"
                        label="最大次数："
-                       labelClassName="col-xs-3"
+                       labelClassName="col-xs-2"
                        wrapperClassName="col-xs-7"
                        value={this.state.maxFrequency}
                        onChange={(e)=>{this.setState({maxFrequency:e.target.value})}}/>
@@ -225,25 +241,35 @@ export default React.createClass({
 
           <div className="row">
             <div className="col-md-6">
-              <label className="col-xs-3 text-right">屏蔽时间：</label>
-              <Calander className="col-xs-7" onConfirm={this.selectData} name="shielddate"/>
+              <div className="form-group">
+                <label className="col-xs-2 control-label">屏蔽时间：</label>
+                <Calander className="col-xs-7" onConfirm={this.selectData} name="shielddate"/>
+              </div>
             </div>
           </div>
 
-         <div className="row">
+          <div className="row ">
            <div className="col-md-6">
-             <label className="col-xs-3 text-right">告警类型：</label>
-             <Select name="module" className="col-xs-7"
-                     value={this.state.alarmType}
-                     options={ALARM_TYPE}
-                     onChange={(value)=>{this.setState({alarmType:value})}}/>
+             <div className="form-group">
+               <label className="col-xs-2 control-label">告警类型：</label>
+               <div className="col-xs-7">
+                 <Select name="module"
+                         value={this.state.alarmType}
+                         options={ALARM_TYPE}
+                         onChange={(value)=>{this.setState({alarmType:value})}}/>
+               </div>
              </div>
-         </div>
-
-          <div className="row col-md-offset-4">
-            <Button onClick={this.cancel} >取消</Button>
-            <Button bsStyle="primary"
-                    onClick={this.saveAlarmRule} >确定</Button>
+           </div>
+          </div>
+          <div className="row ">
+            <div className="col-md-6">
+              <div className="form-group">
+                <div className="col-xs-offset-2 col-xs-7">
+                  <button className="btn-custom btn-small btn-white pull-left" onClick={this.cancel}>取消</button>
+                  <button className="btn-custom btn-small btn-blue pull-left" onClick={this.saveAlarmRule}>确定</button>
+                </div>
+              </div>
+            </div>
           </div>
          </div>
         </form>

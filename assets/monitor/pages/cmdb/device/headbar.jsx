@@ -42,9 +42,7 @@ export default React.createClass({
   render() {
     return (
       <div className="content-header clearfix form-horizontal">
-        <span>查询</span>
-
-        <div className="game-type-choice">
+        <div className="select-wrapper pull-left">
           <Select name="form-field-name"
                   clearable={false}
                   value={this.state.searchType}
@@ -61,7 +59,7 @@ export default React.createClass({
         />
 
         <a href={'#/configuration/devices/add_update/' + this.state.id}
-           className="btn btn-sky-blue add-app-btn" >
+           className="btn-custom btn-large btn-blue pull-right" >
           <i className="fa fa-plus"></i>&nbsp;
           <span>添加主机</span>
         </a>

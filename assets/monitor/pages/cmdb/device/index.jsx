@@ -65,9 +65,8 @@ export default React.createClass({
 
   render() {
     return (
-        <div id="deviceConfig" className="main">
+        <div className="content">
           <HeadBar queryDevice={this.searchDevice}/>
-          <hr/>
           <Loading loading={this.props.states.device.loading}>
             <TableComponent
               total={this.props.states.device.totalRecord}

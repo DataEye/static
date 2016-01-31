@@ -97,7 +97,7 @@ export default function(state = {
   }
 
   case 'delete_business_error' :
-    if(action.payload.statusCode === 408) {
+    if (action.payload.statusCode === 408) {
       alert('业务已被使用,不能删除！')
     }
     return state
@@ -110,7 +110,7 @@ export default function(state = {
       name:action.meta.original.moduleName,
       omPersonName:action.meta.original.omPersonName,
       omPerson:action.meta.original.omPerson,
-      pid:busiId,
+      pid:busiId
     }
 
     const t = state.totalItems.findIndex((element) => {
@@ -135,7 +135,7 @@ export default function(state = {
         ...state.currentPageItems.slice(0, c),
         obj,
         ...state.currentPageItems.slice(c + 1, state.currentPageItems.length)
-      ],
+      ]
     })
   }
 
@@ -173,12 +173,12 @@ export default function(state = {
         ...state.currentPageItems.slice(0, cu),
         obj1,
         ...state.currentPageItems.slice(cu + 1, state.currentPageItems.length)
-      ],
+      ]
     })
   }
 
   case 'delete_module_error' :
-    if(action.payload.statusCode === 408) {
+    if (action.payload.statusCode === 408) {
       alert('模块已被使用,不能删除！')
     }
     return state

@@ -53,7 +53,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div id="deviceConfig" className="main">
+      <div id="deviceConfig" className="content clearfix">
         <div className="content-header clearfix form-horizontal">
           <Search search={this.handleRequest}
                   clear={this.clear}
@@ -61,7 +61,6 @@ export default React.createClass({
                   className="pull-left"
                   value={this.state.searchKey}/>
         </div>
-        <hr/>
         <Loading loading={this.props.states.employee.loading}>
           <EmployeeTable
             total={this.props.states.employee.totalRecord}

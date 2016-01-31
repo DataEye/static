@@ -17,12 +17,12 @@ export default React.createClass({
     let busiId = this.props.busiId
     let name = this.refs.name.getValue()
     let value = this.state.omPerson
-    if(name === ''){
+    if (name === '') {
       alert('请输入模块名称')
       return
     }
 
-    if(value === '') {
+    if (value === '') {
       alert('请选择运维负责人')
       return
     }
