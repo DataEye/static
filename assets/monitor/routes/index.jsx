@@ -29,7 +29,7 @@ export default (
       <Route path="server/businessView/:id" component={BusinessView}/>
       <Route path="server/groupingView/:id" component={GroupView}/>
       <Route path="server/groupingManage" component={GroupManage}/>
-      <Route path="alarm/alarmconfig" component={AlarmSet}/>
+      <Route path="alarmconfig/alarmconfig" component={AlarmSet}/>
     </Route>
   </Router>
 )

@@ -156,6 +156,7 @@ export default React.createClass({
   },
 
   getLeftMenu(topItem) {
+    if (!topItem) return
     if (topItem === 'server' || topItem === 'site') {
       ajax({
         method: 'post',
