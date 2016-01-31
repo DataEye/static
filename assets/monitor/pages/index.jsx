@@ -34,7 +34,6 @@ export default React.createClass({
   },
 
   render() {
-
     // 作为入口页面接收redux所有的actions，不然子组件无法找到
     const body = !this.props.children ? '' : React.cloneElement(this.props.children, {
       actions: this.props.actions,
@@ -54,7 +53,7 @@ export default React.createClass({
         <div className="page-wrapper">
           <div className="main-wrapper clearfix">
             <div id="main-container">
-              <Loading done={!!this.state.pageNav}>
+              <Loading done={!!body}>
                 {body}
               </Loading>
             </div>

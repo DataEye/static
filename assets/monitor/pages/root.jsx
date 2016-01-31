@@ -5,7 +5,7 @@
 
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import Home from './home.jsx'
+import Home from './index.jsx'
 import actionMap from '../actions/index.jsx'
 
 export function mapStateToProps(state = {}) {
