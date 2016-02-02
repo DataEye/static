@@ -8,11 +8,10 @@
   },
   "scripts": {
     "test": "jest",
-    "lint-tracking": "node webpack/lint.js tracking",
+    "lint": "node webpack/lint.js --all",
     "build-tracking": "node webpack/lint.js tracking && node node_modules/webpack/bin/webpack -p --config=webpack/tracking.js",
     "build-tracking-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/tracking.js",
     "serve-tracking": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/tracking.js",
-    "lint-monitor": "node webpack/lint.js monitor",
     "build-monitor": "node webpack/lint.js monitor && node node_modules/webpack/bin/webpack -p --config=webpack/monitor.js",
     "build-monitor-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/monitor.js",
     "serve-monitor": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/monitor.js"
@@ -93,7 +92,6 @@
     ]
   },
   "pre-commit": [
-    "lint-monitor",
-    "lint-tracking"
+    "lint"
   ]
 }

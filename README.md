@@ -6,22 +6,6 @@ DataEye前端资源
 
 assets下的css/fonts/img是共享文件夹，所有的静态资源直接直接放在各目录下。
 
-各个新项目的js文件在assets下新建一个目录专门存放，目录名称需要简单明了。
-所有项目的js入口文件名称统一为index.js。
-
-webpack下新建一个js文件，内容直接复制tracking.js。
-文件名与assets下的存放该项目js文件目录名相同。
-
-package.json下新增三个scripts命令，类似如下：
-
-```js
-"scripts": {
-  "build-${projectName}": "node node_modules/webpack/bin/webpack -p --config=webpack/${projectName}.js",
-  "build-${projectName}-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/${projectName}.js",
-  "serve-${projectName}": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/${projectName}.js",
-},
-```
-
 ## 开发环境
 
 启动本地webpack-dev-server，在开发环境直接使用本地资源，避免各种同步和手动刷新。
@@ -69,21 +53,14 @@ dependencies依赖会全部打包成bundle.{md5}.js，所以请不要引入不�
 
 ### 创建webpack/app.js
 
-webpack配置文件放在这里
+webpack配置文件放在这里，文内内容复制tracking.js然后按需修改即可
 
 ### 修改package.json，加入相关脚本
 
 scripts节点加入如下配置：
 
 ```js
-"lint-app": "node webpack/lint.js app",
 "build-app": "node webpack/lint.js app && node node_modules/webpack/bin/webpack -p --config=webpack/app.js",
 "build-app-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/app.js",
 "serve-app": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/app.js"
-```
-
-pre-commit节点加入如下配置：
-
-```js
-"lint-app"
 ```
