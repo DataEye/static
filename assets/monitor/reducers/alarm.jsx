@@ -38,6 +38,7 @@ export default function(state = {
     return state
 
   case 'save_alarm_rule_ok' :
+    alert('告警设置成功')
     return state
 
   case 'save_alarm_rule_error' :

@@ -39,8 +39,10 @@ export default React.createClass({
                 ref="searchKey"
                 className="pull-left"
                 value={this.state.searchKey}/>
-        <AddBusiness text="添加业务" actions={this.props.actions}
-           employeeList={this.props.states.business.employeeList}/>
+        <div className="pull-right">
+          <AddBusiness text="添加业务" actions={this.props.actions}
+                       employeeList={this.props.states.business.employeeList}/>
+        </div>
     </div>
     )
   }

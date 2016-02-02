@@ -13,7 +13,8 @@ export default React.createClass({
     changePageID: React.PropTypes.func,
     changePageSize: React.PropTypes.func,
     pageID: React.PropTypes.number,
-    pageSize: React.PropTypes.number
+    pageSize: React.PropTypes.number,
+    sortBy: React.PropTypes.func
   },
 
   changePageID(pageID) {
@@ -30,6 +31,12 @@ export default React.createClass({
     }
   },
 
+  sortBy(name) {
+    return () => {
+      this.props.sortBy(name)
+    }
+  },
+
   render() {
     return (
       <div className="panel panel-info">
@@ -37,12 +44,12 @@ export default React.createClass({
           <Table hover className="text_center">
             <thead>
             <tr>
-              <th className="text_center">主机名</th>
+              <th className="text_center" onClick={this.sortBy('hostName')}>主机名 <i className="fa fa-sort"></i></th>
               <th className="text_center">IP</th>
-              <th className="text_center">机房</th>
-              <th className="text_center">业务</th>
-              <th className="text_center">CPU使用率</th>
-              <th className="text_center">五分钟负载</th>
+              <th className="text_center" onClick={this.sortBy('machineRoom')}>机房 <i className="fa fa-sort"></i></th>
+              <th className="text_center" onClick={this.sortBy('business')}>业务 <i className="fa fa-sort"></i></th>
+              <th className="text_center" onClick={this.sortBy('cpuUsage')}>CPU使用率 <i className="fa fa-sort"></i></th>
+              <th className="text_center" onClick={this.sortBy('fiveLoad')}>五分钟负载 <i className="fa fa-sort"></i></th>
               <th className="text_center">健康状态</th>
               <th className="text_center">操作</th>
             </tr>

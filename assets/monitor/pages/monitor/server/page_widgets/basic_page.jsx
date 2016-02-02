@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 import Loading from 'dejs/lib/loading'
 import Error from 'dejs/lib/error'
 import NoData from 'dejs/lib/no-data'
-import TableComponent from './serverTable.jsx'
+import TableComponent from './server_table.jsx'
 import PageNav from '../../../../widgets/page_nav.jsx'
 import ContentHeader from '../../../../widgets/container_header.jsx'
 import ServerInfo from './server_info/index.jsx'
@@ -38,7 +38,7 @@ export default React.createClass({
       ip: [],
       pageID: 1,
       pageSize: DEFAULT_PAGESIZE,
-      searchkey: ''
+      searchKey: ''
     }
   },
 
@@ -91,8 +91,8 @@ export default React.createClass({
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
       this.refs.searchKey.setState({value: ''})
-      this.setState({isChartView: false, searchKey: ''})
-      this.postData.searchKey = ''
+      this.setState({isChartView: false, searchKey: '', orderBy: null, order: null})
+      Object.assign(this.postData, {searchKey: '', orderBy: null, order: null})
       this.postData[this.props.idName] = nextProps.params.id
       this.query(this.postData)
     }
@@ -120,6 +120,17 @@ export default React.createClass({
     this.setState({isChartView: false})
   },
 
+  sortBy(name) {
+    if (name === this.state.orderBy) {
+      this.setState({order: this.state.order ? 0 : 1})
+      this.postData.order = this.state.order ? 0 : 1
+    } else {
+      this.setState({orderBy: name, order: 1})
+      Object.assign(this.postData, {orderBy: name, order: 1})
+    }
+    this.query(this.postData)
+  },
+
   render() {
     let header, dataList, content, body
     if (!this.state.isChartView) {
@@ -142,6 +153,7 @@ export default React.createClass({
           changePageID={this.changePageID}
           changePageSize={this.changePageSize}
           viewChart={this.viewChart}
+          sortBy={this.sortBy}
           />)
       } else {
         dataList = (<div></div>)

@@ -20,26 +20,24 @@ export default React.createClass({
 
   componentWillMount: function() {
     this.props.actions.employeeQuery({
-      searchKey:this.state.searchKey
+      searchKey:this.state.searchKey,
+      pageID:1
     })
   },
 
   handleRequest(searchKey) {
     this.setState({
-      searchKey:searchKey
+      searchKey:searchKey,
+
     })
 
     this.props.actions.employeeQuery({
-      searchKey:searchKey
+      searchKey:searchKey,
+      pageID:1
     })
   },
 
   pageChange(pageID, pageSize) {
-    this.setState({
-      pageID:pageID,
-      pageSize:pageSize
-    })
-
     this.props.actions.employeeQuery({
       searchKey:this.state.searchKey,
       pageID:pageID,
@@ -55,7 +53,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div id="deviceConfig" className="main">
+      <div id="deviceConfig" className="content clearfix">
         <div className="content-header clearfix form-horizontal">
           <Search search={this.handleRequest}
                   clear={this.clear}
@@ -63,12 +61,13 @@ export default React.createClass({
                   className="pull-left"
                   value={this.state.searchKey}/>
         </div>
-        <hr/>
         <Loading loading={this.props.states.employee.loading}>
           <EmployeeTable
             total={this.props.states.employee.totalRecord}
             data={this.props.states.employee.items}
-            pageChange={this.pageChange} />
+            pageChange={this.pageChange}
+            pageID={this.props.states.employee.currentPage}
+          />
         </Loading>
       </div>
 

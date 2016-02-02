@@ -52,11 +52,16 @@
   text-decoration: none;
 }
 .btn-custom {
+  display: inline-block;
   height: 36px;
-  /*line-height: 36px;*/
+  line-height: 36px;
   text-align: center;
   outline: none;
   border: none;
+  text-decoration: none !important;
+}
+.btn-s {
+  padding: 0px 13px;
 }
 .btn-small {
   width: 115px;
@@ -73,6 +78,7 @@
 .btn-blue:active
 {
   background-color: #4491e1;
+  color: #FFFFFF;
 }
 .btn-white {
   color: #57585a;
@@ -93,5 +99,6 @@
 .btn-green:focus,
 .btn-green:active
 {
+  color: #FFFFFF;
   background-color: #42bd76;
 }

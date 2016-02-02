@@ -17,7 +17,7 @@ export default React.createClass({
   render() {
     return (
       <a href={this.props.href}
-        className="btn btn-sky-blue add-app-btn"
+        className="btn-custom btn-s btn-green"
         onClick={this.props.handleClick}
       >
         <i className="fa fa-plus"></i>

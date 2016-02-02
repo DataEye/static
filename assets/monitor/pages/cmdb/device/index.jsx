@@ -21,6 +21,7 @@ export default React.createClass({
 
   componentWillMount: function() {
     this.props.actions.deviceQuery({
+      pageID:1,
       searchType:0,
       searchKey:''
     })
@@ -33,12 +34,18 @@ export default React.createClass({
     })
 
     this.props.actions.deviceQuery({
+      pageID:1,
       searchType:searchType,
       searchKey:searchKey
     })
   },
 
   pageChange(pageID, pageSize) {
+    this.setState({
+      pageID:pageID,
+      pageSize:pageSize
+    })
+
     this.props.actions.deviceQuery({
       searchType:this.state.searchType,
       searchKey:this.state.searchKey,
@@ -58,17 +65,16 @@ export default React.createClass({
 
   render() {
     return (
-        <div id="deviceConfig" className="main">
+        <div className="content">
           <HeadBar queryDevice={this.searchDevice}/>
-          <hr/>
           <Loading loading={this.props.states.device.loading}>
             <TableComponent
               total={this.props.states.device.totalRecord}
               data={this.props.states.device.items}
               pageChange={this.pageChange}
               actions={this.props.actions}
-              isDeleted={this.props.states.device.isDeleted}
               reload={this.reload}
+              pageID={this.props.states.device.currentPage}
             />
           </Loading>
         </div>

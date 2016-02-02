@@ -8,9 +8,13 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="panel panel-default">
-        <div className="panel-body">
-          {this.props.name}{this.props.value}
+      <div className="summary-panel clearfix">
+        <div className={`summary-icon-wrapper summary-icon-${this.props.name}`}>
+          <div></div>
+        </div>
+        <div className="summary-content">
+          <p className="text-center summary-num">{this.props.value}</p>
+          <p className="text-center summary-name">{this.props.name}</p>
         </div>
       </div>
     )

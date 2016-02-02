@@ -23,7 +23,11 @@ export default React.createClass({
   },
 
   handlePageChange(pageID, pageSize) {
-    this.props.actions.businessNextPage(pageID, pageSize)
+    this.props.actions.businessNextPage(
+      {
+        pageID:pageID,
+        pageSize:pageSize
+      })
   },
 
   componentWillMount: function() {
@@ -36,7 +40,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div id="deviceConfig" className="main">
+      <div id="deviceConfig" className="content clearfix">
         <HeadBar queryBusiness={this.getBusiness}
           actions={this.props.actions}
                  states={this.props.states}

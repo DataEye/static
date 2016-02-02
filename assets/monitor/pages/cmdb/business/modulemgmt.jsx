@@ -17,6 +17,16 @@ export default React.createClass({
     let busiId = this.props.busiId
     let name = this.refs.name.getValue()
     let value = this.state.omPerson
+    if (name === '') {
+      alert('请输入模块名称')
+      return
+    }
+
+    if (value === '') {
+      alert('请选择运维负责人')
+      return
+    }
+
     let employeeList = this.props.states.business.employeeList
     const index = this.props.states.business.employeeList.findIndex((element) => {
       return element.value === value
@@ -37,7 +47,7 @@ export default React.createClass({
     return {
       showModal: false,
       options: [],
-      omPerson:'-1'
+      omPerson:''
     }
   },
 
@@ -101,12 +111,12 @@ export default React.createClass({
             <form className="form-horizontal">
               <Input ref="name"
                      type="text"
-                     label="模块名"
-                     labelClassName="col-xs-2"
+                     label="模块名:"
+                     labelClassName="col-xs-2 text-right"
                      wrapperClassName="col-xs-7"/>
 
               <div className="form-group">
-                <label className="col-xs-2">运维人:</label>
+                <label className="col-xs-2 text-right">运维人:</label>
                 <Select name="form-field-name"
                         className="col-xs-7"
                         value={this.state.omPerson}

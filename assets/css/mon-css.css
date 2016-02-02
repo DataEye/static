@@ -1,5 +1,5 @@
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-  font-family:Arial, "微软雅黑", "宋体";
+  font-family:Arial, "Microsoft YaHei", "宋体";
 }
 .content{
   padding-top: 70px;
@@ -44,17 +44,23 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 .display-none {
   display: none;
 }
+
+/*react-select样式覆盖*/
 .select-wrapper{
   width: 200px;
   margin-right: 20px;
 }
+.Select-control {
+  border-radius: 0 !important;
+}
 .select-wrapper .Select-control {
-  border-radius: 0;
   height: 40px;
   line-height: 38px;
+  color: rgb(103, 104, 106);
 }
 .select-wrapper .Select-placeholder {
   line-height: 38px;
+  color: rgb(103, 104, 106);
 }
 .select-wrapper .Select-option {
   padding: 8px 10px;
@@ -83,4 +89,9 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 /*bootStrap样式覆盖*/
 .form-control {
   border-radius: 0;
+}
+
+.label-control {
+  line-height: 32px;
+  text-align: right;
 }

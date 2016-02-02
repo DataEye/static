@@ -1,5 +1,5 @@
 import React from 'react'
-import {Input, Button, Table} from 'react-bootstrap'
+import {Input, Table} from 'react-bootstrap'
 import Select from 'react-select'
 import AddPublicIp from './publicIpLine.jsx'
 import AddDisk from './diskDetailLine.jsx'
@@ -7,13 +7,10 @@ import AddBusinessModule from './businessLine.jsx'
 
 export default React.createClass({
   propTypes: {
-    initData: React.PropTypes.object.isRequired,
-    editData: React.PropTypes.object,
     id: React.PropTypes.string,
+    initData: React.PropTypes.object,
     actions: React.PropTypes.object,
-    isSaved: React.PropTypes.bool,
-    products:React.PropTypes.array,
-    isp:React.PropTypes.array
+    states: React.PropTypes.object
   },
 
   getInitialState() {
@@ -32,7 +29,7 @@ export default React.createClass({
       module: 1,
       backupAdmin: '',
       hostName: '',
-      idcId: 0,
+      idcId: 1,
       netCardNum: 0,
       cpuType: 1,
       cpuLogicCores: 0,
@@ -49,11 +46,19 @@ export default React.createClass({
       busiModuleList:[]
     }
   },
+  componentWillMount: function() {
+    let id = Number(this.props.id)
+    if (id > 0) {
+      this.setDeviceState()
+    }
+  },
   setDeviceState() {
-    let editData = this.props.editData
-
+    let items = this.props.states.device.items
+    const index = items.findIndex((element) => {
+      return element.id === Number(this.props.id)
+    })
+    let editData = items[index]
     let ipList = editData.deviceIPList
-
     let privateIp = ''
     let publicIpList = []
     ipList.map((item) => {
@@ -65,9 +70,10 @@ export default React.createClass({
     })
 
     this.setState({
+      id:editData.id,
       devId: editData.devId,
       devType: editData.devType,
-      cabinat: editData.cabinat,
+      cabinat: editData.cabinetId,
       cpuNum: editData.cpuNum,
       cpuPhysicalCores: editData.cpuPhysicalCores,
       os: editData.os,
@@ -99,20 +105,94 @@ export default React.createClass({
     })
   },
 
-  componentWillReceiveProps() {
-    this.setDeviceState()
-  },
-
-  getParams() {
+  saveDevice() {
     let devId = this.refs.devId.getValue()
+    if (devId === '') {
+      alert('请输入设备编号')
+      return
+    }
+
+    let hostName = this.refs.hostName.getValue()
+    if (hostName === '') {
+      alert('请输入主机名称')
+      return
+    }
+
+    let netCardNum = this.refs.netCardNum.getValue()
+    if (netCardNum === '') {
+      alert('请输入网卡个数')
+      return
+    }
+
+
     let devType = this.state.devType
     let cabinetId = this.state.cabinetId
     let cpuNum = this.refs.cpuNum.getValue()
+    if (cpuNum === '') {
+      alert('请输入cpu个数')
+      return
+    }
+
     let cpuPhysicalCores = this.refs.cpuPhysicalCores.getValue()
+    if (cpuPhysicalCores === '') {
+      alert('请输入cpu物理核数')
+      return
+    }
+
+
+    let cpuType = this.state.cpuType
+    let cpuLogicCores = this.refs.cpuLogicCores.getValue()
+    if (cpuLogicCores === '') {
+      alert('请输入cpu逻辑核数')
+      return
+    }
+
     let os = this.state.os
     let memory = this.refs.memory.getValue()
+    if (memory === '') {
+      alert('请输入内存大小')
+      return
+    }
+
+    let diskNum = this.refs.diskNum.getValue()
+    if (diskNum === '') {
+      alert('请输入磁盘个数')
+      return
+    }
+
     let privateIp = this.refs.privateIp.getValue()
-    let publicIp = this.state.publicIpList
+
+    if (privateIp === '') {
+      alert('请输入内网IP')
+      return
+    }
+    let reg = new RegExp('^(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])$')
+    if (!reg.test(privateIp)) {
+      alert('请输入正确的内网IP')
+      return
+    }
+
+    let isprivateIpUsed = false
+    this.state.publicIpList.map((item) => {
+      if (item.ip === privateIp) {
+        isprivateIpUsed = true
+      }
+    })
+
+    if (isprivateIpUsed) {
+      alert('内网ip和外网ip不能重复')
+      return
+    }
+
+
+    let publicIp = []
+    this.state.publicIpList.map((item) => {
+      let ipInfo = {}
+      ipInfo.ip = item.ip
+      ipInfo.ispId = item.ispId.toString()
+      ipInfo.type = item.type.toString()
+      publicIp.push(ipInfo)
+    })
 
     let ipList = [{
       ip:privateIp,
@@ -124,36 +204,62 @@ export default React.createClass({
 
     let deviceIps = JSON.stringify(ipList)
 
-    let deptId = this.state.deptId
-    let backupAdmin = this.refs.backupAdmin.getValue()
+    let diskSize = this.state.diskSize
+    if (diskSize === '') {
+      alert('请输入磁盘总大小')
+      return
+    }
 
-    let hostName = this.refs.hostName.getValue()
-    let idcId = this.state.idcId
-    let netCardNum = this.refs.netCardNum.getValue()
-    let cpuType = this.state.cpuType
-    let cpuLogicCores = this.refs.cpuLogicCores.getValue()
-    let kernal = this.state.kernal
-    let diskNum = this.refs.diskNum.getValue()
-    let diskSize = 0
+    if (this.state.diskDetails.length === 0) {
+      alert('请添加磁盘详细信息')
+      return
+    }
+
+    let admin = this.state.admin
+    if (admin === '') {
+      alert('请选择负责人')
+      return
+    }
+
+    let descs = this.refs.descs.getValue()
+    if (descs === '') {
+      alert('请输入描述信息')
+      return
+    }
+
+    let backupAdmin = this.state.backupAdmin
+    if (backupAdmin === '') {
+      alert('请选择备份负责人')
+      return
+    }
 
     let diskDetail = JSON.stringify(this.state.diskDetails)
 
-    let admin = this.refs.admin.getValue()
-    let descs = this.refs.descs.getValue()
+    let deptId = this.state.deptId
 
-    let busiModules = JSON.stringify(this.state.busiModuleList)
+    let idcId = this.state.idcId
+    let kernal = this.state.kernal
+    let bmList = []
+    this.state.busiModuleList.map((item) => {
+      let busiModule = {}
+      busiModule.busiId = item.busiId.toString()
+      busiModule.moduleId = item.moduleId.toString()
+      bmList.push(busiModule)
+    })
+    let busiModuleString = JSON.stringify(bmList)
 
     let param = {
-      devId:devId, devTpe:devType, cabinetId:cabinetId, cpuNum:cpuNum,
+      devId:devId, devType:devType, cabinetId:cabinetId, cpuNum:cpuNum,
       cpuPhysicalCores:cpuPhysicalCores, os:os, memory:memory,
       deptId:deptId, backupAdmin:backupAdmin,
       hostName:hostName, idcId:idcId, netCardNum:netCardNum, cpuType:cpuType,
       cpuLogicCores:cpuLogicCores, kernal:kernal, diskNum:diskNum,
       diskSize:diskSize, diskDetails:diskDetail, deviceIps:deviceIps,
-      admin:admin, descs:descs, deviceId:this.props.editData.id,
-      busiModules:busiModules
+      admin:admin, descs:descs, deviceId:this.state.id,
+      busiModules:busiModuleString
     }
-    return param
+
+    this.save(param)
   },
 
   addPublicIp(ip, ispId, ispName) {
@@ -237,40 +343,32 @@ export default React.createClass({
       busiModuleList:busiModuleList
     })
   },
-
-  checkParams() {
-
-  },
-
-  saveDevice() {
-    let param = this.getParams()
-    console.log(param)
-    this.checkParams(param)
-
+  save(param) {
     let id = Number(this.props.id)
     if (id >= 0) {
       this.props.actions.deviceUpdate(param)
     } else {
       this.props.actions.deviceAdd(param)
     }
-    //TODO 保存失败提示
-    window.location.hash = '/configuration/devices'
   },
-
   cancel() {
     window.location.hash = '/configuration/devices'
   },
 
   handleIdcChange(value) {
+    debugger
     this.setState({idcId: value})
     let data = []
-    this.props.initData.cabinetList.map((item) => {
+    let initData = this.props.initData
+    initData.cabinetList.map((item) => {
       if (item.itemId === value) {
         data.push(item)
       }
     })
-    this.setState({cabinetId:data[0].value})
-    this.setState({cabinetList: data})
+    if (data.length > 0) {
+      this.setState({cabinetId:data[0].value})
+      this.setState({cabinetList: data})
+    }
   },
 
   render() {
@@ -282,85 +380,92 @@ export default React.createClass({
               ref="devId"
               type="text"
               label="设备编号："
-              labelClassName="col-xs-2"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.devId}
               onChange={(e)=>{this.setState({devId:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-2">设备型号：</label>
-              <Select className="col-xs-7"
-                      labelKey="label"
-                      valueKey="value"
-                      value={this.state.devType}
-                      options={this.props.initData.deviceTypeList}
-                      onChange={(value)=>{this.setState({devType:value})}}
-                      clearable={false}
-                      searchable={false}
-                     />
+              <label className="col-xs-3 control-label">设备型号：</label>
+              <div className="col-xs-7">
+                <Select labelKey="label"
+                        valueKey="value"
+                        value={this.state.devType}
+                        options={this.props.initData.deviceTypeList}
+                        onChange={(value)=>{this.setState({devType:value})}}
+                        clearable={false}
+                        searchable={false}
+                  />
+              </div>
             </div>
 
             <div className="form-group">
-              <label className="col-xs-2">机柜：</label>
-              <Select ref="cabinetId"
-                      name="cabinetId" className="col-xs-7"
-                      value={this.state.cabinetId}
-                      options={this.state.cabinetList}
-                      onChange={(value)=>{this.setState({cabinetId:value})}}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">机柜：</label>
+              <div className="col-xs-7">
+                <Select ref="cabinetId"
+                        name="cabinetId"
+                        value={this.state.cabinetId}
+                        options={this.state.cabinetList}
+                        onChange={(value)=>{this.setState({cabinetId:value})}}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <Input ref="cpuNum"
-              type="text"
+              type="number"
               label="CPU个数："
-              labelClassName="col-xs-2"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.cpuNum}
               onChange={(e)=>{this.setState({cpuNum:e.target.value})}}
             />
 
             <Input ref="cpuPhysicalCores"
-              type="text"
+              type="number"
               label="CPU总物理核数："
-              labelClassName="col-xs-2"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.cpuPhysicalCores}
               onChange={(e)=>{this.setState({cpuPhysicalCores:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-2">操作系统：</label>
-              <Select name="os" className="col-xs-7"
-                      value={this.state.os}
-                      options={this.props.initData.osTypeList}
-                      onChange={(value)=>{this.setState({os:value})}}
-                      clearable={false}
-                      searchable={false}
-              />
+              <label className="col-xs-3 control-label">操作系统：</label>
+              <div className="col-xs-7">
+                <Select name="os"
+                        value={this.state.os}
+                        options={this.props.initData.osTypeList}
+                        onChange={(value)=>{this.setState({os:value})}}
+                        clearable={false}
+                        searchable={false}
+                  />
+              </div>
             </div>
 
-            <Input ref="memory"
-              type="text"
-              label="总内存："
-              labelClassName="col-xs-2"
-              wrapperClassName="col-xs-7"
-              value={this.state.memory}
-              onChange={(e)=>{this.setState({memory:e.target.value})}}
-            />
+            <div className="">
+              <Input ref="memory"
+                     addonAfter="G"
+                     type="number"
+                     label="总内存："
+                     labelClassName="col-xs-3 control-label"
+                     wrapperClassName="col-xs-7"
+                     value={this.state.memory}
+                     onChange={(e)=>{this.setState({memory:e.target.value})}}/>
+            </div>
 
             <Input ref="privateIp"
               type="text"
               label="内网Ip："
-              labelClassName="col-xs-2"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.privateIp}
               onChange={(e)=>{this.setState({privateIp:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-2">外网Ip：</label>
+              <label className="col-xs-3 control-label">外网Ip：</label>
               <div className="col-xs-7">
                 <Table hover className="text_center">
                   <thead>
@@ -369,7 +474,8 @@ export default React.createClass({
                     <th>运营商</th>
                     <th>
                       <AddPublicIp ispList={this.props.initData.ispList}
-                                   addPublicIp={this.addPublicIp} />
+                                   addPublicIp={this.addPublicIp}
+                                   publicIpList={this.state.publicIpList}/>
                     </th>
                   </tr>
                   </thead>
@@ -400,29 +506,35 @@ export default React.createClass({
 
 
             <div className="form-group">
-              <label className="col-xs-2">部门：</label>
-              <Select name="deptId" className="col-xs-7"
-                      value={this.state.deptId}
-                      options={this.props.initData.deptLit}
-                      onChange={(value)=>{this.setState({deptId:value})}}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">部门：</label>
+              <div className="col-xs-7">
+                <Select name="deptId"
+                        value={this.state.deptId}
+                        options={this.props.initData.deptLit}
+                        onChange={(value)=>{this.setState({deptId:value})}}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <div className="form-group">
-              <label className="col-xs-2">负责人：</label>
-              <Select name="admin" className="col-xs-7"
-                      value={this.state.admin}
-                      options={this.props.initData.employeeList}
-                      onChange={(value)=>{this.setState({admin:value})}}/>
+              <label className="col-xs-3 control-label">负责人：</label>
+              <div className="col-xs-7">
+                <Select name="admin"
+                        value={this.state.admin}
+                        options={this.props.initData.employeeList}
+                        onChange={(value)=>{this.setState({admin:value})}}/>
+              </div>
             </div>
 
             <div className="form-group">
-              <label className="col-xs-2">备份负责人：</label>
-              <Select name="backupAdmin" className="col-xs-7"
-                      value={this.state.backupAdmin}
-                      options={this.props.initData.employeeList}
-                      onChange={(value)=>{this.setState({backupAdmin:value})}}/>
+              <label className="col-xs-3 control-label">备份负责人：</label>
+              <div className="col-xs-7">
+                <Select name="backupAdmin"
+                        value={this.state.backupAdmin}
+                        options={this.props.initData.employeeList}
+                        onChange={(value)=>{this.setState({backupAdmin:value})}}/>
+              </div>
             </div>
           </div>
 
@@ -432,84 +544,89 @@ export default React.createClass({
               ref="hostName"
               type="text"
               label="主机名称："
-              labelClassName="col-xs-2"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.hostName}
               onChange={(e)=>{this.setState({hostName:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-2">机房：</label>
-              <Select name="idcId" className="col-xs-7"
-                      value={this.state.idcId}
-                      options={this.props.initData.idcList}
-                      onChange={this.handleIdcChange}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">机房：</label>
+              <div className="col-xs-7">
+                <Select name="idcId"
+                        value={this.state.idcId}
+                        options={this.props.initData.idcList}
+                        onChange={this.handleIdcChange}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <Input
               ref="netCardNum"
-              type="text"
+              type="number"
               label="网卡个数："
-              labelClassName="col-xs-2"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.netCardNum}
               onChange={(e)=>{this.setState({netCardNum:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-2">cpu型号：</label>
-              <Select name="cpuType" className="col-xs-7"
-                      value={this.state.cpuType}
-                      options={this.props.initData.cpuTypeList}
-                      onChange={(value)=>{this.setState({cpuType:value})}}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">cpu型号：</label>
+              <div className="col-xs-7">
+                <Select name="cpuType"
+                        value={this.state.cpuType}
+                        options={this.props.initData.cpuTypeList}
+                        onChange={(value)=>{this.setState({cpuType:value})}}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <Input
               ref="cpuLogicCores"
-              type="text"
+              type="number"
               label="CPU总逻辑核数："
-              labelClassName="col-xs-2"
+              labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
               value={this.state.cpuLogicCores}
               onChange={(e)=>{this.setState({cpuLogicCores:e.target.value})}}
             />
 
             <div className="form-group">
-              <label className="col-xs-2">内核版本：</label>
-              <Select name="kernal" className="col-xs-7"
-                      value={this.state.kernal}
-                      options={this.props.initData.kernalList}
-                      onChange={(value)=>{this.setState({kernal:value})}}
-                      clearable={false}
-                      searchable={false}/>
+              <label className="col-xs-3 control-label">内核版本：</label>
+              <div className="col-xs-7">
+                <Select name="kernal"
+                        value={this.state.kernal}
+                        options={this.props.initData.kernalList}
+                        onChange={(value)=>{this.setState({kernal:value})}}
+                        clearable={false}
+                        searchable={false}/>
+              </div>
             </div>
 
             <Input
               ref="diskNum"
-              type="text"
+              type="number"
               label="磁盘个数："
-              labelClassName="col-xs-2"
-              wrapperClassName="col-xs-7"
+              labelClassName="col-xs-3"
+              wrapperClassName="col-xs-7 text-right"
               value={this.state.diskNum}
               onChange={(e)=>{this.setState({diskNum:e.target.value})}}
             />
-
-            <Input
+              <Input
               ref="diskSize"
-              type="text"
+              addonAfter="G"
+              type="number"
               label="磁盘总容量："
-              labelClassName="col-xs-2"
+              labelClassName="control-label col-xs-3"
               wrapperClassName="col-xs-7"
               value={this.state.diskSize}
-              onChange={(e)=>{this.setState({diskSize:e.target.value})}}
-            />
+              onChange={(e)=>{this.setState({diskSize:e.target.value})}}/>
 
             <div className="form-group">
-              <label className="col-xs-2">磁盘详情：</label>
+              <label className="control-label col-xs-3">磁盘详情：</label>
               <div className="col-xs-7">
                 <Table hover className="text_center">
                   <thead>
@@ -551,7 +668,7 @@ export default React.createClass({
             </div>
 
             <div className="form-group">
-              <label className="col-xs-2">业务/模块：</label>
+              <label className="control-label col-xs-3">业务/模块：</label>
               <div className="col-xs-7">
                 <Table hover className="text_center">
                   <thead>
@@ -561,7 +678,8 @@ export default React.createClass({
                     <th>
                       <AddBusinessModule busiList={this.props.initData.busiList}
                                          moduleList={this.props.initData.moduleList}
-                                         addBusiModule={this.addBusiModule} />
+                                         addBusiModule={this.addBusiModule}
+                                         busiModuleList={this.state.busiModuleList}/>
                     </th>
                   </tr>
                   </thead>
@@ -594,17 +712,19 @@ export default React.createClass({
               ref="descs"
               type="text"
               label="描述："
-              labelClassName="col-xs-2"
+              labelClassName="control-label col-xs-3"
               wrapperClassName="col-xs-7"
               value={this.state.descs}
               onChange={(e)=>{this.setState({descs:e.target.value})}}
             />
           </div>
-
-          <div className="">
-            <Button onClick={this.cancel} >取消</Button>
-            <Button bsStyle="primary"
-                    onClick={this.saveDevice} >确定</Button>
+          <div className="col-md-6">
+            <div className="form-group">
+              <div className="col-xs-offset-3 col-xs-7">
+                <button className="btn-custom btn-small btn-white pull-left" onClick={this.cancel}>取消</button>
+                <button className="btn-custom btn-small btn-blue pull-left" onClick={this.saveDevice}>确定</button>
+              </div>
+            </div>
           </div>
         </form>
     )
