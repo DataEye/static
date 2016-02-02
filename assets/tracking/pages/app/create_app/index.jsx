@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import StepOne from './step_one.jsx'
 import StepTwo from './step_two.jsx'
 import ajax from 'dejs/lib/ajax'
+import _ from 'lodash'
 
 export default React.createClass({
   propTypes: {
@@ -36,20 +37,20 @@ export default React.createClass({
     if (currentCreateState === 'success') {
       this.setState({step: '2'})
       if (this.props.states.app.importData) {
-        this.setState({appInfo: Object.assign({appid: nextProps.states.app.importData.appid}, this.state.appInfo)})
+        this.setState({appInfo: _.assign({appid: nextProps.states.app.importData.appid}, this.state.appInfo)})
       } else {
-        this.setState({appInfo: Object.assign({appid: nextProps.states.app.created.content.appid}, this.state.appInfo)})
+        this.setState({appInfo: _.assign({appid: nextProps.states.app.created.content.appid}, this.state.appInfo)})
       }
     }
   },
 
   createApp(param, typeName) {
     if (this.props.states.app.importData) {
-      this.props.actions.appImportApp(Object.assign({uid: App.uid, appid: this.props.states.app.importData.appid}, param))
+      this.props.actions.appImportApp(_.assign({uid: App.uid, appid: this.props.states.app.importData.appid}, param))
     } else {
-      this.props.actions.appCreate(Object.assign({uid: App.uid}, param))
+      this.props.actions.appCreate(_.assign({uid: App.uid}, param))
     }
-    this.setState({appInfo: Object.assign({typeName: typeName}, param)})
+    this.setState({appInfo: _.assign({typeName: typeName}, param)})
   },
 
   toStepTree() {

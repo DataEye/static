@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 function classifyStores(stores) {
   let preset = []
   let custom = []
@@ -27,12 +29,12 @@ export default function(state = {
   switch (action.type) {
 
   case 'get_stores':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading: true
     })
 
   case 'get_stores_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: [
         ...action.payload.content.content
       ],
@@ -51,7 +53,7 @@ export default function(state = {
       return e.id === action.meta.original.storeId
     })
     storesGduo[iGduo].downloadUrls = action.payload.content.content
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: storesGduo
     })
 
@@ -60,12 +62,12 @@ export default function(state = {
     return state
 
   case 'get_store_names':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading: true
     })
 
   case 'get_store_names_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       presetStores: [
         ...classifyStores(action.payload.content).preset
       ],
@@ -88,7 +90,7 @@ export default function(state = {
     return state
 
   case 'create_custom_store_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       customStores: [
         ...state.customStores,
         {
@@ -109,7 +111,7 @@ export default function(state = {
       return element.id === action.meta.original.id
     })
     customStoresDco.splice(iDco, 1)
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       customStores: customStoresDco
     })
 
@@ -127,7 +129,7 @@ export default function(state = {
       id: action.payload.content.id
     })
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: [
         ...storesCduo
       ]
@@ -150,7 +152,7 @@ export default function(state = {
       link: action.payload.content.link,
       name: action.payload.content.name
     }
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: [
         ...storesEduo
       ]
@@ -169,7 +171,7 @@ export default function(state = {
       return element.id === action.meta.original.id
     })
     storesDduo[iDduo].downloadUrls.splice(jDduo, 1)
-    const resDduo = Object.assign({}, state, {
+    const resDduo = _.assign({}, state, {
       items: [
         ...storesDduo
       ]
@@ -185,7 +187,7 @@ export default function(state = {
     const iDso = state.items.findIndex((e, i, a) => {
       return e.id === action.payload.content.id
     })
-    resDso = Object.assign({}, state, {
+    resDso = _.assign({}, state, {
       items: [
         ...state.items.slice(0, iDso),
         ...state.items.slice(iDso + 1)

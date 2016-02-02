@@ -8,8 +8,9 @@ import createStore from './store/index.jsx'
 import {ajaxSetup} from 'dejs/lib/ajax'
 import startMock from './mocks/index.js'
 import './helpers/load_base_style'
+import _ from 'lodash'
 
-Object.assign = assign
+_.assign = assign
 
 polyfill()
 

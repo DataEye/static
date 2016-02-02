@@ -1,6 +1,8 @@
+import _ from 'lodash'
+
 export default function(state = {}, action) {
   if (action.type === 'ajax_error') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       ajax: action.payload
     })
   }
