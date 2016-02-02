@@ -160,8 +160,8 @@ export function overviewChannelSummaryByAppid(mock) {
   })
 }
 
-export function queryCampaignSummary(mock) {
-  mock.post('/queryCampaignSummary.do', function(req) {
+export function overviewCampaignSummaryByChannelid(mock) {
+  mock.post('/overviewCampaignSummaryByChannelid.do', function(req) {
     return {
       body: {
         'ID': '1450491095607319',

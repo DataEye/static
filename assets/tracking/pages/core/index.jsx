@@ -99,7 +99,7 @@ export default React.createClass({
   },
 
   getLevel(i) {
-    return this.props.states.coreLtv.breadCrumbRowList[i]
+    return this.props.states.coreLtv.breadCrumbRowList[i - 1]
   },
 
   render() {

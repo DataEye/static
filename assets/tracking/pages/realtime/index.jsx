@@ -78,7 +78,7 @@ export default React.createClass({
   },
 
   getLevel(i) {
-    return this.props.states.realtimeAnalysis.breadCrumbRowList[i]
+    return this.props.states.realtimeAnalysis.breadCrumbRowList[i - 1]
   },
 
   render() {
