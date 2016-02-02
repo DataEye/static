@@ -128,6 +128,7 @@ export default React.createClass({
 
   onLevelBack(levelNum) {
     let tabConfig = this.getTabConfig()
+    debugger
     // 第一级为undefined
     let {breadCrumbRowList, currentTabIndex, currentSubTabIndex} = this.getReduxStates()
     this.dispatchAction('mixedPanelShowParentLevel', {

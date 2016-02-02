@@ -52,9 +52,7 @@ function computeSummary(cols = [], list = [], avgFields = []) {
       checkedNum += 1
       _.each(keys, (key) => {
         if (_.isNumber(row[key])) {
-          if (!row.id || row.id !== '-') {
-            summary[key] += row[key]
-          }
+          summary[key] += row[key]
         }
       })
     }

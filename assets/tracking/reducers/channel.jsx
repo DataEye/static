@@ -68,8 +68,8 @@ export default function(state = {
 
   case 'get_campaigns_ok':
     let channelGco = state.items
-    const iGco = channelGco.findIndex((e, i, a) => {
-      return e.channelId === action.payload.channelId
+    const iGco = channelGco.findIndex((e) => {
+      return e.channelId === action.meta.original.channelId
     })
     channelGco[iGco].campaigns = action.payload.content.content
     return Object.assign({}, state, {

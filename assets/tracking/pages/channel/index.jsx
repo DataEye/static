@@ -33,7 +33,7 @@ export default React.createClass({
 
   onPageChange(pageID) {
     this.setState({currentPageID: pageID})
-    this.props.actions.storeGetStores({
+    this.props.actions.channelGetChannels({
       uid: window.App.uid,
       appid: this.props.params.appid,
       pageID: pageID,

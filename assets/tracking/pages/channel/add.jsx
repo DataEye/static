@@ -7,6 +7,7 @@ import SearchBar from '../../widgets/search_bar.jsx'
 import * as Consts from '../../helpers/constants.jsx'
 import ContainerHeader from '../../widgets/container_header.jsx'
 import _ from 'lodash'
+import tipIcon from '../../../img/tip-icon.png'
 
 export default React.createClass({
   propTypes: {
@@ -54,7 +55,7 @@ export default React.createClass({
     const empty = (
       <div className="empty-search">
         <div>
-          <img src={`${window.App.CONTEXT_PATH}/assets-build/img/tip-icon.png`} alt=""/>
+          <img src={tipIcon} alt=""/>
           <p>结果为空</p>
         </div>
       </div>

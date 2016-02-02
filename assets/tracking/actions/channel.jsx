@@ -100,13 +100,14 @@ export function delCampaign(info) {
   }
 }
 
-export function getCampaigns(payload) {
+export function getCampaigns(info) {
   return {
     type: 'get_campaigns',
-    payload,
+    payload: info,
     meta: {
       ajax: true,
-      url: '/getCampaigns.do'
+      url: '/getCampaigns.do',
+      original: info
     }
   }
 }

@@ -168,7 +168,7 @@ export default React.createClass({
         url: '/overviewCampaignLtv.do',
         data: (row) => {
           return Object.assign({}, this.state, {
-            channel: !row ? this.getLevel(0).id : row.id
+            channel: !row ? this.getLevel(1).id : row.id
           })
         },
         columns: [
@@ -189,7 +189,7 @@ export default React.createClass({
         url: '/overviewPublisherLtv.do',
         data: (row) => {
           return Object.assign({}, this.state, {
-            campaign: !row ? this.getLevel(1).id : row.id
+            campaign: !row ? this.getLevel(2).id : row.id
           })
         },
         columns: [
@@ -202,7 +202,7 @@ export default React.createClass({
           }},
           ...ltvSharedColumns
         ]
-      }. ltvSharedConfig)
+      }, ltvSharedConfig)
     ]
 
     const ltvLvl3 = [
@@ -211,7 +211,7 @@ export default React.createClass({
         data: (row) => {
           return Object.assign({}, this.state, {
             publisher: row.x,
-            campaign: !row ? this.getLevel(1).id : row.id
+            campaign: !row ? this.getLevel(2).id : row.id
           })
         },
         columns: [

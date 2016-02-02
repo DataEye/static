@@ -140,7 +140,7 @@ export default React.createClass({
       },
       {title: '付费额', dataIndex: 'y5', key: '6', width: '8%',
         render: (val) => {
-          return (<span className="currency">{utils.asCurrency(val)}</span>)
+          return (<span>{utils.asCurrency(val)}</span>)
         }
       }
       // {title: '平均ARPU', dataIndex: 'y6', key: '7', width: '8%',
@@ -159,7 +159,7 @@ export default React.createClass({
       rowKey: (row) => row.x,
       showSwitcher: false,
       formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage,
-        utils.asNumber, utils.asInteger, this.formatCurrency, utils.asInteger, utils.asInteger]
+        utils.asNumber, utils.asInteger, utils.asCurrency, utils.asInteger, utils.asInteger]
     }
 
     let analysisLvl0 = [

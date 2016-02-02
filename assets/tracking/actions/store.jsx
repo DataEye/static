@@ -53,13 +53,14 @@ export function createCustomStore(payload) {
   }
 }
 
-export function delCustomStore(payload) {
+export function delCustomStore(info) {
   return {
     type: 'del_custom_store',
-    payload,
+    payload: info,
     meta: {
       ajax: true,
-      url: '/delCustomStore.do'
+      url: '/delCustomStore.do',
+      original: info
     }
   }
 }
@@ -98,13 +99,14 @@ export function delDownloadUrl(info) {
   }
 }
 
-export function getDownloadUrls(payload) {
+export function getDownloadUrls(info) {
   return {
     type: 'get_download_urls',
-    payload,
+    payload: info,
     meta: {
       ajax: true,
-      url: '/getDownloadUrls.do'
+      url: '/getDownloadUrls.do',
+      original: info
     }
   }
 }

@@ -48,7 +48,7 @@ export default function(state = {
   case 'get_download_urls_ok':
     let storesGduo = state.items
     const iGduo = storesGduo.findIndex((e, i, a) => {
-      return e.id === action.payload.storeId
+      return e.id === action.meta.original.storeId
     })
     storesGduo[iGduo].downloadUrls = action.payload.content.content
     return Object.assign({}, state, {
@@ -106,7 +106,7 @@ export default function(state = {
   case 'del_custom_store_ok':
     let customStoresDco = state.customStores
     const iDco = customStoresDco.findIndex((element, index, array) => {
-      return element.id === action.payload.id
+      return element.id === action.meta.original.id
     })
     customStoresDco.splice(iDco, 1)
     return Object.assign({}, state, {

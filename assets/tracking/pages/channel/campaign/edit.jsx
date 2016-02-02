@@ -49,19 +49,25 @@ export default React.createClass({
   },
 
   editCampaign() {
-    if (this.state.downloadId) {
-      this.props.actions.channelEditCampaign({
-        uid: App.uid,
-        appid: this.props.appid,
-        campaignId: this.props.id,
-        name: this.state.name,
-        downloadId: this.state.downloadId,
-        params: this.state.params
-      })
-      this.close()
-    } else {
-      alert('请选择下载地址！')
+    if (!this.state.name) {
+      alert('请填写名称！')
+      return
     }
+
+    if (!this.state.downloadId) {
+      alert('请选择下载地址！')
+      return
+    }
+
+    this.props.actions.channelEditCampaign({
+      uid: App.uid,
+      appid: this.props.appid,
+      campaignId: this.props.id,
+      name: this.state.name,
+      downloadId: this.state.downloadId,
+      params: this.state.params
+    })
+    this.close()
   },
 
   setDownloadId(val) {
