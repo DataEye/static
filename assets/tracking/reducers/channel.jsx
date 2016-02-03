@@ -20,33 +20,15 @@ function classifyChannels(channels) {
   return {preset, custom}
 }
 
-// function removeSelectedChannel(presetChannels, customChannels, selectedChannelId) {
-//   let preset = presetChannels
-//   let custom = customChannels
-//   const iSco1 = preset.findIndex((e, i, a) => {
-//     return e.channelId === selectedChannelId
-//   })
-//   const iSco2 = custom.findIndex((e, i, a) => {
-//     return e.channelId === selectedChannelId
-//   })
-//   if (iSco1 >= 0) {
-//     preset.splice(iSco1, 1)
-//   }
-//   if (iSco2 >= 0) {
-//     custom.splice(iSco2, 1)
-//   }
-
-//   return {preset, custom}
-// }
-
-export default function(state = {
+const initialState = {
   items: [],
   presetChannels: [],
   customChannels: [],
   downloadUrlNames: []
-}, action) {
-  switch (action.type) {
+}
 
+export default function(state = initialState, action) {
+  switch (action.type) {
   case 'get_channels':
     return _.assign({}, state, {
       loadingItemsDone: true
@@ -97,21 +79,8 @@ export default function(state = {
     return state
 
   case 'select_channel_ok':
-    // const channelsSco = removeSelectedChannel(state.presetChannels, state.customChannels, action.payload.channelId)
     history.back()
-    return _.assign({}, state, {
-      // items: [
-      //   ...state.items,
-      //   {
-      //     id: action.payload.id,
-      //     name: action.payload.name,
-      //     type: action.payload.type,
-      //     campaigns: []
-      //   }
-      // ],
-      // presetChannels: channelsSco.preset,
-      // customChannels: channelsSco.custom
-    })
+    return state
 
   case 'select_channel_error':
     alert(action.payload.content)

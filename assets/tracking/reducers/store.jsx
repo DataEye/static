@@ -20,12 +20,13 @@ function classifyStores(stores) {
   return {preset, custom}
 }
 
-export default function(state = {
-  loading: false,
+const initialState = {
   items: [],
   presetStores: [],
   customStores: []
-}, action) {
+}
+
+export default function(state = initialState, action) {
   switch (action.type) {
 
   case 'get_stores':
