@@ -61,6 +61,10 @@ export default React.createClass({
     }
   },
 
+  setIntervalClassNames(interval, stateInterval) {
+    return `btn btn-default ${interval.toString() === stateInterval.toString() ? 'intervalChoosed' : ''}`
+  },
+
   chooseInterval(e) {
     this.props.setDateFilter(
       formatParam(this.state.value[0]),
@@ -70,6 +74,7 @@ export default React.createClass({
     this.setState({
       interval: e.target.value,
     })
+    this.setIntervalClassNames(e.value, this.state.interval)
   },
 
   onChange(value) {
@@ -92,10 +97,6 @@ export default React.createClass({
         disabledDate={disabledDate}
       />
     )
-
-    function setIntervalClassNames(interval, stateInterval) {
-      return `btn btn-default ${interval === stateInterval ? 'intervalChoosed' : ''}`
-    }
 
     return (
       <div className="dateFilter">
@@ -130,7 +131,7 @@ export default React.createClass({
               return (
                 <button
                   key={interval.period}
-                  className={setIntervalClassNames(interval.period, this.state.interval)}
+                  className={this.setIntervalClassNames(interval.period, this.state.interval)}
                   onClick={this.chooseInterval}
                   value={interval.period}
                 >

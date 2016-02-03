@@ -107,6 +107,7 @@ export default React.createClass({
           {title: '自然安装', dataIndex: 'y2', width: '25%', key: '3'}
         ],
         rowKey: (row) => row.x,
+        chart: {yAxisKeys: ['y0', 'z2']},
         showSwitcher: false,
         glance: this.props.states.summaryClickInstall.glance
       }
