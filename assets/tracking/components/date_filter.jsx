@@ -62,7 +62,7 @@ export default React.createClass({
   },
 
   setIntervalClassNames(interval, stateInterval) {
-    return `btn btn-default ${interval.toString() === stateInterval.toString() ? 'intervalChoosed' : ''}`
+    return `btn btn-default ${interval === stateInterval ? 'intervalChoosed' : ''}`
   },
 
   chooseInterval(e) {
@@ -72,7 +72,7 @@ export default React.createClass({
       e.target.value
     )
     this.setState({
-      interval: e.target.value,
+      interval: parseInt(e.target.value, 10),
     })
     this.setIntervalClassNames(e.value, this.state.interval)
   },
