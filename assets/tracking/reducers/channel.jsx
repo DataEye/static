@@ -143,18 +143,20 @@ export default function(state = initialState, action) {
   case 'edit_campaign_ok':
     let resEco = {}
     let channelsEco = state.items
+    const campaignEco = action.meta.original
     const iEco = _.findIndex(channelsEco, (element) => {
-      return element.id === action.payload.channelId
+      return element.channelId === campaignEco.channelId
     })
     let jEco = _.findIndex(channelsEco[iEco].campaigns, (element) => {
-      return element.id === action.payload.id
+      return element.campaignId === campaignEco.campaignId
     })
+    const trackUrl = channelsEco[iEco].campaigns[jEco].trackUrl
     channelsEco[iEco].campaigns[jEco] = {
-      channelId: action.payload.channelId,
-      campaignId: action.payload.campaignId,
-      name: action.payload.name,
-      downloadUrl: action.payload.downloadUrl,
-      trackingLink: action.payload.trackingLink,
+      campaignId: campaignEco.campaignId,
+      channelId: campaignEco.channelId,
+      name: campaignEco.name,
+      downloadUrl: action.payload.content.downloadUrl,
+      trackUrl: trackUrl
     }
     resEco = _.assign({}, state, {
       items: [
