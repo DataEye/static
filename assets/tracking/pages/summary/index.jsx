@@ -89,7 +89,7 @@ export default React.createClass({
   },
 
   getLevel(i) {
-    return this.props.states.summaryAnalysis.breadCrumbRowList[i - 1]
+    return this.props.states.summaryAnalysis.breadCrumbRowList[i]
   },
 
 
