@@ -51,17 +51,17 @@ export function mockRetain(mock) {
       body: {
         'statusCode': 200,
         'content': [{
-          'channelId': 82375824,
+          'channelId': '82375824',
           'name': '101GBS',
           'visible': 1,
           'type': 0
         }, {
-          'channelId': 823758232,
+          'channelId': '823758232',
           'name': 'absmobi',
           'visible': 1,
           'type': 0
         }, {
-          'channelId': 98775,
+          'channelId': '98775',
           'name': '自定义广告网络1',
           'visible': 1,
           'type': 1
