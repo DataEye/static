@@ -41,11 +41,9 @@ function classifyChannels(channels) {
 
 export default function(state = {
   items: [],
-  loadingItemsDone: false,
   presetChannels: [],
   customChannels: [],
-  downloadUrlNames: [],
-  delCampaignFailed: false
+  downloadUrlNames: []
 }, action) {
   switch (action.type) {
 
@@ -138,7 +136,7 @@ export default function(state = {
   case 'del_custom_channel_ok':
     let resDcco = {}
     let customChannelsDco = state.customChannels
-    const iDco = customChannelsDco.findIndex((element, index, array) => {
+    const iDco = _.findIndex(customChannelsDco, (element) => {
       return element.channelId === action.meta.original.channelId
     })
     customChannelsDco.splice(iDco, 1)
@@ -154,7 +152,7 @@ export default function(state = {
   case 'create_campaign_ok':
     let resCco = {}
     let channelsCco = state.items
-    const iCduo = channelsCco.findIndex((element, index, array) => {
+    const iCduo = _.findIndex(channelsCco, (element) => {
       return element.channelId === action.payload.content.channelId
     })
     channelsCco[iCduo].campaigns.push({
@@ -176,10 +174,10 @@ export default function(state = {
   case 'edit_campaign_ok':
     let resEco = {}
     let channelsEco = state.items
-    const iEco = channelsEco.findIndex((element, index, array) => {
+    const iEco = _.findIndex(channelsEco, (element) => {
       return element.id === action.payload.channelId
     })
-    let jEco = channelsEco[iEco].campaigns.findIndex((element, index, array) => {
+    let jEco = _.findIndex(channelsEco[iEco].campaigns, (element) => {
       return element.id === action.payload.id
     })
     channelsEco[iEco].campaigns[jEco] = {
@@ -203,10 +201,10 @@ export default function(state = {
   case 'del_campaign_ok':
     let resDco = {}
     let channelsDco = state.items
-    const iDduo = channelsDco.findIndex((element, index, array) => {
+    const iDduo = _.findIndex(channelsDco, (element) => {
       return element.channelId === action.meta.original.channelId
     })
-    const jDduo = channelsDco[iDduo].campaigns.findIndex((element, index, array) => {
+    const jDduo = _.findIndex(channelsDco[iDduo].campaigns, (element) => {
       return element.campaignId === action.meta.original.campaignId
     })
     channelsDco[iDduo].campaigns.splice(jDduo, 1)
@@ -232,7 +230,7 @@ export default function(state = {
 
   case 'del_channel_ok':
     let resDco2 = {}
-    const iDso = state.items.findIndex((e, i, a) => {
+    const iDso = _.findIndex(state.items, (e) => {
       return e.channelId === action.meta.original.channelId
     })
     resDco2 = _.assign({}, state, {
