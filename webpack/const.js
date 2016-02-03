@@ -4,7 +4,7 @@ var _ = require('lodash')
 var pkg = require('../package.json')
 var argv = require('yargs').argv
 var deps = Object.keys(pkg.dependencies)
-var DEV_SERVER_HOST = `http://127.0.0.1:8080`
+var DEV_SERVER_HOST = `http://10.1.6.57:8080`
 var isProduction = !!argv.p
 // css和dejs不打包
 _.pull(deps, 'dejs', 'bootstrap', 'font-awesome')
