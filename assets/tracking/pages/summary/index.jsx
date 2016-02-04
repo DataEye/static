@@ -89,7 +89,7 @@ export default React.createClass({
   },
 
   getLevel(i) {
-    return this.props.states.summaryAnalysis.breadCrumbRowList[i - 1]
+    return this.props.states.summaryAnalysis.breadCrumbRowList[i]
   },
 
 
@@ -107,6 +107,7 @@ export default React.createClass({
           {title: '自然安装', dataIndex: 'y2', width: '25%', key: '3'}
         ],
         rowKey: (row) => row.x,
+        chart: {yAxisKeys: ['y0', 'z2']},
         showSwitcher: false,
         glance: this.props.states.summaryClickInstall.glance
       }
@@ -191,7 +192,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewCampaignSummaryByChannelid.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             channel: !row ? this.getLevel(0).id : row.id
           })
         },
@@ -212,7 +213,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewPublisherSummaryByCampaign.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             campaign: !row ? this.getLevel(1).id : row.id
           })
         },
@@ -233,7 +234,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewSitesummaryByPublisher.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             publisher: row.x,
             campaign: !row ? this.getLevel(1).id : row.id
           })
@@ -264,75 +265,75 @@ export default React.createClass({
     }
 
     const EventLvl0 = [
-      Object.assign({
+      _.assign({
         tabName: '点击',
         data: () => {
           this.setState({eventId: 1})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 1
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '激活',
         data: () => {
           this.setState({eventId: 2})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 2
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '转化率',
         data: () => {
           this.setState({eventId: 3})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 3
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '平均活跃',
         chart: {tooltipValueFormatter: utils.asNumber},
         data: () => {
           this.setState({eventId: 12})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 12
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '付费数',
         data: () => {
           this.setState({eventId: 4})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 4
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '付费额',
         data: () => {
           this.setState({eventId: 6})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 6
           })
         },
       }, tabShared)
-      // Object.assign({
+      // _.assign({
       //   tabName: '平均ARPU',
       //   data: () => {
       //     this.setState({eventId: 13})
-      //     return Object.assign({}, this.state, {
+      //     return _.assign({}, this.state, {
       //       eventId: 13
       //     })
       //   }
       // }, tabShared),
-      // Object.assign({
+      // _.assign({
       //   tabName: '平均ARPPU',
       //   data: () => {
       //     this.setState({eventId: 14})
-      //     return Object.assign({}, this.state, {
+      //     return _.assign({}, this.state, {
       //       eventId: 14
       //     })
       //   }
@@ -376,7 +377,7 @@ export default React.createClass({
     //   {
     //     url: '/overviewActiveRate.do',
     //     data: () => {
-    //       return Object.assign({}, this.state, {
+    //       return _.assign({}, this.state, {
     //         activeType: this.state.activeTypeRatioRealInstall
     //       })
     //     },
@@ -400,7 +401,7 @@ export default React.createClass({
       {
         url: '/overviewPayUserRatio.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioPayUser
           })
         },
@@ -414,7 +415,7 @@ export default React.createClass({
       {
         url: '/overviewRevenueRatio.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioRevenue
           })
         },

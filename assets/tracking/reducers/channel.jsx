@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 function classifyChannels(channels) {
   let preset = []
   let custom = []
@@ -18,42 +20,22 @@ function classifyChannels(channels) {
   return {preset, custom}
 }
 
-// function removeSelectedChannel(presetChannels, customChannels, selectedChannelId) {
-//   let preset = presetChannels
-//   let custom = customChannels
-//   const iSco1 = preset.findIndex((e, i, a) => {
-//     return e.channelId === selectedChannelId
-//   })
-//   const iSco2 = custom.findIndex((e, i, a) => {
-//     return e.channelId === selectedChannelId
-//   })
-//   if (iSco1 >= 0) {
-//     preset.splice(iSco1, 1)
-//   }
-//   if (iSco2 >= 0) {
-//     custom.splice(iSco2, 1)
-//   }
-
-//   return {preset, custom}
-// }
-
-export default function(state = {
+const initialState = {
   items: [],
-  loadingItemsDone: false,
   presetChannels: [],
   customChannels: [],
-  downloadUrlNames: [],
-  delCampaignFailed: false
-}, action) {
-  switch (action.type) {
+  downloadUrlNames: []
+}
 
+export default function(state = initialState, action) {
+  switch (action.type) {
   case 'get_channels':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loadingItemsDone: true
     })
 
   case 'get_channels_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: [
         ...action.payload.content.content
       ],
@@ -72,7 +54,7 @@ export default function(state = {
       return e.channelId === action.meta.original.channelId
     })
     channelGco[iGco].campaigns = action.payload.content.content
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: channelGco
     })
 
@@ -81,12 +63,12 @@ export default function(state = {
     return state
 
   case 'get_channel_names':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading: true
     })
 
   case 'get_channel_names_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       presetChannels: classifyChannels(action.payload.content).preset,
       customChannels: classifyChannels(action.payload.content).custom,
       loading: false
@@ -97,28 +79,15 @@ export default function(state = {
     return state
 
   case 'select_channel_ok':
-    // const channelsSco = removeSelectedChannel(state.presetChannels, state.customChannels, action.payload.channelId)
     history.back()
-    return Object.assign({}, state, {
-      // items: [
-      //   ...state.items,
-      //   {
-      //     id: action.payload.id,
-      //     name: action.payload.name,
-      //     type: action.payload.type,
-      //     campaigns: []
-      //   }
-      // ],
-      // presetChannels: channelsSco.preset,
-      // customChannels: channelsSco.custom
-    })
+    return state
 
   case 'select_channel_error':
     alert(action.payload.content)
     return state
 
   case 'create_custom_channel_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       customChannels: [
         ...state.customChannels,
         {
@@ -136,11 +105,11 @@ export default function(state = {
   case 'del_custom_channel_ok':
     let resDcco = {}
     let customChannelsDco = state.customChannels
-    const iDco = customChannelsDco.findIndex((element, index, array) => {
+    const iDco = _.findIndex(customChannelsDco, (element) => {
       return element.channelId === action.meta.original.channelId
     })
     customChannelsDco.splice(iDco, 1)
-    resDcco = Object.assign({}, state, {
+    resDcco = _.assign({}, state, {
       customChannels: customChannelsDco
     })
     return resDcco
@@ -152,7 +121,7 @@ export default function(state = {
   case 'create_campaign_ok':
     let resCco = {}
     let channelsCco = state.items
-    const iCduo = channelsCco.findIndex((element, index, array) => {
+    const iCduo = _.findIndex(channelsCco, (element) => {
       return element.channelId === action.payload.content.channelId
     })
     channelsCco[iCduo].campaigns.push({
@@ -161,7 +130,7 @@ export default function(state = {
       downloadUrl: action.payload.content.downloadUrl,
       trackUrl: action.payload.content.trackUrl
     })
-    resCco = Object.assign({}, state, {
+    resCco = _.assign({}, state, {
       items: channelsCco
     })
 
@@ -174,20 +143,22 @@ export default function(state = {
   case 'edit_campaign_ok':
     let resEco = {}
     let channelsEco = state.items
-    const iEco = channelsEco.findIndex((element, index, array) => {
-      return element.id === action.payload.channelId
+    const campaignEco = action.meta.original
+    const iEco = _.findIndex(channelsEco, (element) => {
+      return element.channelId === campaignEco.channelId
     })
-    let jEco = channelsEco[iEco].campaigns.findIndex((element, index, array) => {
-      return element.id === action.payload.id
+    let jEco = _.findIndex(channelsEco[iEco].campaigns, (element) => {
+      return element.campaignId === campaignEco.campaignId
     })
+    const trackUrl = channelsEco[iEco].campaigns[jEco].trackUrl
     channelsEco[iEco].campaigns[jEco] = {
-      channelId: action.payload.channelId,
-      campaignId: action.payload.campaignId,
-      name: action.payload.name,
-      downloadUrl: action.payload.downloadUrl,
-      trackingLink: action.payload.trackingLink,
+      campaignId: campaignEco.campaignId,
+      channelId: campaignEco.channelId,
+      name: campaignEco.name,
+      downloadUrl: action.payload.content.downloadUrl,
+      trackUrl: trackUrl
     }
-    resEco = Object.assign({}, state, {
+    resEco = _.assign({}, state, {
       items: [
         ...channelsEco
       ]
@@ -201,14 +172,14 @@ export default function(state = {
   case 'del_campaign_ok':
     let resDco = {}
     let channelsDco = state.items
-    const iDduo = channelsDco.findIndex((element, index, array) => {
+    const iDduo = _.findIndex(channelsDco, (element) => {
       return element.channelId === action.meta.original.channelId
     })
-    const jDduo = channelsDco[iDduo].campaigns.findIndex((element, index, array) => {
+    const jDduo = _.findIndex(channelsDco[iDduo].campaigns, (element) => {
       return element.campaignId === action.meta.original.campaignId
     })
     channelsDco[iDduo].campaigns.splice(jDduo, 1)
-    resDco = Object.assign({}, state, {
+    resDco = _.assign({}, state, {
       items: [
         ...channelsDco
       ]
@@ -220,7 +191,7 @@ export default function(state = {
     return state
 
   case 'get_download_url_names_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       downloadUrlNames: action.payload.content
     })
 
@@ -230,10 +201,10 @@ export default function(state = {
 
   case 'del_channel_ok':
     let resDco2 = {}
-    const iDso = state.items.findIndex((e, i, a) => {
+    const iDso = _.findIndex(state.items, (e) => {
       return e.channelId === action.meta.original.channelId
     })
-    resDco2 = Object.assign({}, state, {
+    resDco2 = _.assign({}, state, {
       items: [
         ...state.items.slice(0, iDso),
         ...state.items.slice(iDso + 1)

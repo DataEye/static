@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 function classifyStores(stores) {
   let preset = []
   let custom = []
@@ -18,21 +20,22 @@ function classifyStores(stores) {
   return {preset, custom}
 }
 
-export default function(state = {
-  loading: false,
+const initialState = {
   items: [],
   presetStores: [],
   customStores: []
-}, action) {
+}
+
+export default function(state = initialState, action) {
   switch (action.type) {
 
   case 'get_stores':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading: true
     })
 
   case 'get_stores_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: [
         ...action.payload.content.content
       ],
@@ -47,11 +50,11 @@ export default function(state = {
 
   case 'get_download_urls_ok':
     let storesGduo = state.items
-    const iGduo = storesGduo.findIndex((e, i, a) => {
+    const iGduo = _.findIndex(storesGduo, (e) => {
       return e.id === action.meta.original.storeId
     })
     storesGduo[iGduo].downloadUrls = action.payload.content.content
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: storesGduo
     })
 
@@ -60,12 +63,12 @@ export default function(state = {
     return state
 
   case 'get_store_names':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading: true
     })
 
   case 'get_store_names_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       presetStores: [
         ...classifyStores(action.payload.content).preset
       ],
@@ -88,7 +91,7 @@ export default function(state = {
     return state
 
   case 'create_custom_store_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       customStores: [
         ...state.customStores,
         {
@@ -105,11 +108,11 @@ export default function(state = {
 
   case 'del_custom_store_ok':
     let customStoresDco = state.customStores
-    const iDco = customStoresDco.findIndex((element, index, array) => {
+    const iDco = _.findIndex(customStoresDco, (element, index, array) => {
       return element.id === action.meta.original.id
     })
     customStoresDco.splice(iDco, 1)
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       customStores: customStoresDco
     })
 
@@ -118,7 +121,7 @@ export default function(state = {
 
   case 'create_download_url_ok':
     let storesCduo = state.items
-    const iCduo = storesCduo.findIndex((element, index, array) => {
+    const iCduo = _.findIndex(storesCduo, (element, index, array) => {
       return element.id === action.payload.content.storeId
     })
     storesCduo[iCduo].downloadUrls.push({
@@ -127,7 +130,7 @@ export default function(state = {
       id: action.payload.content.id
     })
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: [
         ...storesCduo
       ]
@@ -139,10 +142,10 @@ export default function(state = {
 
   case 'edit_download_url_ok':
     let storesEduo = state.items
-    const iEduo = storesEduo.findIndex((element, index, array) => {
+    const iEduo = _.findIndex(storesEduo, (element) => {
       return element.id === action.payload.content.storeId
     })
-    let jEduo = storesEduo[iEduo].downloadUrls.findIndex((element, index, array) => {
+    let jEduo = _.findIndex(storesEduo[iEduo].downloadUrls, (element) => {
       return element.id === action.payload.content.id
     })
     storesEduo[iEduo].downloadUrls[jEduo] = {
@@ -150,7 +153,7 @@ export default function(state = {
       link: action.payload.content.link,
       name: action.payload.content.name
     }
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       items: [
         ...storesEduo
       ]
@@ -162,14 +165,14 @@ export default function(state = {
 
   case 'del_download_url_ok':
     let storesDduo = state.items
-    const iDduo = storesDduo.findIndex((element) => {
+    const iDduo = _.findIndex(storesDduo, (element) => {
       return element.id === action.meta.original.storeId
     })
-    const jDduo = storesDduo[iDduo].downloadUrls.findIndex((element) => {
+    const jDduo = _.findIndex(storesDduo[iDduo].downloadUrls, (element) => {
       return element.id === action.meta.original.id
     })
     storesDduo[iDduo].downloadUrls.splice(jDduo, 1)
-    const resDduo = Object.assign({}, state, {
+    const resDduo = _.assign({}, state, {
       items: [
         ...storesDduo
       ]
@@ -182,10 +185,10 @@ export default function(state = {
 
   case 'del_store_ok':
     let resDso = {}
-    const iDso = state.items.findIndex((e, i, a) => {
+    const iDso = _.findIndex(state.items, (e) => {
       return e.id === action.payload.content.id
     })
-    resDso = Object.assign({}, state, {
+    resDso = _.assign({}, state, {
       items: [
         ...state.items.slice(0, iDso),
         ...state.items.slice(iDso + 1)

@@ -177,7 +177,7 @@ body {
   margin: 0 auto;
   background-color: #252525;
   font-size: 14px;
-  font-family: Verdana, "微软雅黑", "宋体";
+  /*font-family: Verdana, "微软雅黑", "宋体";*/
 }
 
 #footer .inner {
@@ -207,7 +207,7 @@ body {
   border-top: #4C4C4F 1px solid;
   padding-top: 15px;
   color: #757575;
-  font-family: Verdana, sans-serif;
+  /*font-family: Verdana, sans-serif;*/
 }
 
 #footer .copyright a {

@@ -77,13 +77,14 @@ export function createCampaign(payload) {
   }
 }
 
-export function editCampaign(payload) {
+export function editCampaign(info) {
   return {
     type: 'edit_campaign',
-    payload,
+    payload: info,
     meta: {
       ajax: true,
-      url: '/editCampaign.do'
+      url: '/editCampaign.do',
+      original: info
     }
   }
 }

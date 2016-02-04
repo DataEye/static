@@ -1,7 +1,9 @@
+import _ from 'lodash'
+
 export default function(state = {}, action) {
   // ajax开始
   if (action.type === 'del_app') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       delState: 'start'
     })
   }
@@ -9,7 +11,7 @@ export default function(state = {}, action) {
   // 成功请求
   if (action.type === 'del_app_ok') {
     window.location.reload()
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       delState: 'success',
       delAppID: action.payload.content.appid
     })
@@ -18,7 +20,7 @@ export default function(state = {}, action) {
   // 请求失败
   if (action.type === 'del_app_error') {
     alert(action.payload.content)
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       delMsg: action.payload,
       delState: 'fail'
     })
@@ -26,14 +28,14 @@ export default function(state = {}, action) {
 
   // ajax开始
   if (action.type === 'create_app') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       createState: 'start'
     })
   }
 
   // 成功请求
   if (action.type === 'create_app_ok') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       created: action.payload,
       createState: 'success'
     })
@@ -47,14 +49,14 @@ export default function(state = {}, action) {
 
   // ajax开始
   if (action.type === 'edit_app') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       editState: 'start'
     })
   }
 
   // 成功请求
   if (action.type === 'edit_app_ok') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       edit: action.payload.content,
       editState: 'success'
     })
@@ -63,7 +65,7 @@ export default function(state = {}, action) {
   // 请求失败
   if (action.type === 'edit_app_error') {
     alert(action.payload.content)
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       editState: 'fail'
     })
   }
@@ -71,21 +73,21 @@ export default function(state = {}, action) {
   //导入
   if (action.type === 'imp_app') {
     debugger
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       importData: action.payload
     })
   }
 
   // ajax开始
   if (action.type === 'import_app') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       createState: 'start'
     })
   }
 
   // 成功请求
   if (action.type === 'import_app_ok') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       created: action.payload,
       createState: 'success'
     })
@@ -94,7 +96,7 @@ export default function(state = {}, action) {
   // 请求失败
   if (action.type === 'import_app_error') {
     alert(action.payload.content)
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       createState: 'fail'
     })
   }

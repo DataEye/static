@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export function sumAttr(ary, attr) {
   return ary.reduce(function(prev, curr) {
     let value = prev + parseFloat(!curr[attr] ? 0 : curr[attr])
@@ -11,4 +13,8 @@ export function extractAttr(ary, attr) {
     answer.push(ary[i][attr])
   }
   return answer
+}
+
+export function validateUrl(url) {
+  return _.startsWith(url, 'http://') || _.startsWith(url, 'https://')
 }

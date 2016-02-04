@@ -167,7 +167,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewCampaignLtv.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             channel: !row ? this.getLevel(1).id : row.id
           })
         },
@@ -188,7 +188,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewPublisherLtv.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             campaign: !row ? this.getLevel(2).id : row.id
           })
         },
@@ -209,7 +209,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewSiteLtv.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             publisher: row.x,
             campaign: !row ? this.getLevel(2).id : row.id
           })
@@ -262,7 +262,7 @@ export default React.createClass({
       {
         url: '/overviewClickRatioLtv.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioClick
           })
         },
@@ -286,7 +286,7 @@ export default React.createClass({
       {
         url: '/overviewActiveRatioLtv.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioActive
           })
         },
@@ -310,7 +310,7 @@ export default React.createClass({
       {
         url: '/overviewRevenueRatioLtv.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioRevenue
           })
         },

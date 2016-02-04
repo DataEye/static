@@ -65,7 +65,8 @@ export default React.createClass({
       campaignId: this.props.id,
       name: this.state.name,
       downloadId: this.state.downloadId,
-      params: this.state.params
+      params: this.state.params,
+      channelId: this.props.channelId
     })
     this.close()
   },

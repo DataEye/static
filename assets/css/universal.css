@@ -479,6 +479,12 @@ body {
   color: #ffffff;
 }
 
+.intervalChoosed:hover, .intervalChoosed:focus, .intervalChoosed.focus {
+  text-decoration: none;
+  background: #25bbc3;
+  color: #ffffff;
+}
+
 .currency {
   color: #25bbc3;
 }

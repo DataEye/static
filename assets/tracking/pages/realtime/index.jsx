@@ -145,7 +145,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewCampaignRealTimeData.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             channel: !row ? this.getLevel(0).id : row.id
           })
         },
@@ -166,7 +166,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewPublisherRealTimeData.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             campaign: !row ? this.getLevel(1).id : row.id
           })
         },
@@ -187,7 +187,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewSiteRealTimeData.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             publisher: row.x,
             campaign: !row ? this.getLevel(1).id : row.id
           })
@@ -231,47 +231,47 @@ export default React.createClass({
     }
 
     const trendingLvl0 = [
-      Object.assign({
+      _.assign({
         tabName: '点击',
         data: () => {
           this.setState({eventId: 1})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 1
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '激活',
         data: () => {
           this.setState({eventId: 2})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 2
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '转化率',
         data: () => {
           this.setState({eventId: 3})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 3
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '活跃',
         data: () => {
           this.setState({eventId: 9})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 9
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '付费额',
         data: () => {
           this.setState({eventId: 4})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 6
           })
         }

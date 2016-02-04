@@ -7,10 +7,11 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import Home from './home/index.jsx'
 import actionMap from '../actions/index.jsx'
+import _ from 'lodash'
 
 export function mapStateToProps(state = {}) {
   return {
-    states: Object.assign({}, state)
+    states: _.assign({}, state)
   }
 }
 
