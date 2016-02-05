@@ -58,12 +58,19 @@ export default React.createClass({
     subTabs: PropTypes.array,
     //Show chart initially if false
     showSwitcher: PropTypes.bool,
-    glance: PropTypes.element
+    glance: PropTypes.element,
+    onPageChange: PropTypes.func
   },
 
   getDefaultProps() {
     return {
       showSwitcher: true
+    }
+  },
+
+  getInitialState() {
+    return {
+      currentPageID: this.props.pagerID
     }
   },
 
@@ -73,6 +80,10 @@ export default React.createClass({
      * 思考为什么不直接传props.func
      */
     this.emitter = new EventEmitter()
+    this.emitter.on('pageChange', (page) => {
+      this.setState({currentPageID: page})
+      this.props.onPageChange(page)
+    })
   },
 
   getComponentByStatus(element, error, isEmpty, done) {
@@ -220,11 +231,14 @@ export default React.createClass({
 
   getPager() {
     const onChange = (page) => {
-      this.emitter.emit('pagechange', page)
+      this.emitter.emit('pageChange', page)
     }
     return (
-      <Pagination total={this.props.pagerTotal} current={this.props.pagerID}
-        pageSize={this.props.pagerSize} onChange={onChange}
+      <Pagination
+        total={this.props.pagerTotal}
+        current={this.state.currentPageID}
+        pageSize={this.props.pagerSize}
+        onChange={onChange}
       />
     )
   },
