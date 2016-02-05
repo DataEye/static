@@ -188,6 +188,7 @@ export default React.createClass({
         pagerTotal={states.pagerTotal}
         pagerSize={states.pagerSize}
         pagerID={states.pagerID}
+        onPageChange={this.onPageChange}
         showSwitcher={config.showSwitcher}
         glance={config.glance}
       />

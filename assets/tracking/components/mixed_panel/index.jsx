@@ -58,7 +58,8 @@ export default React.createClass({
     subTabs: PropTypes.array,
     //Show chart initially if false
     showSwitcher: PropTypes.bool,
-    glance: PropTypes.element
+    glance: PropTypes.element,
+    onPageChange: PropTypes.func
   },
 
   getDefaultProps() {
@@ -80,8 +81,8 @@ export default React.createClass({
      */
     this.emitter = new EventEmitter()
     this.emitter.on('pageChange', (page) => {
-      console.log(page)
       this.setState({currentPageID: page})
+      this.props.onPageChange(page)
     })
   },
 
