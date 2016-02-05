@@ -67,12 +67,22 @@ export default React.createClass({
     }
   },
 
+  getInitialState() {
+    return {
+      currentPageID: this.props.pagerID
+    }
+  },
+
   componentWillMount() {
     /**
      * 接收相关事件，参考container.jsx
      * 思考为什么不直接传props.func
      */
     this.emitter = new EventEmitter()
+    this.emitter.on('pageChange', (page) => {
+      console.log(page)
+      this.setState({currentPageID: page})
+    })
   },
 
   getComponentByStatus(element, error, isEmpty, done) {
@@ -220,11 +230,14 @@ export default React.createClass({
 
   getPager() {
     const onChange = (page) => {
-      this.emitter.emit('pagechange', page)
+      this.emitter.emit('pageChange', page)
     }
     return (
-      <Pagination total={this.props.pagerTotal} current={this.props.pagerID}
-        pageSize={this.props.pagerSize} onChange={onChange}
+      <Pagination
+        total={this.props.pagerTotal}
+        current={this.state.currentPageID}
+        pageSize={this.props.pagerSize}
+        onChange={onChange}
       />
     )
   },
