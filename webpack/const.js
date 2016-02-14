@@ -40,8 +40,9 @@ module.exports = function(projectName) {
 
   var JS_DIR = `${BUILD_DIR}/${projectName}`
   // css文件加入系统名称，防止混乱
+  // chunkHash 这里怎么是app的chunkHash？
   var STYLE_BUNDLE_PATH = isProduction ?
-    `${BUILD_DIR}/css/${projectName}.bundle.[chunkHash].css` : `${BUILD_DIR}/css/bundle.css`
+    `${BUILD_DIR}/css/${projectName}.bundle.[hash].css` : `${BUILD_DIR}/css/bundle.css`
   return {
     IS_PRODUCTION: isProduction,
     NODE_ENV,
