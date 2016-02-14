@@ -31,7 +31,7 @@ export default React.createClass({
     title: PropTypes.any.isRequired,
     layout: PropTypes.oneOf(CONSTS.DEFAULT_LAYOUT_OPTIONS),
     serverPagination: PropTypes.bool,
-    style: PropTypes.string
+    style: PropTypes.object
   },
 
   getLevelConfig(level = this.getReduxStates().currentLevel) {

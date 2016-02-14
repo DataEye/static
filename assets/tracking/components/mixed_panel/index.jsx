@@ -58,9 +58,9 @@ export default React.createClass({
     subTabs: PropTypes.array,
     //Show chart initially if false
     showSwitcher: PropTypes.bool,
-    glance: PropTypes.element,
+    glance: PropTypes.array,
     onPageChange: PropTypes.func,
-    style: PropTypes.string
+    style: PropTypes.object
   },
 
   getDefaultProps() {
