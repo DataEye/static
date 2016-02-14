@@ -105,7 +105,7 @@ export default React.createClass({
       },
       {title: '今日累计付费', dataIndex: 'y4', width: '15%', key: '5',
         render: (val) => {
-          return (<span className="currency">{utils.asCurrency(val)}</span>)
+          return (<span>{utils.asCurrency(val)}</span>)
         }
       }
     ]
