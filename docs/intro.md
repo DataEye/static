@@ -82,6 +82,10 @@ webpack目录下的js文件用于Node.js环境，主要是`package.json`的scrip
 执行`npm run build-monitor`为打包优化整个monitor项目的前端资源，
 执行`npm run serve-monitor`是为monitor项目开启本地的webpack dev server，方便开发调试。
 
+推荐阅读：
+
+[React webpack cookbook （强烈推荐）](https://fakefish.github.io/react-webpack-cookbook/)
+
 ## node_modules目录
 
 node_modules目录不包含也不会提交到代码仓库（因为.gitignore中配置了node_modules）。
@@ -143,6 +147,10 @@ export function create(payload) {
 
 所有的ajax全部默认使用POST请求，`payload`是post请求的表单数据。处理过程参考`dejs/lib/redux-ajax-middleware`。
 
+推荐阅读：
+
+[Redux 中文文档 (强烈推荐，至少读三遍)](http://camsong.github.io/redux-in-chinese/index.html)
+
 ### js/components
 
 所有的公共组件，如果包含多个文件请新建一个文件夹。
@@ -200,3 +208,7 @@ Redux的createStore，会根据环境变量不同来做一些中间件的处理�
 js文件在各自的项目下有2个，一个app，一个common。
 
 由于js文件较大，所以每次提交的时候只需要保留本次发布的上个版本的js文件即可，其他可以删除。
+
+## 其它
+
+其它优秀的学习资料我会不定期的在我的[博客](https://github.com/simongfxu/simongfxu.github.com/issues/21)中更新
