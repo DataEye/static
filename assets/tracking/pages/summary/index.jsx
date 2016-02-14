@@ -107,7 +107,6 @@ export default React.createClass({
           {title: '自然安装', dataIndex: 'y2', width: '25%', key: '3'}
         ],
         rowKey: (row) => row.x,
-        chart: {yAxisKeys: ['y0', 'z2']},
         showSwitcher: false,
         glance: this.props.states.summaryClickInstall.glance
       }
@@ -495,7 +494,7 @@ export default React.createClass({
               title="转化对比"
               layout="chart"
               level0={activeRate}
-              style={{minHeight: '514px'}}
+              style={{minHeight: '464px'}}
             />
           </div>
           <div className="col-md-6">
@@ -507,7 +506,7 @@ export default React.createClass({
               title="安装占比"
               layout="chart"
               level0={ratioInstall}
-              style={{minHeight: '514px'}}
+              style={{minHeight: '464px'}}
             />
           </div>
         </div>

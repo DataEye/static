@@ -59,7 +59,8 @@ export default React.createClass({
     //Show chart initially if false
     showSwitcher: PropTypes.bool,
     glance: PropTypes.element,
-    onPageChange: PropTypes.func
+    onPageChange: PropTypes.func,
+    style: PropTypes.string
   },
 
   getDefaultProps() {
@@ -326,7 +327,7 @@ export default React.createClass({
     let props = this.props
     let child = props.layout === 'chart' ? this.getChart() : this.getGrid()
     return (
-      <div className="panel panel-track">
+      <div className="panel panel-track" style={this.props.style}>
         <div className="panel-heading">{props.title}</div>
         <div className="panel-body">
           <Loading done={props.done}>
