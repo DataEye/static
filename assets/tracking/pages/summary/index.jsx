@@ -108,6 +108,7 @@ export default React.createClass({
         ],
         rowKey: (row) => row.x,
         showSwitcher: false,
+        chart: {yAxisOppositeList: ['y1', 'y2']},
         glance: this.props.states.summaryClickInstall.glance
       }
     ]
@@ -293,7 +294,6 @@ export default React.createClass({
       }, tabShared),
       _.assign({
         tabName: '平均活跃',
-        chart: {tooltipValueFormatter: utils.asNumber},
         data: () => {
           this.setState({eventId: 12})
           return _.assign({}, this.state, {
