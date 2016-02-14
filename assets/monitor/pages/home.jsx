@@ -53,7 +53,7 @@ export default React.createClass({
                     getsideMenuNav={this.getsideMenuNav} />
         </div>
         <div className="page-wrapper">
-          <div className="main-wrapper">
+          <div className="main-wrapper clearfix">
             <div id="main-container">
               {body}
             </div>
