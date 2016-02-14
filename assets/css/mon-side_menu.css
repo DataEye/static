@@ -2,7 +2,7 @@
   position: absolute;
   width: 260px;
   background-color: #2b3541;
-  height: calc(100% - 60px);
+  min-height: calc(100% - 60px);
   color: #FFFFFF;
   transition: margin ease 0.3s;
 }
