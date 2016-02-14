@@ -498,10 +498,6 @@ body {
   white-space: nowrap;
 }
 
-.radio label:hover {
-  overflow: visible;
-}
-
 .rc-calendar-today-btn {
   display: none;
 }

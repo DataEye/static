@@ -41,7 +41,7 @@ export default React.createClass({
         onMouseOver={this.mouseOver}
         onMouseOut={this.mouseOut}
       >
-        <label>
+        <label title={this.props.label}>
           <input
             onClick={this.handleClick}
             type="radio"
