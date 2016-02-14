@@ -115,6 +115,8 @@ monitor & tracking项目的前端JavaScript代码
 
 js目录以DataEye具体业务命名，比如tracking就是推广分析平台的前端JavaScript代码。
 
+为了理解方便，下面的目录介绍我仍然以js打头。
+
 ### js/actions
 
 所有的Redux的action，我们所有的action都遵循[FSA(Flux Standard Action)](https://github.com/acdlite/flux-standard-action)标准。
@@ -134,9 +136,67 @@ export function create(payload) {
 }
 ```
 
-这个create函数返回的action中的meta中包含ajax和meta两个字段：
+这个create函数返回的action中的meta属性包含ajax和meta两个字段：
 
 > * ajax: 这是异步action包含ajax请求
 > * url: 请求的接口地址
 
+所有的ajax全部默认使用POST请求，`payload`是post请求的表单数据。处理过程参考`dejs/lib/redux-ajax-middleware`。
+
 ### js/components
+
+所有的公共组件，如果包含多个文件请新建一个文件夹。
+对于复杂的React组件，文件夹的名称为组件名，文件夹下面一般包含一个`SmartComponent`和`DumbComponent`，分别命名为`container.jsx`和`index.jsx`。
+请参考mixed_panel组件。
+
+推荐阅读：
+
+[Presentational and Container Components （强烈推荐）](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.nmj487ccm)
+
+### js/helpers
+
+一些辅助函数，如果这些函数具备一定的通用能力之后，请将他们移植到dejs/src/utils。
+
+load_base_style用于引入项目所需的全部css文件，引入之后会有webpack统一打包输出到css目录下。
+
+constants.jsx用于存储所有的常量（Redux相关的默认值）。
+
+### js/mocks
+
+index.js为入口文件，其他文件为相关模块接口的mock调用。
+为了使用上的方便，我们做了一些封装，参考`dejs/lib/mock`。
+
+### js/pages
+
+root.jsx为入口文件，其他按功能模块划分组织各个页面。
+
+### js/reducers
+
+Redux的reduers，index.jsx为入口文件，其它文件为各模块的reducer。
+
+对于组件的reducer写法也与普通的reducer一致，这种一致性是使用了`dejs/lib/reduxis`来区分不同的组件实例。
+
+### js/routes
+
+页面路由，使用`react-router`。
+新页面加入时需要在这里增加处理逻辑。
+
+### js/store
+
+Redux的createStore，会根据环境变量不同来做一些中间件的处理。目前我们使用了`dejs/lib/redux-ajax-middleware`和`redux-logger`。
+
+### js/widgets
+
+业务组件，与当前业务紧密相关的组件，依赖较多，不具备通用性，无法移植到的dejs。
+
+### index.js
+
+项目入口文件，一些全局和基础性的工作在这里进行。
+比如相关的polyfill，ajax的全局路径设置，mock开关，样式导入等。
+
+## assets-dist目录
+
+打包后的资源文件，css会加上项目名作为前缀区分。
+js文件在各自的项目下有2个，一个app，一个common。
+
+由于js文件较大，所以每次提交的时候只需要保留本次发布的上个版本的js文件即可，其他可以删除。
