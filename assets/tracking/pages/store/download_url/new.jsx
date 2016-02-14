@@ -45,7 +45,7 @@ export default React.createClass({
     }
 
     if (!tools.validateUrl(link)) {
-      alert('请填写合法的地址！')
+      alert('URL必须以‘http’或‘https’开头！')
       return
     }
 
@@ -80,6 +80,7 @@ export default React.createClass({
                 ref="link"
                 type="text"
                 label="下载链接"
+                placeholder="以http://或https://开头"
                 labelClassName="col-xs-2"
                 wrapperClassName="col-xs-10"
               />
