@@ -498,9 +498,9 @@ body {
   white-space: nowrap;
 }
 
-.radio label:hover {
+/*.radio label:hover {
   overflow: visible;
-}
+}*/
 
 .rc-calendar-today-btn {
   display: none;

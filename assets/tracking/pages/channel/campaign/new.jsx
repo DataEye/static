@@ -49,6 +49,18 @@ export default React.createClass({
   },
 
   createCampaign() {
+    const name = this.refs.name.value.trim()
+
+    if (!name) {
+      alert('名称不能为空！')
+      return
+    }
+
+    if (!this.state.downloadId) {
+      alert('请选择下载地址！')
+      return
+    }
+
     this.props.actions.channelCreateCampaign({
       uid: window.App.uid,
       appid: this.props.appid,

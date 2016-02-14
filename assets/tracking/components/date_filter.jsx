@@ -86,7 +86,7 @@ export default React.createClass({
     )
     this.setState({
       value,
-      open: true
+      open: !this.state.open
     })
   },
 
@@ -109,7 +109,7 @@ export default React.createClass({
           onChange={this.onChange}
           animation="slide-up"
           calendar={calendar}
-          open={this.state.open}
+          // open={this.state.open}
         >
           {
             ({value}) => {
