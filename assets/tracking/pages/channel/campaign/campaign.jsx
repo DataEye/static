@@ -5,7 +5,7 @@ import Td from '../../../widgets/td_center.jsx'
 
 export default React.createClass({
   propTypes: {
-    id: PropTypes.string.isRequired,
+    campaignId: PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired,
     downloadUrl: React.PropTypes.string.isRequired,
     trackUrl: React.PropTypes.string.isRequired,
@@ -23,7 +23,7 @@ export default React.createClass({
         <Td>{this.props.trackUrl}</Td>
         <Td>
           <Edit
-            id={this.props.id}
+            id={this.props.campaignId}
             text="编辑"
             appid={this.props.appid}
             channelId={this.props.channelId}
@@ -34,7 +34,7 @@ export default React.createClass({
             trackUrl={this.props.trackUrl}
           />
           <Delete
-            id={this.props.id}
+            id={this.props.campaignId}
             text="删除"
             appid={this.props.appid}
             name={this.props.name}

@@ -17,18 +17,20 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      start: 1
+      start: 1,
+      num: this.props.num
     }
   },
 
   componentWillReceiveProps(nextProps) {
-    const delta = nextProps.num - this.props.num || 0
+    const delta = nextProps.num - this.state.num || 0
     if (delta >= 0) {
       this.setState({delta: `+${delta}`})
     } else if (delta < 0) {
       this.setState({delta: '+0'})
     }
     this.animate()
+    this.setState({num: nextProps.num})
   },
 
   animate() {
@@ -40,7 +42,7 @@ export default React.createClass({
   },
 
   format(val) {
-    return this.props.formatter.call(val)
+    return this.props.formatter.call(null, val)
   },
 
   render() {
@@ -54,7 +56,7 @@ export default React.createClass({
 
     return (
       <span style={{display: 'inline-block', position: 'relative'}}>
-        <span>{this.format(this.props.num)}</span>
+        <span>{this.format(this.state.num)}</span>
         <span style={animation}>{this.state.delta}</span>
       </span>
     )

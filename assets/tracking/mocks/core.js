@@ -12,40 +12,45 @@ export function mockOverviewChannelLtv(mock) {
           'y4': '人均LTV'
         },
         'content': [{
+          'id': '-',
           'y1': 0,
           'y2': 0,
           'y3': 700,
           'y4': 1.34,
           'y0': 0,
-          'x': 'hahh'
+          'x': '自然流量'
         }, {
           'y1': 246,
           'y2': 16.0679,
           'y3': 700,
           'y4': 2.8455,
           'y0': 1531,
-          'x': 'jd_test'
+          'x': 'jd_test',
+          'id': 'werwfas'
         }, {
           'y1': 0,
           'y2': 0,
           'y3': 1500,
           'y4': 1.824,
           'y0': 0,
-          'x': 'thomas-test'
+          'x': 'thomas-test',
+          'id': 'efyiakhflhask'
         }, {
           'y1': 0,
           'y2': 0,
           'y3': 700,
           'y4': 1.56,
           'y0': 2053,
-          'x': 'yingyongbao'
+          'x': 'yingyongbao',
+          'id': 'welsfjsfskl'
         }, {
           'y1': 4,
           'y2': 40,
           'y3': 0,
           'y4': 0,
           'y0': 10,
-          'x': 'yuanlin2'
+          'x': 'yuanlin2',
+          'id': 'ewruowuflknslkdj'
         }]
       }
     }
@@ -70,21 +75,24 @@ export function mockOverviewCampaignLtv(mock) {
           'y2': 0,
           'y3': 700,
           'y0': 0,
-          'x': 'aabbc'
+          'x': 'aabbc',
+          'id': 'serlpknzxv'
         }, {
           'y1': 3094,
           'y2': 154700,
           'y3': 0,
           'y4': 0,
           'y0': 2,
-          'x': 'aeE7B3'
+          'x': 'aeE7B3',
+          'id': 'skfhmsnvk'
         }, {
           'y1': 684,
           'y2': 33.3496,
           'y3': 0,
           'y4': 0,
           'y0': 2051,
-          'x': 'R3miui'
+          'x': 'R3miui',
+          'id': 'sefhsmnvj'
         }]
       }
     }
@@ -295,10 +303,10 @@ export function mockCoreLTVTopNByTotal(mock) {
           'y0': 'num'
         },
         'content': [{
-          'y0': 4774,
+          'y0': 4774.2342355,
           'x': '激活推广'
         }, {
-          'y0': 47,
+          'y0': 47.2342342,
           'x': '注册设备'
         }, {
           'y0': 36,

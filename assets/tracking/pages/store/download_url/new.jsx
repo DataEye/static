@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import {Modal, Button, Input} from 'react-bootstrap'
 import NewLink from '../../../widgets/new_link.jsx'
+import * as tools from '../../../helpers/tools.js'
 
 export default React.createClass({
   propTypes: {
@@ -30,11 +31,29 @@ export default React.createClass({
   },
 
   createDownloadUrl() {
+    const name = this.refs.name.getValue().trim()
+    const link = this.refs.link.getValue().trim()
+
+    if (!name) {
+      alert('名称不能为空！')
+      return
+    }
+
+    if (!link) {
+      alert('地址不能为空！')
+      return
+    }
+
+    if (!tools.validateUrl(link)) {
+      alert('请填写合法的地址！')
+      return
+    }
+
     this.props.actions.storeCreateDownloadUrl({
       appid: this.props.appid,
       storeId: this.props.storeId,
-      name: this.refs.name.getValue().trim(),
-      link: this.refs.link.getValue().trim(),
+      name: name,
+      link: link,
       uid: window.App.uid
     })
     this.close()

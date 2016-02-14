@@ -11,11 +11,10 @@ import AddUpdateDevice from '../pages/cmdb/device/addUpdateDevice.jsx'
 import Employee from '../pages/cmdb/employee/index.jsx'
 import Summary from '../pages/cmdb/summary/index.jsx'
 import Business from '../pages/cmdb/business/index.jsx'
-//import RoomView from '../pages/monitor/server/roomView.jsx'
-import IdcView from '../pages/monitor/server/idcView.jsx'
+import IdcView from '../pages/monitor/server/room_view.jsx'
 import BusinessView from '../pages/monitor/server/business_view.jsx'
 import GroupView from '../pages/monitor/server/group_view.jsx'
-import GroupMgmt from '../pages/monitor/server/groupMgmt.jsx'
+import GroupManage from '../pages/monitor/server/group_manage.jsx'
 import AlarmSet from '../pages/alarm/alarmset.jsx'
 
 export default (
@@ -29,8 +28,8 @@ export default (
       <Route path="server/roomView/:id" component={IdcView}/>
       <Route path="server/businessView/:id" component={BusinessView}/>
       <Route path="server/groupingView/:id" component={GroupView}/>
-      <Route path="server/groupingManage" component={GroupMgmt}/>
-      <Route path="alarm/alarmconfig" component={AlarmSet}/>
+      <Route path="server/groupingManage" component={GroupManage}/>
+      <Route path="alarmconfig/alarmconfig" component={AlarmSet}/>
     </Route>
   </Router>
 )

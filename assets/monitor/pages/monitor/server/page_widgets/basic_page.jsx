@@ -2,11 +2,12 @@ import React, {PropTypes} from 'react'
 import Loading from 'dejs/lib/loading'
 import Error from 'dejs/lib/error'
 import NoData from 'dejs/lib/no-data'
-import TableComponent from './serverTable.jsx'
+import TableComponent from './server_table.jsx'
 import PageNav from '../../../../widgets/page_nav.jsx'
 import ContentHeader from '../../../../widgets/container_header.jsx'
 import ServerInfo from './server_info/index.jsx'
 import {DEFAULT_PAGESIZE} from './../../../../helpers/constants.jsx'
+import Search from '../../../../widgets/search_bar.jsx'
 
 export default React.createClass({
   propTypes: {
@@ -15,11 +16,12 @@ export default React.createClass({
     states: PropTypes.object,
     params: PropTypes.object,
     pageNav: PropTypes.string,
-    actionName: React.PropTypes.string,
-    idName: React.PropTypes.string,
-    searchKey: React.PropTypes.string,
-    moduleId: React.PropTypes.number,
-    hasModuleSelect: React.PropTypes.bool
+    actionName: PropTypes.string,
+    idName: PropTypes.string,
+    searchKey: PropTypes.string,
+    moduleId: PropTypes.number,
+    hasModuleSelect: PropTypes.bool,
+    reloadData: PropTypes.bool
   },
 
   getDefaultProps() {
@@ -36,8 +38,24 @@ export default React.createClass({
       ip: [],
       pageID: 1,
       pageSize: DEFAULT_PAGESIZE,
-      searchkey: ''
+      searchKey: ''
     }
+  },
+
+  search(searchKey) {
+    this.setState({
+      searchKey
+    })
+    this.postData.searchKey = searchKey
+    this.query(this.postData)
+  },
+
+  clear() {
+    this.setState({
+      searchKey: ''
+    })
+    this.postData.searchKey = ''
+    this.query(this.postData)
   },
 
   query: function(postData) {
@@ -60,7 +78,7 @@ export default React.createClass({
     this.postData = {
       pageID: this.state.pageID,
       pageSize: this.state.pageSize,
-      searchKey: this.props.searchKey
+      searchKey: this.state.searchKey
     }
 
     if (this.props.hasModuleSelect) {
@@ -72,18 +90,19 @@ export default React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      this.setState({isChartView: false})
+      this.refs.searchKey.setState({value: ''})
+      this.setState({isChartView: false, searchKey: '', orderBy: null, order: null})
+      Object.assign(this.postData, {searchKey: '', orderBy: null, order: null})
       this.postData[this.props.idName] = nextProps.params.id
-      this.query(this.postData)
-    }
-
-    if (this.props.searchKey !== nextProps.searchKey) {
-      Object.assign(this.postData, {searchKey: nextProps.searchKey})
       this.query(this.postData)
     }
 
     if (this.props.hasModuleSelect && this.props.moduleId !== nextProps.moduleId) {
       Object.assign(this.postData, {moduleId: nextProps.moduleId})
+      this.query(this.postData)
+    }
+
+    if (this.props.reloadData !== nextProps.reloadData && nextProps.reloadData) {
       this.query(this.postData)
     }
   },
@@ -99,6 +118,17 @@ export default React.createClass({
 
   goBack() {
     this.setState({isChartView: false})
+  },
+
+  sortBy(name) {
+    if (name === this.state.orderBy) {
+      this.setState({order: this.state.order ? 0 : 1})
+      this.postData.order = this.state.order ? 0 : 1
+    } else {
+      this.setState({orderBy: name, order: 1})
+      Object.assign(this.postData, {orderBy: name, order: 1})
+    }
+    this.query(this.postData)
   },
 
   render() {
@@ -123,6 +153,7 @@ export default React.createClass({
           changePageID={this.changePageID}
           changePageSize={this.changePageSize}
           viewChart={this.viewChart}
+          sortBy={this.sortBy}
           />)
       } else {
         dataList = (<div></div>)
@@ -133,6 +164,10 @@ export default React.createClass({
             <div className="main">
               <div className="content-header clearfix form-horizontal">
                 {this.props.children}
+                <Search search={this.search}
+                        clear={this.clear}
+                        ref="searchKey"
+                  />
               </div>
               <Loading done={!this.props.states.servermonitor.server.isLoading}>
                 {dataList}

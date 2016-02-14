@@ -7,11 +7,11 @@ export default React.createClass({
     data: React.PropTypes.array.isRequired,
     pageChange: React.PropTypes.func.isRequired,
     total:React.PropTypes.number,
+    pageID:React.number
   },
 
   getInitialState() {
     return {
-      pageID:1,
       pageSize:10
     }
   },
@@ -21,11 +21,6 @@ export default React.createClass({
       current,
       this.state.pageSize
     )
-
-
-    this.setState({
-      pageID: current
-    })
   },
 
   changePageSize(pageSize) {
@@ -67,7 +62,7 @@ export default React.createClass({
           </Table>
         </div>
         <Pagination total={this.props.total}
-                    current={this.state.pageID}
+                    current={this.props.pageID}
                     pageSize={this.state.pageSize}
                     onChange={this.onPageChange}
                     pageSizeOptions={['10', '20', '50']}

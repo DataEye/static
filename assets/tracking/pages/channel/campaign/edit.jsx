@@ -40,18 +40,33 @@ export default React.createClass({
     this.setState({showModal: true})
   },
 
-  handlenameChange() {
+  handleNameChange() {
     this.setState({name: this.refs.name.getValue()})
   },
 
+  handleParamsChange() {
+    this.setState({params: this.refs.params.getValue()})
+  },
+
   editCampaign() {
+    if (!this.state.name) {
+      alert('请填写名称！')
+      return
+    }
+
+    if (!this.state.downloadId) {
+      alert('请选择下载地址！')
+      return
+    }
+
     this.props.actions.channelEditCampaign({
       uid: App.uid,
       appid: this.props.appid,
       campaignId: this.props.id,
       name: this.state.name,
       downloadId: this.state.downloadId,
-      params: this.refs.params.value.trim()
+      params: this.state.params,
+      channelId: this.props.channelId
     })
     this.close()
   },
@@ -79,7 +94,7 @@ export default React.createClass({
                 labelClassName="col-xs-2"
                 wrapperClassName="col-xs-8"
                 value={this.state.name}
-                onChange={this.handlenameChange}
+                onChange={this.handleNameChange}
               />
               <Input
                 label="下载地址"
@@ -97,6 +112,7 @@ export default React.createClass({
                 label="广告活动参数"
                 labelClassName="col-xs-2"
                 wrapperClassName="col-xs-8"
+                onChange={this.handleParamsChange}
               />
             </form>
           </Modal.Body>

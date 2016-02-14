@@ -8,6 +8,7 @@ import summaryReducer from './summary.jsx'
 import mixedPanelReducer from './mixed_panel.js'
 import Reduxis from 'dejs/lib/reduxis'
 import * as CONSTS from '../helpers/constants.jsx'
+import _ from 'lodash'
 
 let mixedPanelReducers = Reduxis.batchCreateReducers([
   'coreLtv',
@@ -27,7 +28,7 @@ let mixedPanelReducers = Reduxis.batchCreateReducers([
   'realtimeTrending'
 ], mixedPanelReducer, CONSTS.MIXED_PANEL_INITIAL_STATE)
 
-export default combineReducers(Object.assign(mixedPanelReducers, {
+export default combineReducers(_.assign(mixedPanelReducers, {
   app: appReducer,
   game: gameReducer,
   error: errorReducer,

@@ -67,16 +67,16 @@ export default React.createClass({
   getMenu() {
     const index =
       (<span>
+        <span className="fa arrow pull-right sidebar-arrow"/>
         <i className="fa fa-bar-chart"></i>
         指标分析
-        <span className="fa arrow pull-right sidebar-arrow"/>
       </span>)
 
     const management =
       (<span>
+        <span className="fa arrow pull-right sidebar-arrow"/>
         <i className="fa fa-list"></i>
         APP投放管理
-        <span className="fa arrow pull-right sidebar-arrow"/>
       </span>)
 
     return (

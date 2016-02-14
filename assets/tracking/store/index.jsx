@@ -9,18 +9,13 @@ const loggerMiddleware = createLogger({
   duration: true
 })
 
-let finalStoreCreator
+let middlewares = [ajaxMiddleware]
 
 if (process.env.NODE_ENV === 'development') {
-  finalStoreCreator = applyMiddleware(
-    loggerMiddleware,
-    ajaxMiddleware
-  )(createStore)
-} else {
-  finalStoreCreator = applyMiddleware(
-    ajaxMiddleware
-  )(createStore)
+  middlewares.unshift(loggerMiddleware)
 }
+
+let finalStoreCreator = applyMiddleware(...middlewares)(createStore)
 
 export default (initialState = {}) => {
   return finalStoreCreator(rootReducers, initialState)

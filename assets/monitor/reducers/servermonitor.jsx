@@ -81,7 +81,8 @@ export default function(state = {
   case 'show_group' :
     return Object.assign({}, state, {
       group:{
-        loading: true,
+        isLoading: true,
+        error: false,
         totalRecord:0,
         totalItems: [],
         currentPageItems:[]
@@ -94,7 +95,7 @@ export default function(state = {
     let endIndex = pageSize > content.length ? content.length : pageSize
     return Object.assign({}, state, {
       group:{
-        loading:false,
+        isLoading:false,
         totalRecord:content.length,
         totalItems: [
           ...content
@@ -105,7 +106,13 @@ export default function(state = {
   }
 
   case 'show_group_error' :
-    return state
+    return Object.assign({}, state, {
+      group:{
+        isLoading: false,
+        error: true,
+        errorInfo: action.payload.content
+      }
+    })
 
   case 'next_group_page' : {
     let pageID = action.payload.pageID
@@ -124,67 +131,75 @@ export default function(state = {
     })
   }
 
+  case 'add_group' : {
+    return Object.assign({}, state, {
+      addGroup: {
+        status: 'start'
+      }
+    })
+  }
+
   case 'add_group_ok' : {
     return Object.assign({}, state, {
-      group:{
-        loading: false,
-        totalRecord:state.group.totalRecord + 1,
-        currentPageItems:[
-          {
-            groupId: action.payload.content,
-            groupName: action.payload.groupName
-          },
-          ...state.group.currentPageItems
-        ],
-        totalItems:[
-          {
-            groupId: action.payload.content,
-            groupName: action.payload.groupName
-          },
-          ...state.group.totalItems
-        ]
+      addGroup: {
+        status: 'success'
       }
     })
   }
 
-  case 'add_group_error' :
-    return state
-
-  case 'add_server_ok' : {
+  case 'add_group_error' : {
     return Object.assign({}, state, {
-
-    })
-  }
-
-  case 'add_server_error' :
-    return state
-
-  case 'delete_group_ok' : {
-    let currentPageItems = state.group.currentPageItems
-    const delcurrIndex = currentPageItems.findIndex((element, index, array) => {
-      return element.groupId === action.payload.groupId
-    })
-    currentPageItems.splice(delcurrIndex, 1)
-
-    let totalItems = state.group.totalItems
-    const delTotalIndex = totalItems.findIndex((element, index, array) => {
-      return element.groupId === action.payload.groupId
-    })
-
-    totalItems.splice(delTotalIndex, 1)
-
-    return Object.assign({}, state, {
-      group:{
-        loading: false,
-        totalRecord:state.group.totalRecord - 1,
-        currentPageItems: currentPageItems,
-        totalItems:totalItems
+      addGroup: {
+        errorInfo: action.payload.content,
+        status: 'error'
       }
     })
   }
+
+  case 'delete_group' :
+    return Object.assign({}, state, {
+      deleteGroup: {
+        status: 'start'
+      }
+    })
+
+  case 'delete_group_ok' :
+    return Object.assign({}, state, {
+      deleteGroup: {
+        status: 'success'
+      }
+    })
 
   case 'delete_group_error' :
-    return state
+    return Object.assign({}, state, {
+      deleteGroup: {
+        errorInfo: action.payload.content,
+        status: 'error'
+      }
+    })
+
+  case 'add_server' :
+    return Object.assign({}, state, {
+      addServer: {
+        status: 'start'
+      }
+    })
+
+  case 'add_server_ok' :
+    return Object.assign({}, state, {
+      addServer: {
+        status: 'success'
+      }
+    })
+
+  case 'add_server_error' :
+    return Object.assign({}, state, {
+      addServer: {
+        errorInfo: action.payload.content,
+        status: 'error'
+      }
+    })
+
 
   default:
     return state

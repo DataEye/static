@@ -4,6 +4,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var path = require('path')
 var projectName = path.basename(__filename, '.js')
 var config = require('./const')(projectName)
+// 按项目实际情况部署生产环境的静态资源目录
+var PUBLIC_PATH = config.IS_PRODUCTION ? 'https://www.dataeye.com/static/' : (config.DEV_SERVER_HOST + '/')
 
 module.exports = {
   entry: {
@@ -13,7 +15,7 @@ module.exports = {
   output: {
     filename: config.APP_BUNDLE_PATH,
     // 必须加上否则在js中require图片之后src路径不对
-    publicPath: config.PUBLIC_PATH
+    publicPath: PUBLIC_PATH
   },
   module: {
     loaders:[
@@ -50,6 +52,6 @@ module.exports = {
     }),
     new ExtractTextPlugin(config.STYLE_BUNDLE_PATH, {allChunks: true}),
     new webpack.optimize.CommonsChunkPlugin('vendor', config.VENDOR_BUNDLE_PATH)
-  ].concat(config.PLUGINS),
-  devtool: '#source-map'
+  ].concat(config.PLUGINS)
+  //devtool: '#source-map'
 }

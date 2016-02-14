@@ -84,9 +84,7 @@ body {
 }
 
 .empty-search > div {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  padding-top: 145px;
 }
 
 .vertical-align {
@@ -97,12 +95,11 @@ body {
 
 .add-form .panel-body {
   height: 400px;
-}
-
-.add-form .panel-body {
   padding-top: 10px;
   padding-bottom: 10px;
   overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px;
 }
 
 .add-form-footer > button {
@@ -110,8 +107,7 @@ body {
 }
 
 .item-radio-custom {
-  height: 40px;
-  padding-left: 5px;
+  padding: 5px 30px 5px 5px;
   border: 1px solid transparent;
   margin-bottom: 0;
 }
@@ -142,6 +138,18 @@ body {
   width: 20px;
   cursor: pointer;
   float: right;
+  top: 50%;
+  right: 0;
+}
+
+.delete-cross {
+  width: 20px;
+  cursor: pointer;
+  float: right;
+  top: 20%;
+  right: 0;
+  position: absolute;
+  translateY: translateY(-50%);
 }
 
 .modal-track .close {
@@ -348,9 +356,6 @@ body {
 }
 
 .tips-area {
-  width: 400px;
-  max-height: 214px;
-  padding: 5px 10px 5px 15px;
   border-radius: 3px;
   position: absolute;
   right: 0;
@@ -360,10 +365,14 @@ body {
   background: #353851;
   color: #ffffff;
   text-shadow: 0 1px 0 #000000;
+  padding: 10px 0;
 }
 
 .tips-area > div {
   overflow-y: auto;
+  max-height: 214px;
+  width: 500px;
+  padding: 0 15px;
 }
 
 .tips-area:before {
@@ -379,6 +388,9 @@ body {
 
 .tips-area > div > .table > tbody > tr > td {
   border-top: 1px dashed #3f424c;
+  word-wrap: break-word;
+  word-break: normal;
+  white-space: normal;
 }
 
 .tips-area > div > .table > tbody > tr:first-child > td {
@@ -387,6 +399,10 @@ body {
 
 .tips-area table {
   margin: 0;
+}
+
+.tips-area > div > .table > tbody > tr > td.tipName {
+  white-space: nowrap;
 }
 
 .common-container {
@@ -461,6 +477,31 @@ body {
   color: #ffffff;
 }
 
+.intervalChoosed:hover, .intervalChoosed:focus, .intervalChoosed.focus {
+  text-decoration: none;
+  background: #25bbc3;
+  color: #ffffff;
+}
+
 .currency {
   color: #25bbc3;
+}
+
+.row-no-margin {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.radio label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.radio label:hover {
+  overflow: visible;
+}
+
+.rc-calendar-today-btn {
+  display: none;
 }

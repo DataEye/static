@@ -64,16 +64,12 @@ export const MENU = {
       {
         'name': '员工管理',
         'title': 'employee'
-      },
-      {
-        'name': '表格测试',
-        'title': 'test'
       }
     ]
   },
   alarmconfig:{
-    title: 'alarm',
-    name: '告警平台',
+    title: 'alarmconfig',
+    name: '告警设置',
     items: [
       {
         'name':'告警设置',

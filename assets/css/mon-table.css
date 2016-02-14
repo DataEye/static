@@ -25,9 +25,10 @@
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
   vertical-align: middle;
-}
-.table tr {
   border-bottom: 1px solid #ededed;
+}
+.table > tbody > tr > td i{
+  margin: 0 15px;
 }
 .table tr:hover {
   background-color: #f9fafc;

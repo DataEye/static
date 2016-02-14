@@ -9,27 +9,16 @@ export default React.createClass({
     reload:React.PropTypes.func,
     actions:React.PropTypes.object,
     total:React.PropTypes.number,
-    isDeleted:React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      data:[]
-    }
+    pageID:React.PropTypes.number
   },
 
   getInitialState() {
     return {
-      pageID:1,
       pageSize:10
     }
   },
 
   onPageChange(current) {
-    this.setState({
-      pageID: current
-    })
-
     this.props.pageChange(
       current,
       this.state.pageSize
@@ -38,13 +27,9 @@ export default React.createClass({
 
   delDevice(devId) {
     this.props.actions.deviceDel({
-      devId:devId
+      deviceId:devId
     })
     this.props.reload()
-  },
-
-  changePageSize() {
-
   },
 
   render() {
@@ -88,9 +73,8 @@ export default React.createClass({
                       <td>{item.busiName}</td>
                       <td>{item.moduleName}</td>
                       <td>
-                        <a href={'#/configuration/devices/add_update/' + item.id}>编辑</a>
-                          &nbsp;&nbsp;&nbsp;
-                        <DeleteDevice itemId={item.id} btntext="删除"
+                        <a href={'#/configuration/devices/add_update/' + item.id}><i className="fa fa-edit"></i></a>
+                        <DeleteDevice itemId={item.id} btntext={<i className="fa fa-trash-o"></i>}
                                 title="删除设备"
                                 prompt="确认删除设备吗？"
                                 delfunc={this.delDevice}
@@ -104,7 +88,7 @@ export default React.createClass({
             </Table>
           </div>
           <Pagination total={this.props.total}
-                      current={this.state.pageID}
+                      current={this.props.pageID}
                       pageSize={this.state.pageSize}
                       onChange={this.onPageChange}
                       pageSizeOptions={['10', '20', '50']}

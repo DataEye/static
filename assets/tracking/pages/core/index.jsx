@@ -42,6 +42,8 @@ export default React.createClass({
       appid: this.props.params.appid,
       startdate: moment().add(-14, 'days').format('YYYYMMDD'),
       enddate: moment().add(-1, 'days').format('YYYYMMDD'),
+      // startdate: moment().add(-118, 'days').format('YYYYMMDD'),
+      // enddate: moment().add(-88, 'days').format('YYYYMMDD'),
       interval: 7,
       topn: 10,
       activeType: 1
@@ -97,7 +99,7 @@ export default React.createClass({
   },
 
   getLevel(i) {
-    return this.props.states.coreLtv.breadCrumbRowList[i]
+    return this.props.states.coreLtv.breadCrumbRowList[i - 1]
   },
 
   render() {
@@ -124,28 +126,16 @@ export default React.createClass({
       },
       {title: '人均LTV', dataIndex: 'y4', width: '15%', key: '5',
         render: (val) => {
-          return (<span>{utils.asInteger(val)}</span>)
+          return (<span>{utils.asNumber(val)}</span>)
         }
       }
     ]
 
-    const summary = (
-      <tr>
-        <th>合计</th>
-        <th>4</th>
-        <th>3</th>
-        <th>2</th>
-        <th>2</th>
-        <th>2</th>
-      </tr>
-    )
-
     const ltvSharedConfig = {
       rowKey: (row) => row.x,
       showSwitcher: false,
-      avgFields: ['y1'],
-      summary: summary
-      // formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency]
+      avgFields: ['y4'],
+      formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency, utils.asNumber]
     }
 
     const ltvLvl0 = [
@@ -156,11 +146,17 @@ export default React.createClass({
         },
         columns: [
           {title: '全部', dataIndex: 'x', key: '0', width: '10%', render: (val, row, index) => {
-            return (
-              <span>
-                <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
-              </span>
-            )
+            let answer
+            if (row.id && row.id === '-') {
+              answer = (<span>{val}</span>)
+            } else {
+              answer = (
+                <span>
+                  <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
+                </span>
+              )
+            }
+            return answer
           }},
           ...ltvSharedColumns
         ],
@@ -171,8 +167,8 @@ export default React.createClass({
       _.assign({
         url: '/overviewCampaignLtv.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
-            channel: !row ? this.getLevel(0).id : row.id
+          return _.assign({}, this.state, {
+            channel: !row ? this.getLevel(1).id : row.id
           })
         },
         columns: [
@@ -192,8 +188,8 @@ export default React.createClass({
       _.assign({
         url: '/overviewPublisherLtv.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
-            campaign: !row ? this.getLevel(1).id : row.id
+          return _.assign({}, this.state, {
+            campaign: !row ? this.getLevel(2).id : row.id
           })
         },
         columns: [
@@ -206,16 +202,16 @@ export default React.createClass({
           }},
           ...ltvSharedColumns
         ]
-      }. ltvSharedConfig)
+      }, ltvSharedConfig)
     ]
 
     const ltvLvl3 = [
       _.assign({
         url: '/overviewSiteLtv.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             publisher: row.x,
-            campaign: !row ? this.getLevel(1).id : row.id
+            campaign: !row ? this.getLevel(2).id : row.id
           })
         },
         columns: [
@@ -239,24 +235,24 @@ export default React.createClass({
 
     const trendingLvl0 = [
       {
-        url: '/overviewTotalTopNChannelLtv.do',
+        url: '/overviewTopNChannelLtv.do',
         data: () => {
           return this.state
         },
         columns: trendingColumns,
-        subTabName: '汇总',
+        subTabName: '分渠道',
         rowKey: (row) => row.x,
         showSwitcher: false,
         children: [
           {
-            url: '/overviewTopNChannelLtv.do',
-            tabName: '分渠道',
+            url: '/overviewTotalTopNChannelLtv.do',
+            tabName: '汇总',
             data: () => {
               return this.state
             },
             columns: trendingColumns,
             rowKey: (row) => row.x,
-            showSwitcher: false
+            showSwitcher: false,
           }
         ]
       }
@@ -266,7 +262,7 @@ export default React.createClass({
       {
         url: '/overviewClickRatioLtv.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioClick
           })
         },
@@ -290,7 +286,7 @@ export default React.createClass({
       {
         url: '/overviewActiveRatioLtv.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioActive
           })
         },
@@ -314,7 +310,7 @@ export default React.createClass({
       {
         url: '/overviewRevenueRatioLtv.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioRevenue
           })
         },

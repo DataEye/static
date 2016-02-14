@@ -56,6 +56,11 @@ export default React.createClass({
         }
       })
     }
+    let choicedTab = this.state.choicedTab
+    this.setState({choicedTab: ''})
+    setTimeout(() =>{
+      this.setState({choicedTab: choicedTab})
+    }, 1)
   },
 
   choiceTab(tabName) {
@@ -105,7 +110,6 @@ export default React.createClass({
       //  console.log('硬件状态')
       //  break
       default :
-        console.log('tab切换有问题')
       }
     }
 
@@ -129,7 +133,8 @@ export default React.createClass({
             <Tabs choiceTab={this.choiceTab} tabs={TABS} choicedTab={this.state.choicedTab} title="特性类别" />
           </div>
           <div className="serverInfo">
-            {!charts && !this.state.contrastComfirm ? <div className="text-center">请选择日期并点击“比较"按钮来查看折线图</div> : ''}
+            {!charts && !this.state.contrastComfirm && this.state.chartType === 'contrast' ?
+              <div className="text-center">请选择日期并点击“比较"按钮来查看折线图</div> : ''}
             {
               charts ? charts : ''
             }

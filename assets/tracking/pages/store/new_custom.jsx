@@ -1,5 +1,6 @@
 import React from 'react'
 import {Modal, Button, Input} from 'react-bootstrap'
+import * as tools from '../../helpers/tools.js'
 
 export default React.createClass({
   propTypes: {
@@ -29,10 +30,28 @@ export default React.createClass({
   },
 
   createCustom() {
+    const name = this.refs.name.getValue().trim()
+    const homePage = this.refs.mainUrl.getValue().trim()
+
+    if (!name) {
+      alert('名称不能为空！')
+      return
+    }
+
+    if (!homePage) {
+      alert('主站地址不能为空！')
+      return
+    }
+
+    if (!tools.validateUrl(homePage)) {
+      alert('请填写合法的地址！')
+      return
+    }
+
     this.props.actions.storeCreateCustomStore({
       uid: window.App.uid,
-      name: this.refs.name.getValue().trim(),
-      homePage: this.refs.mainUrl.getValue().trim()
+      name: name,
+      homePage: homePage
     })
     this.close()
   },

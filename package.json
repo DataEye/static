@@ -2,12 +2,17 @@
   "name": "static",
   "version": "0.0.1",
   "description": "base repo for all DataEye project static assets",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DataEye/static.git"
+  },
   "scripts": {
     "test": "jest",
-    "build-tracking": "node node_modules/webpack/bin/webpack -p --config=webpack/tracking.js",
+    "lint": "node webpack/lint.js --all",
+    "build-tracking": "node webpack/lint.js tracking && node node_modules/webpack/bin/webpack -p --config=webpack/tracking.js",
     "build-tracking-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/tracking.js",
     "serve-tracking": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/tracking.js",
-    "build-monitor": "node node_modules/webpack/bin/webpack -p --config=webpack/monitor.js",
+    "build-monitor": "node webpack/lint.js monitor && node node_modules/webpack/bin/webpack -p --config=webpack/monitor.js",
     "build-monitor-dev": "node node_modules/webpack/bin/webpack -d --config=webpack/monitor.js",
     "serve-monitor": "node node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack/monitor.js"
   },
@@ -32,9 +37,9 @@
     "rc-select": "^5.9.1",
     "rc-table": "^3.6.1",
     "rc-time-picker": "^1.0.0",
-    "react": "0.14.3",
+    "react": "^0.14.3",
     "react-bootstrap": "^0.28.1",
-    "react-dom": "0.14.2",
+    "react-dom": "^0.14.3",
     "react-redux": "4.0.0",
     "react-router": "1.0.0",
     "react-select": "0.9.1",
@@ -60,11 +65,8 @@
     "eslint-plugin-react": "^3.8.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "~0.8.4",
-    "gulp": "^3.9.0",
-    "gulp-hasher": "^0.1.0",
-    "gulp-html-replace": "^1.5.4",
-    "gulp-rename": "^1.2.2",
     "jest-cli": "^0.8.0",
+    "pre-commit": "^1.1.2",
     "react-addons-test-utils": "^0.14.3",
     "style-loader": "~0.12.3",
     "url-loader": "^0.5.7",
@@ -88,5 +90,8 @@
     "modulePathIgnorePatterns": [
       "<rootDir>/node_modules/"
     ]
-  }
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }

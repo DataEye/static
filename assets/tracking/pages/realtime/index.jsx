@@ -78,46 +78,74 @@ export default React.createClass({
   },
 
   getLevel(i) {
-    return this.props.states.coreLtv.breadCrumbRowList[i]
+    return this.props.states.realtimeAnalysis.breadCrumbRowList[i - 1]
   },
-
 
   render() {
     const analysisSharedColumns = [
-      {title: '点击', dataIndex: 'y0', width: '15%', key: '1'},
-      {title: '激活', dataIndex: 'y1', width: '15%', key: '2'},
-      {title: '转化率', dataIndex: 'y2', width: '15%', key: '3'},
-      {title: '今日累计活跃', dataIndex: 'y3', width: '15%', key: '4'},
-      {title: '今日累计付费', dataIndex: 'y4', width: '15%', key: '5'}
+      {title: '点击', dataIndex: 'y0', width: '15%', key: '1',
+        render: (val) => {
+          return (<span>{utils.asInteger(val)}</span>)
+        }
+      },
+      {title: '激活', dataIndex: 'y1', width: '15%', key: '2',
+        render: (val) => {
+          return (<span>{utils.asInteger(val)}</span>)
+        }
+      },
+      {title: '转化率', dataIndex: 'y2', width: '15%', key: '3',
+        render: (val) => {
+          return (<span>{utils.asPercentage(val)}</span>)
+        }
+      },
+      {title: '今日累计活跃', dataIndex: 'y3', width: '15%', key: '4',
+        render: (val) => {
+          return (<span>{utils.asInteger(val)}</span>)
+        }
+      },
+      {title: '今日累计付费', dataIndex: 'y4', width: '15%', key: '5',
+        render: (val) => {
+          return (<span className="currency">{utils.asCurrency(val)}</span>)
+        }
+      }
     ]
 
+    const analysisSharedConfig = {
+      rowKey: (row) => row.x,
+      showSwitcher: false,
+      formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
+    }
+
     const analysisLvl0 = [
-      {
+      _.assign({
         url: '/overviewChannelRealTimeData.do',
         data: () => {
           return this.state
         },
         columns: [
           {title: '全部', dataIndex: 'x', key: '0', width: '10%', render: (val, row, index) => {
-            return (
-              <span>
-                <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
-              </span>
-            )
+            let answer
+            if (row.id && row.id === '-') {
+              answer = (<span>{val}</span>)
+            } else {
+              answer = (
+                <span>
+                  <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
+                </span>
+              )
+            }
+            return answer
           }},
           ...analysisSharedColumns
-        ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
-      }
+        ]
+      }, analysisSharedConfig)
     ]
 
     const ltvLvl1 = [
-      {
+      _.assign({
         url: '/overviewCampaignRealTimeData.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             channel: !row ? this.getLevel(0).id : row.id
           })
         },
@@ -130,18 +158,15 @@ export default React.createClass({
             )
           }},
           ...analysisSharedColumns
-        ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
-      }
+        ]
+      }, analysisSharedConfig)
     ]
 
     const ltvLvl2 = [
-      {
+      _.assign({
         url: '/overviewPublisherRealTimeData.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             campaign: !row ? this.getLevel(1).id : row.id
           })
         },
@@ -154,18 +179,15 @@ export default React.createClass({
             )
           }},
           ...analysisSharedColumns
-        ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
-      }
+        ]
+      }, analysisSharedConfig)
     ]
 
     const ltvLvl3 = [
-      {
+      _.assign({
         url: '/overviewSiteRealTimeData.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             publisher: row.x,
             campaign: !row ? this.getLevel(1).id : row.id
           })
@@ -177,26 +199,23 @@ export default React.createClass({
             )
           }},
           ...analysisSharedColumns
-        ],
-        rowKey: (row) => row.x,
-        showSwitcher: false,
-        formatters: ['合计', this.formatInt, this.formatInt, this.formatPercentage, this.formatInt, this.formatCurrency]
-      }
+        ]
+      }, analysisSharedConfig)
     ]
 
     const tabShared = {
-      url: '/overviewTotalTopNChannelRealTimeData.do',
+      url: '/overviewTopNChannelRealTimeData.do',
       columns: [
         {title: 'Total', dataIndex: 'y0', key: '0', width: '100%'},
       ],
       rowKey: (row) => row.x,
       formatters: [utils.asInteger],
-      subTabName: '汇总',
+      subTabName: '分渠道',
       showSwitcher: false,
       children: [
         {
-          url: '/overviewTopNChannelRealTimeData.do',
-          tabName: '分渠道',
+          url: '/overviewTotalTopNChannelRealTimeData.do',
+          tabName: '汇总',
           data: () => {
             return this.state
           },
@@ -212,47 +231,47 @@ export default React.createClass({
     }
 
     const trendingLvl0 = [
-      Object.assign({
+      _.assign({
         tabName: '点击',
         data: () => {
           this.setState({eventId: 1})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 1
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '激活',
         data: () => {
           this.setState({eventId: 2})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 2
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '转化率',
         data: () => {
           this.setState({eventId: 3})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 3
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '活跃',
         data: () => {
           this.setState({eventId: 9})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 9
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '付费额',
         data: () => {
           this.setState({eventId: 4})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 6
           })
         }

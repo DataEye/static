@@ -12,26 +12,28 @@ export function overviewChannelRealTimeData(mock) {
           'y4': '今日累计付费'
         },
         'content': [{
-          'y0': 2845,
+          // 'y0': (Math.random() * 1000).toFixed(0),
+          'y0': 32,
           'y1': 246,
           'y2': 0.0865,
-          'y3': 0,
-          'y4': 0,
+          'y3': 1,
+          'y4': 3,
           'x': 'jd_test'
         }, {
           'y0': 2868,
-          'y1': 0,
-          'y2': 0,
-          'y3': 0,
-          'y4': 0,
+          'y1': 2,
+          'y2': 0.7,
+          'y3': 4,
+          'y4': 4,
           'x': 'yingyongbao'
         }, {
+          'id': '-',
           'y0': 10,
-          'y1': 4,
+          'y1': 'N/A',
           'y2': 0.4,
           'y3': 0.1667,
           'y4': 1,
-          'x': 'yuanlin2'
+          'x': '自然流量'
         }]
       }
     }

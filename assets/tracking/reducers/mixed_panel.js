@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import * as CONSTS from '../helpers/constants.jsx'
+import * as tools from '../helpers/tools.js'
 
 const SUFFIX = {
   OK: '_ok',
@@ -20,6 +21,18 @@ function getPagedDataByType(opts, isServerPagination) {
 // 获取图例名称
 function getChartNames(json) {
   return json.name || json.content.name
+}
+
+//Todo: set computed columns in config
+function getTotalPercentage(ary) {
+  let answer = 0
+  const filtered = ary.filter((val) => !val.id || val.id !== '-')
+  const click = tools.sumAttr(filtered, 'y0')
+  const activated = tools.sumAttr(filtered, 'y1')
+  if (click && activated) {
+    answer = activated / click
+  }
+  return answer
 }
 
 function computeSummary(cols = [], list = [], avgFields = []) {
@@ -44,6 +57,9 @@ function computeSummary(cols = [], list = [], avgFields = []) {
       })
     }
   })
+  if (summary.y2) {
+    summary.y2 = getTotalPercentage(list)
+  }
   if (avgFields.length && checkedNum) {
     _.each(avgFields, (field) => {
       summary[field] = summary[field] / checkedNum
@@ -93,14 +109,14 @@ export default function(state = CONSTS.MIXED_PANEL_INITIAL_STATE, action) {
 
   // 开始切换菜单
   if (_.contains(CONSTS.ASYNC_ACTION_TYPE_LIST, type)) {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       done: false
     })
   }
 
   // 统一错误处理
   if (_.endsWith(type, SUFFIX.ERR) && error) {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       done: true,
       isEmpty: false,
       error: payload
@@ -117,14 +133,14 @@ export default function(state = CONSTS.MIXED_PANEL_INITIAL_STATE, action) {
       pagerID: payload.pagerID,
       pagerSize: state.pagerSize
     })
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       pagerID: payload.pagerID,
       datalist: datalist
     })
   }
 
   if (type === 'change_layout') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       currentLayout: payload.layout
     })
   }
@@ -137,6 +153,7 @@ export default function(state = CONSTS.MIXED_PANEL_INITIAL_STATE, action) {
     }, state.serverPagination)
 
     switchTabBaseData = {
+      glance: payload.glance,
       chartData: payload.content,
       chartNames: getChartNames(payload),
       datalist: datalist,
@@ -154,14 +171,14 @@ export default function(state = CONSTS.MIXED_PANEL_INITIAL_STATE, action) {
 
   // 菜单切换成功
   if (type === 'switch_tab_ok') {
-    return Object.assign({}, state, switchTabBaseData, {
+    return _.assign({}, state, switchTabBaseData, {
       currentTabIndex: original.tabIndex,
       currentSubTabIndex: 0
     })
   }
 
   if (type === 'switch_sub_tab_ok') {
-    return Object.assign({}, state, switchTabBaseData, {
+    return _.assign({}, state, switchTabBaseData, {
       currentSubTabIndex: original.subTabIndex,
     })
   }
@@ -173,7 +190,7 @@ export default function(state = CONSTS.MIXED_PANEL_INITIAL_STATE, action) {
     // splice更新或者直接插入
     breadCrumbList.splice(original.level, 1, original.breadCrumb)
     breadCrumbRowList.splice(original.level - 1, 1, original.rowData)
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       currentLevel: 'level' + original.level,
       datalist: datalist,
       chartData: payload.content,
@@ -188,7 +205,7 @@ export default function(state = CONSTS.MIXED_PANEL_INITIAL_STATE, action) {
   }
 
   if (type === 'show_parent_level_ok') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       currentLevel: 'level' + original.level,
       datalist: datalist,
       chartData: payload.content,
@@ -203,7 +220,7 @@ export default function(state = CONSTS.MIXED_PANEL_INITIAL_STATE, action) {
   }
 
   if (type === 'request_server_page_ok') {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       done: true,
       error: null,
       pagerID: meta.original.pagerID,

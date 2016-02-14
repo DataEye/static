@@ -1,9 +1,9 @@
 import React from 'react'
-import {Modal, Button} from 'react-bootstrap'
+import {Modal} from 'react-bootstrap'
 
 export default React.createClass({
   propTypes: {
-    btntext: React.PropTypes.string,
+    btntext: React.PropTypes.any,
     title:React.PropTypes.string,
     prompt:React.PropTypes.string,
     delfunc:React.PropTypes.func.isRequired,
@@ -54,14 +54,8 @@ export default React.createClass({
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close} className="btn-track">取消</Button>
-
-
-            <Button bsStyle="primary"
-                    onClick={this.handleDelete}
-                    className="btn-track">
-              确定
-            </Button>
+            <button onClick={this.close} className="btn-custom btn-small btn-white pull-left">取消</button>
+            <button onClick={this.handleDelete} className="btn-custom btn-small btn-blue pull-right">确定</button>
           </Modal.Footer>
         </Modal>
       </div>

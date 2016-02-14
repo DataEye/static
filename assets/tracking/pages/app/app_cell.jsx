@@ -79,7 +79,7 @@ export default React.createClass({
           </a>
           <a href={'#/realtime/' + this.props.item.appid} className="text-center">
             <i className="fa fa-bar-chart"></i>&nbsp;
-            <span>实时统计</span>
+            <span>指标分析</span>
           </a>
         </div>
       </div>

@@ -1,10 +1,11 @@
-export function query(payload) {
+export function query(info) {
   return {
-    payload,
+    payload:info,
     type: 'show_employee',
     meta: {
       ajax: true,
-      url: '/getEmployeeList.do'
+      url: '/getEmployeeList.do',
+      original:info
     }
   }
 }

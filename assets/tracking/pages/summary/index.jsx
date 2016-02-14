@@ -30,7 +30,7 @@ export default React.createClass({
     return ({
       uid: window.App.uid,
       appid: this.props.params.appid,
-      startdate: moment().add(-7, 'days').format('YYYYMMDD'),
+      startdate: moment().add(-14, 'days').format('YYYYMMDD'),
       enddate: moment().add(-1, 'days').format('YYYYMMDD'),
       topn: 10,
       activeType: 1,
@@ -89,7 +89,7 @@ export default React.createClass({
   },
 
   getLevel(i) {
-    return this.props.states.coreLtv.breadCrumbRowList[i]
+    return this.props.states.summaryAnalysis.breadCrumbRowList[i]
   },
 
 
@@ -107,7 +107,9 @@ export default React.createClass({
           {title: '自然安装', dataIndex: 'y2', width: '25%', key: '3'}
         ],
         rowKey: (row) => row.x,
-        showSwitcher: false
+        chart: {yAxisKeys: ['y0', 'z2']},
+        showSwitcher: false,
+        glance: this.props.states.summaryClickInstall.glance
       }
     ]
 
@@ -129,7 +131,7 @@ export default React.createClass({
       },
       {title: '平均活跃', dataIndex: 'y3', key: '4', width: '8%',
         render: (val) => {
-          return (<span>{utils.asInteger(val)}</span>)
+          return (<span>{utils.asNumber(val)}</span>)
         }
       },
       {title: '付费数', dataIndex: 'y4', key: '5', width: '8%',
@@ -139,26 +141,26 @@ export default React.createClass({
       },
       {title: '付费额', dataIndex: 'y5', key: '6', width: '8%',
         render: (val) => {
-          return (<span className="currency">{utils.asCurrency(val)}</span>)
-        }
-      },
-      {title: '平均ARPU', dataIndex: 'y6', key: '7', width: '8%',
-        render: (val) => {
-          return (<span>{utils.asInteger(val)}</span>)
-        }
-      },
-      {title: '平局ARPPU', dataIndex: 'y7', key: '8', width: '8%',
-        render: (val) => {
-          return (<span>{utils.asInteger(val)}</span>)
+          return (<span>{utils.asCurrency(val)}</span>)
         }
       }
+      // {title: '平均ARPU', dataIndex: 'y6', key: '7', width: '8%',
+      //   render: (val) => {
+      //     return (<span>{utils.asInteger(val)}</span>)
+      //   }
+      // },
+      // {title: '平均ARPPU', dataIndex: 'y7', key: '8', width: '8%',
+      //   render: (val) => {
+      //     return (<span>{utils.asInteger(val)}</span>)
+      //   }
+      // }
     ]
 
     const analysisSharedConfig = {
       rowKey: (row) => row.x,
-      showSwitcher: false
-      // formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage,
-      //   utils.asInteger, utils.asInteger, this.formatCurrency, utils.asInteger, utils.asInteger]
+      showSwitcher: false,
+      formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage,
+        utils.asNumber, utils.asInteger, utils.asCurrency, utils.asInteger, utils.asInteger]
     }
 
     let analysisLvl0 = [
@@ -169,11 +171,17 @@ export default React.createClass({
         },
         columns: [
           {title: '广告网络', dataIndex: 'x', key: '0', width: '12%', render: (val, row, index) => {
-            return (
-              <span>
-                <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
-              </span>
-            )
+            let answer
+            if (row.id && row.id === '-') {
+              answer = (<span>{val}</span>)
+            } else {
+              answer = (
+                <span>
+                  <a href="javascript:;" onClick={this.showChildLevel.bind(this, row, 1)}>{val}</a>
+                </span>
+              )
+            }
+            return answer
           }},
           ...analysisSharedColumns
         ]
@@ -184,7 +192,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewCampaignSummaryByChannelid.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             channel: !row ? this.getLevel(0).id : row.id
           })
         },
@@ -205,7 +213,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewPublisherSummaryByCampaign.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             campaign: !row ? this.getLevel(1).id : row.id
           })
         },
@@ -226,7 +234,7 @@ export default React.createClass({
       _.assign({
         url: '/overviewSitesummaryByPublisher.do',
         data: (row) => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             publisher: row.x,
             campaign: !row ? this.getLevel(1).id : row.id
           })
@@ -239,14 +247,14 @@ export default React.createClass({
     ]
 
     const tabShared = {
-      url: '/overviewTotalChannelSummaryByEventid.do',
+      url: '/overviewChannelSummaryByEventid.do',
       rowKey: (row) => row.x,
-      subTabName: '汇总',
+      subTabName: '分渠道',
       showSwitcher: false,
       children: [
         {
-          url: '/overviewChannelSummaryByEventid.do',
-          tabName: '分渠道',
+          url: '/overviewTotalChannelSummaryByEventid.do',
+          tabName: '汇总',
           data: () => {
             return this.state
           },
@@ -257,78 +265,79 @@ export default React.createClass({
     }
 
     const EventLvl0 = [
-      Object.assign({
+      _.assign({
         tabName: '点击',
         data: () => {
           this.setState({eventId: 1})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 1
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '激活',
         data: () => {
           this.setState({eventId: 2})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 2
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '转化率',
         data: () => {
           this.setState({eventId: 3})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 3
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '平均活跃',
+        chart: {tooltipValueFormatter: utils.asNumber},
         data: () => {
           this.setState({eventId: 12})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 12
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '付费数',
         data: () => {
           this.setState({eventId: 4})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 4
           })
         }
       }, tabShared),
-      Object.assign({
+      _.assign({
         tabName: '付费额',
         data: () => {
           this.setState({eventId: 6})
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             eventId: 6
           })
         },
-      }, tabShared),
-      Object.assign({
-        tabName: '平均ARPU',
-        data: () => {
-          this.setState({eventId: 13})
-          return Object.assign({}, this.state, {
-            eventId: 13
-          })
-        }
-      }, tabShared),
-      Object.assign({
-        tabName: '平均ARPPU',
-        data: () => {
-          this.setState({eventId: 14})
-          return Object.assign({}, this.state, {
-            eventId: 14
-          })
-        }
       }, tabShared)
+      // _.assign({
+      //   tabName: '平均ARPU',
+      //   data: () => {
+      //     this.setState({eventId: 13})
+      //     return _.assign({}, this.state, {
+      //       eventId: 13
+      //     })
+      //   }
+      // }, tabShared),
+      // _.assign({
+      //   tabName: '平均ARPPU',
+      //   data: () => {
+      //     this.setState({eventId: 14})
+      //     return _.assign({}, this.state, {
+      //       eventId: 14
+      //     })
+      //   }
+      // }, tabShared)
     ]
 
     let activeRate = [
@@ -359,7 +368,8 @@ export default React.createClass({
         ],
         rowKey: (row) => row.x,
         chart: {chart: {type: 'pie'}},
-        showSwitcher: false
+        showSwitcher: false,
+        glance: this.props.states.summaryRatioInstall.glance
       }
     ]
 
@@ -367,7 +377,7 @@ export default React.createClass({
     //   {
     //     url: '/overviewActiveRate.do',
     //     data: () => {
-    //       return Object.assign({}, this.state, {
+    //       return _.assign({}, this.state, {
     //         activeType: this.state.activeTypeRatioRealInstall
     //       })
     //     },
@@ -391,7 +401,7 @@ export default React.createClass({
       {
         url: '/overviewPayUserRatio.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioPayUser
           })
         },
@@ -405,7 +415,7 @@ export default React.createClass({
       {
         url: '/overviewRevenueRatio.do',
         data: () => {
-          return Object.assign({}, this.state, {
+          return _.assign({}, this.state, {
             activeType: this.state.activeTypeRatioRevenue
           })
         },
@@ -485,6 +495,7 @@ export default React.createClass({
               title="转化对比"
               layout="chart"
               level0={activeRate}
+              style={{minHeight: '514px'}}
             />
           </div>
           <div className="col-md-6">
@@ -496,6 +507,7 @@ export default React.createClass({
               title="安装占比"
               layout="chart"
               level0={ratioInstall}
+              style={{minHeight: '514px'}}
             />
           </div>
         </div>

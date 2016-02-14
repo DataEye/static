@@ -128,13 +128,15 @@ export default React.createClass({
 
   onLevelBack(levelNum) {
     let tabConfig = this.getTabConfig()
+    const levelConfig = this.props[`level${levelNum}`]
+    const url = levelConfig[0].url
     // 第一级为undefined
     let {breadCrumbRowList, currentTabIndex, currentSubTabIndex} = this.getReduxStates()
     this.dispatchAction('mixedPanelShowParentLevel', {
       level: levelNum,
       // 回退的时候，需要用到之前的数据
       data: utils.tryExec(tabConfig.data, null, breadCrumbRowList[levelNum - 1], currentTabIndex, currentSubTabIndex),
-      url: tabConfig.url,
+      url: url,
       tabConfig
     })
   },
@@ -186,7 +188,9 @@ export default React.createClass({
         pagerTotal={states.pagerTotal}
         pagerSize={states.pagerSize}
         pagerID={states.pagerID}
+        onPageChange={this.onPageChange}
         showSwitcher={config.showSwitcher}
+        glance={config.glance}
       />
     )
   }

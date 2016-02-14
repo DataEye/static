@@ -77,13 +77,14 @@ export function createCampaign(payload) {
   }
 }
 
-export function editCampaign(payload) {
+export function editCampaign(info) {
   return {
     type: 'edit_campaign',
-    payload,
+    payload: info,
     meta: {
       ajax: true,
-      url: '/editCampaign.do'
+      url: '/editCampaign.do',
+      original: info
     }
   }
 }
@@ -100,13 +101,14 @@ export function delCampaign(info) {
   }
 }
 
-export function getCampaigns(payload) {
+export function getCampaigns(info) {
   return {
     type: 'get_campaigns',
-    payload,
+    payload: info,
     meta: {
       ajax: true,
-      url: '/getCampaigns.do'
+      url: '/getCampaigns.do',
+      original: info
     }
   }
 }

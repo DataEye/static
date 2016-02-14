@@ -11,13 +11,13 @@ const formatter2 = new GregorianCalendarFormat('yyyyMMdd')
 const now = new GregorianCalendar(zhCn)
 now.setTime(Date.now())
 
-// function disabledDate(current) {
-//   const date = new Date()
-//   date.setHours(0)
-//   date.setMinutes(0)
-//   date.setSeconds(0)
-//   return current.getTime() < date.getTime()  // can not select days before today
-// }
+function disabledDate(current) {
+  const date = new Date()
+  date.setHours(0)
+  date.setMinutes(0)
+  date.setSeconds(0)
+  return current.getTime() >= date.getTime()  // can not select days before today
+}
 
 function formatInput(v) {
   return v && formatter1.format(v)
@@ -61,6 +61,10 @@ export default React.createClass({
     }
   },
 
+  setIntervalClassNames(interval, stateInterval) {
+    return `btn btn-default ${interval === stateInterval ? 'intervalChoosed' : ''}`
+  },
+
   chooseInterval(e) {
     this.props.setDateFilter(
       formatParam(this.state.value[0]),
@@ -68,8 +72,9 @@ export default React.createClass({
       e.target.value
     )
     this.setState({
-      interval: e.target.value,
+      interval: parseInt(e.target.value, 10),
     })
+    this.setIntervalClassNames(e.value, this.state.interval)
   },
 
   onChange(value) {
@@ -89,13 +94,9 @@ export default React.createClass({
         locale={CalendarLocale}
         defaultValue={now}
         dateInutPlaceholder={['请输入开始日期', '请输入结束日期']}
-        // disabledDate={disabledDate}
+        disabledDate={disabledDate}
       />
     )
-
-    function setIntervalClassNames(interval, stateInterval) {
-      return `btn btn-default ${interval === stateInterval ? 'intervalChoosed' : ''}`
-    }
 
     return (
       <div className="dateFilter">
@@ -130,7 +131,7 @@ export default React.createClass({
               return (
                 <button
                   key={interval.period}
-                  className={setIntervalClassNames(interval.period, this.state.interval)}
+                  className={this.setIntervalClassNames(interval.period, this.state.interval)}
                   onClick={this.chooseInterval}
                   value={interval.period}
                 >

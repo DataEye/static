@@ -91,7 +91,7 @@ export default React.createClass({
       let editedData = nextProps.states.app.edit
       let data = _.clone(this.state.data, true)
       let thisItem = _.filter(data, 'appid', nextProps.states.app.edit.appid)[0]
-      Object.assign(thisItem, {
+      _.assign(thisItem, {
         name: editedData.name,
         category: editedData.category,
         type: editedData.type,
@@ -107,19 +107,19 @@ export default React.createClass({
   },
 
   search(searchKey) {
-    this.getAppData(Object.assign({}, this.postData, {searchKey: searchKey}))
+    this.getAppData(_.assign({}, this.postData, {searchKey: searchKey}))
     this.setState({searchKey: searchKey})
   },
 
   onPageChange(pageID) {
     this.setState({pageID: pageID})
-    this.getAppData(Object.assign({}, this.postData, {pageID: pageID}))
+    this.getAppData(_.assign({}, this.postData, {pageID: pageID}))
   },
 
   queryTypeChange(val) {
     this.setState({queryType: val})
 
-    let postData = Object.assign({}, this.postData, {queryType: val, pageID: 1})
+    let postData = _.assign({}, this.postData, {queryType: val, pageID: 1})
     this.getAppData(postData)
   },
 
@@ -136,11 +136,11 @@ export default React.createClass({
   },
 
   editApp(param) {
-    this.props.actions.appEdit(Object.assign({uid: App.uid, appid: this.state.appInfo.appid}, param))
+    this.props.actions.appEdit(_.assign({uid: App.uid, appid: this.state.appInfo.appid}, param))
   },
 
   render() {
-    Object.assign(this.postData, {
+    _.assign(this.postData, {
       pageID: this.state.pageID,
       pageSize: this.state.pageSize,
       queryType: this.state.queryType,

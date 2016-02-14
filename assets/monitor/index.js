@@ -9,7 +9,6 @@ import './helpers/load_base_style'
 
 polyfill()
 
-debugger
 ajaxSetup({
   contextPath: App.CONTEXT_PATH || ''
 })

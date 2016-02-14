@@ -16,7 +16,7 @@
   width: 100%;
   height: 32px;
   overflow: hidden;
-  background: url(../img/logo.png) no-repeat center center;
+  background: url(../img/mon-logo.png) no-repeat center center;
 }
 #header .control-left-menu{
   float: left;

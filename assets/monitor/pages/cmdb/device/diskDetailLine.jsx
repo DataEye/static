@@ -52,10 +52,13 @@ export default React.createClass({
                      labelClassName="col-xs-2"
                      wrapperClassName="col-xs-8"/>
 
+              <div className="col-xs-10">
               <Input ref="diskVolue" type="text"
                      bsSize="small" label="磁盘大小"
                      labelClassName="col-xs-2"
-                     wrapperClassName="col-xs-8"/>
+                     wrapperClassName="col-xs-10"/>
+                </div>
+              <label className="label-control">（G）</label>
             </form>
           </Modal.Body>
           <Modal.Footer>

@@ -42,7 +42,7 @@ export default React.createClass({
         gameEngine: appInfo.gameEngine
       }
     }
-    Object.assign(states, {
+    _.assign(states, {
       appTypeLoading: true,
       showGameSubTypeOptions: true
     })

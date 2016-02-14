@@ -69,8 +69,8 @@ export default React.createClass({
               {this.props.campaigns.map((campaign) => {
                 return (
                   <Campaign
-                    key={campaign.id}
-                    id={campaign.id}
+                    key={campaign.campaignId}
+                    campaignId={campaign.campaignId}
                     name={campaign.name}
                     downloadUrl={campaign.downloadUrl}
                     trackUrl={campaign.trackUrl}
