@@ -551,6 +551,7 @@ export default React.createClass({
             <Input
               ref="netCardNum"
               type="number"
+              min="0"
               label="网卡个数："
               labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
@@ -560,6 +561,7 @@ export default React.createClass({
 
             <Input ref="cpuNum"
                    type="number"
+                   min="0"
                    label="CPU个数："
                    labelClassName="col-xs-3 control-label"
                    wrapperClassName="col-xs-7"
@@ -569,6 +571,7 @@ export default React.createClass({
 
             <Input ref="cpuPhysicalCores"
                    type="number"
+                   min="0"
                    label="CPU总物理核数："
                    labelClassName="col-xs-3 control-label"
                    wrapperClassName="col-xs-7"
@@ -579,6 +582,7 @@ export default React.createClass({
             <Input
               ref="cpuLogicCores"
               type="number"
+              min="0"
               label="CPU总逻辑核数："
               labelClassName="col-xs-3 control-label"
               wrapperClassName="col-xs-7"
@@ -589,6 +593,7 @@ export default React.createClass({
             <Input ref="memory"
                    addonAfter="G"
                    type="number"
+                   min="0"
                    label="总内存："
                    labelClassName="col-xs-3 control-label"
                    wrapperClassName="col-xs-7"
@@ -598,6 +603,7 @@ export default React.createClass({
             <Input
               ref="diskNum"
               type="number"
+              min="0"
               label="磁盘个数："
               labelClassName="col-xs-3"
               wrapperClassName="col-xs-7 text-right"
@@ -608,6 +614,7 @@ export default React.createClass({
               ref="diskSize"
               addonAfter="G"
               type="number"
+              min="0"
               label="磁盘总容量："
               labelClassName="control-label col-xs-3"
               wrapperClassName="col-xs-7"
@@ -706,14 +713,6 @@ export default React.createClass({
               value={this.state.descs}
               onChange={(e)=>{this.setState({descs:e.target.value})}}
             />
-          </div>
-          <div className="form-horizontal col-md-6">
-            <div className="form-group">
-              <div className="col-xs-offset-3 col-xs-7">
-                <button className="btn-custom btn-small btn-white pull-left" onClick={this.cancel}>取消</button>
-                <button className="btn-custom btn-small btn-blue pull-left" onClick={this.saveDevice}>确定</button>
-              </div>
-            </div>
           </div>
         </form>
     )

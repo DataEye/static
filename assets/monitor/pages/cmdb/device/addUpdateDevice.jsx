@@ -44,13 +44,13 @@ export default React.createClass({
             commitSubmit={this.save}
           />
         </Loading>
-        <div className="col-md-6">
+        <div className="form-horizontal col-md-6">
           <div className="form-group">
             <div className="col-xs-offset-3 col-xs-7">
               <button className="btn-custom btn-small btn-white pull-left"
-                      onClick={this.cancel}>取消</button>
+                      onClick={this.cancel}>纭畾</button>
               <button className="btn-custom btn-small btn-blue pull-left"
-                      onClick ={this.handleSubmit}>确定</button>
+                      onClick ={this.handleSubmit}>鍙栨秷</button>
             </div>
           </div>
         </div>
