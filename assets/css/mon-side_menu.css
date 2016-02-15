@@ -7,6 +7,7 @@
   transition: margin ease 0.3s;
 }
 .sidebar .bar-title{
+  font-size: 16px;
   padding: 10px 20px;
   line-height: 32px;
   background-color: #1a242e;

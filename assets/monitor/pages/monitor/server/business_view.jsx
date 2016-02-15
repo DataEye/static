@@ -39,6 +39,15 @@ export default React.createClass({
     })
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id !== this.props.params.id) {
+      this.setState({moduleId: -1})
+      this.props.actions.servermonitorGetModule({
+        busiId: nextProps.params.id
+      })
+    }
+  },
+
   render() {
     return (
       <BasicPage actions={this.props.actions}
