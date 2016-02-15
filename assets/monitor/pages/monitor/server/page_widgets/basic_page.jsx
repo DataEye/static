@@ -90,7 +90,9 @@ export default React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      this.refs.searchKey.setState({value: ''})
+      if (!this.state.isChartView) {
+        this.refs.search.setState({value: ''})
+      }
       this.setState({isChartView: false, searchKey: '', orderBy: null, order: null})
       Object.assign(this.postData, {searchKey: '', orderBy: null, order: null})
       this.postData[this.props.idName] = nextProps.params.id
@@ -155,25 +157,23 @@ export default React.createClass({
           viewChart={this.viewChart}
           sortBy={this.sortBy}
           />)
-      } else {
-        dataList = (<div></div>)
       }
 
       content = (
+        <Loading done={!this.props.states.servermonitor.server.isLoading}>
           <div className="content">
             <div className="main">
               <div className="content-header clearfix form-horizontal">
                 {this.props.children}
                 <Search search={this.search}
                         clear={this.clear}
-                        ref="searchKey"
+                        ref="search"
                   />
               </div>
-              <Loading done={!this.props.states.servermonitor.server.isLoading}>
-                {dataList}
-              </Loading>
+              {dataList}
             </div>
           </div>
+        </Loading>
       )
       body = (
         <div>
