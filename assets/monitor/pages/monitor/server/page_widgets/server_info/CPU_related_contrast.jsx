@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import {FEATRUE_IDS} from '../../../../../helpers/constants.jsx'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
+import * as utils from 'dejs/lib/utils'
 
 export default React.createClass({
   propTypes: {
@@ -22,6 +23,14 @@ export default React.createClass({
           {featrueID: FEATRUE_IDS.filter((item) => {return item.name === 'CPU 利用率'})[0].featrueID}),
         rowKey: (row) => {
           return row.x
+        },
+        chart: {
+          tooltipValueFormatter: utils.asPercentage,
+          yAxisLabelsFormatter: utils.asPercentage,
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '' + arr[1]
+          }
         },
         showSwitcher: false
       }

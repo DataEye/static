@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import {FEATRUE_IDS} from '../../../../../helpers/constants.jsx'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
+import * as utils from 'dejs/lib/utils'
 
 export default React.createClass({
   propTypes: {
@@ -23,7 +24,11 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          tooltipValueFormatter: utils.asPercentage,
+          yAxisLabelsFormatter: utils.asPercentage
+        }
       }
     ]
     //内存使用量
@@ -123,7 +128,11 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          tooltipValueFormatter: utils.asPercentage,
+          yAxisLabelsFormatter: utils.asPercentage
+        }
       }
     ]
     chartConfigArr = [
