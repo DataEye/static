@@ -718,7 +718,7 @@ export default React.createClass({
               onChange={(e)=>{this.setState({descs:e.target.value})}}
             />
           </div>
-          <div className="col-md-6">
+          <div className="form-horizontal col-md-6">
             <div className="form-group">
               <div className="col-xs-offset-3 col-xs-7">
                 <button className="btn-custom btn-small btn-white pull-left" onClick={this.cancel}>取消</button>
