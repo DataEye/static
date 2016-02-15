@@ -91,8 +91,3 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 .form-control {
   border-radius: 0;
 }
-
-.label-control {
-  line-height: 32px;
-  text-align: right;
-}
