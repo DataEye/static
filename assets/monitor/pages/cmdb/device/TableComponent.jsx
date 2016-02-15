@@ -55,13 +55,17 @@ export default React.createClass({
                 this.props.data.map((item)=>{
                   let privateIp = ''
                   let publicIp = ''
+                    //React.createElement('<td>', null, null)
                   item.deviceIPList.map((deviceIp)=>{
                     if (deviceIp.type === 0) {
                       privateIp = deviceIp.ip
                     } else {
-                      publicIp = publicIp + ' ' + deviceIp.ip
+                      publicIp = publicIp + deviceIp.ip + '(' + deviceIp.ispName + ')  '
+                      //publicIp = <td><p> {deviceIp.ip} ({deviceIp.ispName} )</p></td>
                     }
                   })
+
+                 // let td = React.createElement('<td>', null, null)
 
                   return (
                     <tr key={item.devId}>
