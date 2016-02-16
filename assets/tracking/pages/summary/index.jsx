@@ -30,7 +30,7 @@ export default React.createClass({
     return ({
       uid: window.App.uid,
       appid: this.props.params.appid,
-      startdate: moment().add(-14, 'days').format('YYYYMMDD'),
+      startdate: moment().add(-7, 'days').format('YYYYMMDD'),
       enddate: moment().add(-1, 'days').format('YYYYMMDD'),
       topn: 10,
       activeType: 1,
