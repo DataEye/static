@@ -58,13 +58,7 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false,
-        chart: {
-          tooltipValueFormatter: utils.asPercentage,
-          yAxisLabelsFormatter: function() {
-            return utils.asPercentage(this.value)
-          }
-        }
+        showSwitcher: false
       }
     ]
     //SWAP使用情况
