@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import {FEATRUE_IDS} from '../../../../../helpers/constants.jsx'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
+import * as utils from 'dejs/lib/utils'
 
 export default React.createClass({
   propTypes: {
@@ -22,7 +23,17 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          tooltipValueFormatter: utils.asPercentage,
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          },
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //磁盘分区使用量
@@ -37,7 +48,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //磁盘IO读
@@ -54,7 +71,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //磁盘IO写
@@ -71,7 +94,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // SWAP SI
@@ -88,7 +117,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // SWAP SO
@@ -105,7 +140,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // Svctm_time
@@ -122,7 +163,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // Await_max
@@ -139,7 +186,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // avgqu_sz
@@ -156,7 +209,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // avgrq_sz
@@ -173,7 +232,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // util
@@ -190,7 +255,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     chartConfigArr = [

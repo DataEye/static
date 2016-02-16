@@ -70,7 +70,7 @@ export default React.createClass({
     ) : ''
 
     const toHomeBtn = (
-      <a href="" className={this.props.appid ? 'my-app' : 'my-app has-no-select' }>我的APP</a>
+      <a href="javascript:;" className={this.props.appid ? 'my-app' : 'my-app has-no-select' }>我的APP</a>
     )
 
     return (

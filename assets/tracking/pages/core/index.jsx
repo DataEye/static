@@ -121,12 +121,12 @@ export default React.createClass({
       },
       {title: '付费', dataIndex: 'y3', width: '15%', key: '4',
         render: (val) => {
-          return (<span className="currency">{utils.asCurrency(val)}</span>)
+          return (<span className="currency">{utils.asNumber(val)}</span>)
         }
       },
       {title: '人均LTV', dataIndex: 'y4', width: '15%', key: '5',
         render: (val) => {
-          return (<span>{utils.asNumber(val)}</span>)
+          return (<span className="currency">{utils.asNumber(val)}</span>)
         }
       }
     ]
@@ -135,7 +135,7 @@ export default React.createClass({
       rowKey: (row) => row.x,
       showSwitcher: false,
       avgFields: ['y4'],
-      formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency, utils.asNumber]
+      formatters: ['合计', utils.asInteger, utils.asInteger, utils.asPercentage, this.formatCurrency, this.formatCurrency]
     }
 
     const ltvLvl0 = [

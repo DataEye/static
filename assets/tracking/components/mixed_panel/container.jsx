@@ -30,7 +30,8 @@ export default React.createClass({
     // 其他层级 level1 level2 level3 ...
     title: PropTypes.any.isRequired,
     layout: PropTypes.oneOf(CONSTS.DEFAULT_LAYOUT_OPTIONS),
-    serverPagination: PropTypes.bool
+    serverPagination: PropTypes.bool,
+    style: PropTypes.object
   },
 
   getLevelConfig(level = this.getReduxStates().currentLevel) {
@@ -89,6 +90,10 @@ export default React.createClass({
     if (props.layout !== props.states.currentLayout) {
       this.onLayoutChange(this.props.layout)
     }
+  },
+
+  componentWillUnmount() {
+    this.dispatchAction('mixedPanelReset')
   },
 
   onTabClick(tabIndex) {
@@ -191,6 +196,7 @@ export default React.createClass({
         onPageChange={this.onPageChange}
         showSwitcher={config.showSwitcher}
         glance={config.glance}
+        style={this.props.style}
       />
     )
   }

@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import {FEATRUE_IDS} from '../../../../../helpers/constants.jsx'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
+import * as utils from 'dejs/lib/utils'
 
 export default React.createClass({
   propTypes: {
@@ -23,6 +24,16 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
+        chart: {
+          tooltipValueFormatter: utils.asPercentage,
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          },
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        },
         showSwitcher: false
       }
     ]
@@ -39,7 +50,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //CPU 5分钟负载
@@ -55,7 +72,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //CPU 15分钟负载
@@ -71,7 +94,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     chartConfigArr = [

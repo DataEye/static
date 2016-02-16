@@ -24,7 +24,7 @@
     "font-awesome": "^4.5.0",
     "gregorian-calendar": "*",
     "gregorian-calendar-format": "*",
-    "highcharts": "^4.2.1",
+    "highcharts": "^4.2.3",
     "history": "1.13.1",
     "immutable": "^3.7.6",
     "lodash": "^3.10.1",

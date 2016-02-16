@@ -1,4 +1,3 @@
-import assign from 'object-assign'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
@@ -8,9 +7,6 @@ import createStore from './store/index.jsx'
 import {ajaxSetup} from 'dejs/lib/ajax'
 import startMock from './mocks/index.js'
 import './helpers/load_base_style'
-import _ from 'lodash'
-
-_.assign = assign
 
 polyfill()
 

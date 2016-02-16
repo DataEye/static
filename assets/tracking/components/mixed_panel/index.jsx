@@ -58,8 +58,9 @@ export default React.createClass({
     subTabs: PropTypes.array,
     //Show chart initially if false
     showSwitcher: PropTypes.bool,
-    glance: PropTypes.element,
-    onPageChange: PropTypes.func
+    glance: PropTypes.array,
+    onPageChange: PropTypes.func,
+    style: PropTypes.object
   },
 
   getDefaultProps() {
@@ -308,7 +309,7 @@ export default React.createClass({
           </div>
         )}
         {this.getGlance()}
-        {this.getBreadCrumb()}
+
         {this.getSummary()}
         {this.getTable()}
         {this.getPager()}
@@ -326,9 +327,10 @@ export default React.createClass({
     let props = this.props
     let child = props.layout === 'chart' ? this.getChart() : this.getGrid()
     return (
-      <div className="panel panel-track">
+      <div className="panel panel-track" style={this.props.style}>
         <div className="panel-heading">{props.title}</div>
         <div className="panel-body">
+          {props.layout !== 'chart' && this.getBreadCrumb()}
           <Loading done={props.done}>
             {child}
           </Loading>

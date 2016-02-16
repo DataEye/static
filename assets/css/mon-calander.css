@@ -4,6 +4,9 @@
 .rc-calendar-input-wrap{
   display: none !important;
 }
+.rc-calendar-clear-btn{
+  display: none !important;
+}
 .rc-calendar-ok-btn{
   text-decoration: none !important;
   padding: 6px 15px !important;
@@ -14,13 +17,7 @@
   background-color: #ccc;
 }
 .com-calander {
-  position: relative;
   display: inline-block;
-  z-index: 100000;
-}
-.com-calander .rc-calendar {
-  position: absolute;
-  top: 34px;
 }
 .clander-date-show {
   display: inline-block;

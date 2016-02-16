@@ -57,7 +57,8 @@ export default React.createClass({
   getInitialState() {
     return {
       value: [this.props.start, this.props.end],
-      interval: 7
+      interval: 7,
+      open: false
     }
   },
 
@@ -83,7 +84,10 @@ export default React.createClass({
       formatParam(value[1]),
       this.state.interval
     )
-    this.setState({value})
+    this.setState({
+      value,
+      open: !this.state.open
+    })
   },
 
   render() {
@@ -105,6 +109,7 @@ export default React.createClass({
           onChange={this.onChange}
           animation="slide-up"
           calendar={calendar}
+          // open={this.state.open}
         >
           {
             ({value}) => {

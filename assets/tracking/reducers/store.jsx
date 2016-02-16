@@ -117,6 +117,7 @@ export default function(state = initialState, action) {
     })
 
   case 'del_custom_store_error':
+    alert(action.payload.content)
     return state
 
   case 'create_download_url_ok':

@@ -2,7 +2,7 @@
   float: left;
   width: 30px;
   height: 30px;
-  background: url(../img/icon.png) no-repeat left top;
+  background: url(../img/left_menu_icon.png) no-repeat left top;
   overflow: hidden;
   font-size: 0;
   text-indent: -99999px;
@@ -22,7 +22,7 @@
 .icon-employee{
   background-position: 0 -120px;
 }
-.icon-serverMonitoring{
+.icon-server{
   background-position: 0 -150px;
 }
 .icon-roomView{
@@ -30,4 +30,10 @@
 }
 .icon-businessView{
   background-position: 0 -210px;
+}
+.icon-groupingView{
+  background-position: 0 -240px;
+}
+.icon-alarmconfig {
+  background-position: 0 -270px;
 }

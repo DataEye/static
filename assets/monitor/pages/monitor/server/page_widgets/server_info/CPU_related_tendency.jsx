@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
+import * as utils from 'dejs/lib/utils'
 
 export default React.createClass({
   propTypes: {
@@ -14,10 +15,17 @@ export default React.createClass({
       <div>
         <span>CPU 总利用率</span>
       </div>)
+    //debugger
     const cpuTotalUsage = [
       {
         url: '/monitor/getCpuTotalUsage.do',
         data: this.props.data,
+        chart: {
+          tooltipValueFormatter: utils.asPercentage,
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          }
+        },
         rowKey: (row) => row.x,
         showSwitcher: false
       }
@@ -44,6 +52,12 @@ export default React.createClass({
       {
         url: '/monitor/getCpuEveryCoreUsage.do',
         data: this.props.data,
+        chart: {
+          tooltipValueFormatter: utils.asPercentage,
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          }
+        },
         rowKey: (row) => row.x,
         showSwitcher: false
       }

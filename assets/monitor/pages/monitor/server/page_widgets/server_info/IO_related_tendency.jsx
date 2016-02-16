@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
+import * as utils from 'dejs/lib/utils'
 
 export default React.createClass({
   propTypes: {
@@ -21,7 +22,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          tooltipValueFormatter: utils.asPercentage,
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          }
+        }
       }
     ]
     //IO使用量
@@ -42,7 +49,7 @@ export default React.createClass({
     //磁盘IO读写
     const diskIOReadWriteTitle = (
       <div>
-        <span>SWAP内存使用率</span>
+        <span>磁盘IO读写</span>
       </div>)
     const diskIOReadWrite = [
       {
