@@ -251,6 +251,7 @@ export default React.createClass({
       }, tabShared),
       _.assign({
         tabName: '转化率',
+        chart: {tooltipValueFormatter: utils.asPercentage},
         data: () => {
           this.setState({eventId: 3})
           return _.assign({}, this.state, {

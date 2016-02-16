@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react'
-import ReactDom from 'react-dom'
 import DateFilter from '../../../../../widgets/date_filter.jsx'
 import Tabs from '../../../../../widgets/tabs.jsx'
 import {TABS} from '../../../../../helpers/constants.jsx'
