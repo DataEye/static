@@ -2,7 +2,7 @@
   float: left;
   width: 30px;
   height: 30px;
-  background: url(../img/icon.png) no-repeat left top;
+  background: url(../img/left_menu_icon.png) no-repeat left top;
   overflow: hidden;
   font-size: 0;
   text-indent: -99999px;
@@ -33,4 +33,7 @@
 }
 .icon-groupingView{
   background-position: 0 -240px;
+}
+.icon-alarmconfig {
+  background-position: 0 -270px;
 }
