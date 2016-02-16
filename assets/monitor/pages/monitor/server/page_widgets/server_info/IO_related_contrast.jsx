@@ -26,7 +26,13 @@ export default React.createClass({
         showSwitcher: false,
         chart: {
           tooltipValueFormatter: utils.asPercentage,
-          yAxisLabelsFormatter: utils.asPercentage
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          },
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
         }
       }
     ]
@@ -42,7 +48,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //磁盘IO读
@@ -59,7 +71,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //磁盘IO写
@@ -76,7 +94,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // SWAP SI
@@ -93,7 +117,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // SWAP SO
@@ -110,7 +140,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // Svctm_time
@@ -127,7 +163,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // Await_max
@@ -144,7 +186,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // avgqu_sz
@@ -161,7 +209,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // avgrq_sz
@@ -178,7 +232,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // util
@@ -195,7 +255,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     chartConfigArr = [

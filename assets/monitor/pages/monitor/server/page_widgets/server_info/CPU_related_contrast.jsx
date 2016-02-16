@@ -26,10 +26,12 @@ export default React.createClass({
         },
         chart: {
           tooltipValueFormatter: utils.asPercentage,
-          yAxisLabelsFormatter: utils.asPercentage,
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          },
           categoryFormatter: (value) => {
             let arr = value.split('#')
-            return arr[0] + '' + arr[1]
+            return arr[0] + '<br/>' + arr[1]
           }
         },
         showSwitcher: false
@@ -48,7 +50,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //CPU 5分钟负载
@@ -64,7 +72,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //CPU 15分钟负载
@@ -80,7 +94,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     chartConfigArr = [

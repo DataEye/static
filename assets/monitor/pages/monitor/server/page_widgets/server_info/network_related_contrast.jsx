@@ -24,7 +24,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //内网网卡入流量
@@ -41,7 +47,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //外网网卡出流量
@@ -58,7 +70,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // 外网网卡入流量
@@ -75,7 +93,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // 内网网卡出包量
@@ -92,7 +116,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // 内网网卡入包量
@@ -109,7 +139,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // 外网网卡出包量
@@ -126,7 +162,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     // 外网网卡入包量
@@ -143,7 +185,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //被动打开TCP连接数
@@ -160,7 +208,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //TCP连接数
@@ -177,7 +231,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //UDP接收数据报
@@ -194,7 +254,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //UDP发送数据报
@@ -211,7 +277,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     chartConfigArr = [

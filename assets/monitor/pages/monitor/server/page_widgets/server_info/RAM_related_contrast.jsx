@@ -27,7 +27,13 @@ export default React.createClass({
         showSwitcher: false,
         chart: {
           tooltipValueFormatter: utils.asPercentage,
-          yAxisLabelsFormatter: utils.asPercentage
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          },
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
         }
       }
     ]
@@ -45,7 +51,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //Private内存
@@ -62,7 +74,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //Virtual内存
@@ -79,7 +97,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //Private+IPCS
@@ -96,7 +120,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //SWAP内存使用量
@@ -113,7 +143,13 @@ export default React.createClass({
         rowKey: (row) => {
           return row.x
         },
-        showSwitcher: false
+        showSwitcher: false,
+        chart: {
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
+        }
       }
     ]
     //SWAP内存使用率
@@ -131,7 +167,13 @@ export default React.createClass({
         showSwitcher: false,
         chart: {
           tooltipValueFormatter: utils.asPercentage,
-          yAxisLabelsFormatter: utils.asPercentage
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          },
+          categoryFormatter: (value) => {
+            let arr = value.split('#')
+            return arr[0] + '<br/>' + arr[1]
+          }
         }
       }
     ]

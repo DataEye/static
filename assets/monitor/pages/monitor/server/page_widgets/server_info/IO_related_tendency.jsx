@@ -25,7 +25,9 @@ export default React.createClass({
         showSwitcher: false,
         chart: {
           tooltipValueFormatter: utils.asPercentage,
-          yAxisLabelsFormatter: utils.asPercentage
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          }
         }
       }
     ]
@@ -59,7 +61,9 @@ export default React.createClass({
         showSwitcher: false,
         chart: {
           tooltipValueFormatter: utils.asPercentage,
-          yAxisLabelsFormatter: utils.asPercentage
+          yAxisLabelsFormatter: function() {
+            return utils.asPercentage(this.value)
+          }
         }
       }
     ]
