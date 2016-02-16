@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import {FEATRUE_IDS} from '../../../../../helpers/constants.jsx'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
 import * as utils from 'dejs/lib/utils'
+import _ from 'lodash'
 
 export default React.createClass({
   propTypes: {
@@ -66,7 +67,7 @@ export default React.createClass({
     const comparedDiskIORead = [
       {
         url: '/monitor/getComparedIOPartitionAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedDiskIOReadFeatrue.featrueID, object: comparedDiskIOReadFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -89,7 +90,7 @@ export default React.createClass({
     const comparedDiskIOWrite = [
       {
         url: '/monitor/getComparedIOPartitionAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedDiskIOWriteFeatrue.featrueID, object: comparedDiskIOWriteFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -112,7 +113,7 @@ export default React.createClass({
     const comparedSWAPSI = [
       {
         url: '/monitor/getComparedIOPartitionAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedSWAPSIFeatrue.featrueID, object: comparedSWAPSIFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -135,7 +136,7 @@ export default React.createClass({
     const comparedSWAPSO = [
       {
         url: '/monitor/getComparedIOPartitionAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedSWAPSOFeatrue.featrueID, object: comparedSWAPSOFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -158,7 +159,7 @@ export default React.createClass({
     const comparedSvctmTime = [
       {
         url: '/monitor/getComparedIOPartitionAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedSvctmTimeFeatrue.featrueID, object: comparedSvctmTimeFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -181,7 +182,7 @@ export default React.createClass({
     const comparedAwaitMax = [
       {
         url: '/monitor/getComparedIOPartitionAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedAwaitMaxFeatrue.featrueID, object: comparedAwaitMaxFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -204,7 +205,7 @@ export default React.createClass({
     const comparedAvgquSz = [
       {
         url: '/monitor/getComparedIOPartitionAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedAvgquSzFeatrue.featrueID, object: comparedAvgquSzFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -227,7 +228,7 @@ export default React.createClass({
     const comparedAvgrqSz = [
       {
         url: '/monitor/getComparedIOPartitionAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedAvgrqSzFeatrue.featrueID, object: comparedAvgrqSzFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -250,7 +251,7 @@ export default React.createClass({
     const comparedUtil = [
       {
         url: '/monitor/getComparedIOPartitionAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedUtilFeatrue.featrueID, object: comparedUtilFeatrue.object}),
         rowKey: (row) => {
           return row.x

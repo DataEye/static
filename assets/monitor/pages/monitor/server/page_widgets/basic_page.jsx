@@ -8,6 +8,7 @@ import ContentHeader from '../../../../widgets/container_header.jsx'
 import ServerInfo from './server_info/index.jsx'
 import {DEFAULT_PAGESIZE} from './../../../../helpers/constants.jsx'
 import Search from '../../../../widgets/search_bar.jsx'
+import _ from 'lodash'
 
 export default React.createClass({
   propTypes: {
@@ -63,13 +64,13 @@ export default React.createClass({
   },
 
   changePageID(pageID) {
-    Object.assign(this.postData, {pageID})
+    _.assign(this.postData, {pageID})
     this.query(this.postData)
     this.setState({pageID})
   },
 
   changePageSize(pageID, pageSize) {
-    Object.assign(this.postData, {pageID, pageSize})
+    _.assign(this.postData, {pageID, pageSize})
     this.query(this.postData)
     this.setState({pageID, pageSize})
   },
@@ -94,13 +95,13 @@ export default React.createClass({
         this.refs.search.setState({value: ''})
       }
       this.setState({isChartView: false, searchKey: '', orderBy: null, order: null})
-      Object.assign(this.postData, {searchKey: '', orderBy: null, order: null})
+      _.assign(this.postData, {searchKey: '', orderBy: null, order: null})
       this.postData[this.props.idName] = nextProps.params.id
       this.query(this.postData)
     }
 
     if (this.props.hasModuleSelect && this.props.moduleId !== nextProps.moduleId) {
-      Object.assign(this.postData, {moduleId: nextProps.moduleId})
+      _.assign(this.postData, {moduleId: nextProps.moduleId})
       this.query(this.postData)
     }
 
@@ -128,7 +129,7 @@ export default React.createClass({
       this.postData.order = this.state.order ? 0 : 1
     } else {
       this.setState({orderBy: name, order: 1})
-      Object.assign(this.postData, {orderBy: name, order: 1})
+      _.assign(this.postData, {orderBy: name, order: 1})
     }
     this.query(this.postData)
   },

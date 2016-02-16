@@ -21,7 +21,7 @@ export default {
   },
 
   doAction(actionName, payload) {
-    this.getReduxActionByName(actionName)(Object.assign({
+    this.getReduxActionByName(actionName)(_.assign({
       componentID: this.props.id
     }, payload))
   }

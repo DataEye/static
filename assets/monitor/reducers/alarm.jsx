@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default function(state = {
   featureList:[],
   deviceList: [],
@@ -6,7 +8,7 @@ export default function(state = {
 }, action) {
   switch (action.type) {
   case 'alarm_get_feature_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       featureList:[...action.payload.content]
     })
 
@@ -14,7 +16,7 @@ export default function(state = {
     return state
 
   case 'alarm_get_server_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       deviceList:[...action.payload.content]
     })
 
@@ -22,7 +24,7 @@ export default function(state = {
     return state
 
   case 'alarm_get_business_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       businessList:[...action.payload.content]
     })
 
@@ -30,7 +32,7 @@ export default function(state = {
     return state
 
   case 'alarm_get_module_ok':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       moduleList:[...action.payload.content]
     })
 

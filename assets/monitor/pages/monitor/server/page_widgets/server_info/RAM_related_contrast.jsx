@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import {FEATRUE_IDS} from '../../../../../helpers/constants.jsx'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
 import * as utils from 'dejs/lib/utils'
+import _ from 'lodash'
 
 export default React.createClass({
   propTypes: {
@@ -19,7 +20,7 @@ export default React.createClass({
     const comparedMemUsage = [
       {
         url: '/monitor/getComparedMemUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: FEATRUE_IDS.filter((item) => {return item.name === '内存使用率'})[0].featrueID}),
         rowKey: (row) => {
           return row.x
@@ -46,7 +47,7 @@ export default React.createClass({
     const comparedMemUsed = [
       {
         url: '/monitor/getComparedMemUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedMemUsedFeatrue.featrueID, object: comparedMemUsedFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -69,7 +70,7 @@ export default React.createClass({
     const comparedMemPri = [
       {
         url: '/monitor/getComparedMemUsageAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: MemPriFeatrue.featrueID, object: MemPriFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -92,7 +93,7 @@ export default React.createClass({
     const comparedMemVri = [
       {
         url: '/monitor/getComparedMemUsageAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: MemVriFeatrue.featrueID, object: MemVriFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -115,7 +116,7 @@ export default React.createClass({
     const comparedPrivateIPCS = [
       {
         url: '/monitor/getComparedMemUsageAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: PrivateIPCSFeatrue.featrueID, object: PrivateIPCSFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -138,7 +139,7 @@ export default React.createClass({
     const comparedMemSwapUsed = [
       {
         url: '/monitor/getComparedMemUsageAmount.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: memSwapUsedFeatrue.featrueID, object: memSwapUsedFeatrue.object}),
         rowKey: (row) => {
           return row.x

@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default function(state = {
   loading: false,
   topdata: [],
@@ -5,12 +7,12 @@ export default function(state = {
 }, action) {
   switch (action.type) {
   case 'get_top_data' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading:true
     })
 
   case 'get_top_data_ok' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading:false,
       topdata: [
         ...action.payload.content
@@ -21,12 +23,12 @@ export default function(state = {
     return state
 
   case 'get_table_data' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading:true
     })
 
   case 'get_table_data_ok' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading:false,
       tabledata: [
         ...action.payload.content

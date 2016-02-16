@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default function(state = {
   totalItems:[],
   currentPageItems:[],
@@ -7,7 +9,7 @@ export default function(state = {
 }, action) {
   switch (action.type) {
   case 'get_business':
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading: true
     })
 
@@ -16,7 +18,7 @@ export default function(state = {
     let pageSize = action.meta.original.pageSize
     let endIndex = pageSize < items.length ? pageSize : items.length
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       totalRecord:items.length,
       totalItems: [
         ...items
@@ -27,7 +29,7 @@ export default function(state = {
   }
 
   case 'select_employee_ok' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       employeeList: [...action.payload.content]
     })
 
@@ -42,13 +44,13 @@ export default function(state = {
     let endIndex = pageID * pageSize > state.totalRecord ?
       state.totalRecord : pageID * pageSize
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       currentPageItems: state.totalItems.slice(startIndex, endIndex)
     })
   }
 
   case 'add_business_ok' : {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       totalItems: [
         {
           id:action.payload.content,
@@ -90,7 +92,7 @@ export default function(state = {
       return element.id === action.meta.original.busiId
     })
     currentPageItems.splice(cindex, 1)
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       totalItems: totalItems,
       currentPageItems: currentPageItems
     })
@@ -125,7 +127,7 @@ export default function(state = {
 
     obj.moduleList.push(newModule)
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       totalItems:[
         ...state.totalItems.slice(0, t),
         obj,
@@ -163,7 +165,7 @@ export default function(state = {
     obj1.moduleList = moduleList
 
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       totalItems:[
         ...state.totalItems.slice(0, to),
         obj1,

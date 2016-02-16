@@ -8,7 +8,7 @@ import mixedPanelReducer from './mixed_panel.js'
 import AlarmReducer from './alarm.jsx'
 import Reduxis from 'dejs/lib/reduxis'
 import * as CONSTS from '../helpers/constants.jsx'
-
+import _ from 'lodash'
 
 let mixedPanelReducers = Reduxis.batchCreateReducers([
   'cpuTotalUsage',
@@ -71,7 +71,7 @@ let mixedPanelReducers = Reduxis.batchCreateReducers([
   'comparedUtil'
 ], mixedPanelReducer, CONSTS.MIXED_PANEL_INITIAL_STATE)
 
-export default combineReducers(Object.assign(mixedPanelReducers, {
+export default combineReducers(_.assign(mixedPanelReducers, {
   device: DeviceReducer,
   employee: EmployeeReducer,
   summary: SummaryReducer,

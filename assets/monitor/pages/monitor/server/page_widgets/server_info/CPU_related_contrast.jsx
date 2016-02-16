@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import {FEATRUE_IDS} from '../../../../../helpers/constants.jsx'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
 import * as utils from 'dejs/lib/utils'
+import _ from 'lodash'
 
 export default React.createClass({
   propTypes: {
@@ -19,7 +20,7 @@ export default React.createClass({
     let cpuTotalUsageContrast = [
       {
         url: '/monitor/getComparedCpuUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: FEATRUE_IDS.filter((item) => {return item.name === 'CPU 利用率'})[0].featrueID}),
         rowKey: (row) => {
           return row.x
@@ -45,7 +46,7 @@ export default React.createClass({
     let cpuOneMinUsageContrast = [
       {
         url: '/monitor/getComparedCpuUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: FEATRUE_IDS.filter((item) => {return item.name === 'CPU 1分钟负载'})[0].featrueID}),
         rowKey: (row) => {
           return row.x
@@ -67,7 +68,7 @@ export default React.createClass({
     let cpuFiveMinUsageContrast = [
       {
         url: '/monitor/getComparedCpuUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: FEATRUE_IDS.filter((item) => {return item.name === 'CPU 5分钟负载'})[0].featrueID}),
         rowKey: (row) => {
           return row.x
@@ -89,7 +90,7 @@ export default React.createClass({
     let cpuFifteenMinUsageContrast = [
       {
         url: '/monitor/getComparedCpuUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: FEATRUE_IDS.filter((item) => {return item.name === 'CPU 15分钟负载'})[0].featrueID}),
         rowKey: (row) => {
           return row.x

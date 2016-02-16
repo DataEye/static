@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default function(state = {
   server:{
     isLoading: false,
@@ -15,7 +17,7 @@ export default function(state = {
 }, action) {
   switch (action.type) {
   case 'show_server' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       server: {
         error: false,
         isLoading: true,
@@ -26,7 +28,7 @@ export default function(state = {
 
   case 'show_server_ok' : {
     let content = action.payload.content
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       server: {
         isLoading: false,
         totalRecord: content.totalRecord,
@@ -38,7 +40,7 @@ export default function(state = {
   }
 
   case 'show_server_error' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       server: {
         error: true,
         isLoading:false
@@ -46,14 +48,14 @@ export default function(state = {
     })
 
   case 'get_module' : {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       moduleListLoading: true
     })
   }
 
   case 'get_module_ok' : {
     let content = action.payload.content
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       moduleListLoading: false,
       moduleList: [
         ...content
@@ -62,13 +64,13 @@ export default function(state = {
   }
 
   case 'get_module_error' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       moduleListLoading: false
     })
 
   case 'load_server_list_ok' : {
     let content = action.payload.content
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       serverList: [
         ...content
       ]
@@ -79,7 +81,7 @@ export default function(state = {
     return state
 
   case 'show_group' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       group:{
         isLoading: true,
         error: false,
@@ -93,7 +95,7 @@ export default function(state = {
     let content = action.payload.content
     let pageSize = action.payload.pageSize
     let endIndex = pageSize > content.length ? content.length : pageSize
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       group:{
         isLoading:false,
         totalRecord:content.length,
@@ -106,7 +108,7 @@ export default function(state = {
   }
 
   case 'show_group_error' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       group:{
         isLoading: false,
         error: true,
@@ -121,7 +123,7 @@ export default function(state = {
     let endIndex = pageID * pageSize > state.totalRecord ?
       state.totalRecord : pageID * pageSize
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       group: {
         loading: false,
         totalRecord:state.group.totalRecord,
@@ -132,7 +134,7 @@ export default function(state = {
   }
 
   case 'add_group' : {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       addGroup: {
         status: 'start'
       }
@@ -140,7 +142,7 @@ export default function(state = {
   }
 
   case 'add_group_ok' : {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       addGroup: {
         status: 'success'
       }
@@ -148,7 +150,7 @@ export default function(state = {
   }
 
   case 'add_group_error' : {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       addGroup: {
         errorInfo: action.payload.content,
         status: 'error'
@@ -157,21 +159,21 @@ export default function(state = {
   }
 
   case 'delete_group' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       deleteGroup: {
         status: 'start'
       }
     })
 
   case 'delete_group_ok' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       deleteGroup: {
         status: 'success'
       }
     })
 
   case 'delete_group_error' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       deleteGroup: {
         errorInfo: action.payload.content,
         status: 'error'
@@ -179,21 +181,21 @@ export default function(state = {
     })
 
   case 'add_server' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       addServer: {
         status: 'start'
       }
     })
 
   case 'add_server_ok' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       addServer: {
         status: 'success'
       }
     })
 
   case 'add_server_error' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       addServer: {
         errorInfo: action.payload.content,
         status: 'error'

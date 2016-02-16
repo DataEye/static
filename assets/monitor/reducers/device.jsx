@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default function(state = {
   loading: false,
   loadingSelectData:false,
@@ -22,12 +24,12 @@ export default function(state = {
   switch (action.type) {
 
   case 'show_device' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loading: true
     })
 
   case 'show_device_ok' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       totalRecord:action.payload.content.totalRecord,
       isDeleted:false,
       items: [
@@ -41,14 +43,14 @@ export default function(state = {
     return state
 
   case 'init_select_data' : {
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loadingSelectData:true
     })
   }
 
   case 'init_select_data_ok' :
     let content = action.payload.content
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       loadingSelectData:false,
       initData:{
         deviceTypeList:content.devType,
@@ -70,7 +72,7 @@ export default function(state = {
 
   case 'add_device_ok' :
     alert('添加成功')
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       isSaved:true
     })
 
@@ -83,13 +85,13 @@ export default function(state = {
       alert('ip已被其它设备使用')
     }
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       isSaved:false
     })
 
   case 'update_device_ok' :
     alert('修改成功')
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       isSaved: true
     })
 
@@ -102,18 +104,18 @@ export default function(state = {
       alert('ip已被其它设备使用')
     }
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       isSaved:false
     })
 
   case 'delete_device' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       isDeleted:false
     })
 
 
   case 'delete_device_ok' :
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       isDeleted:true
     })
 
@@ -122,7 +124,7 @@ export default function(state = {
     if (action.payload.statusCode === 408) {
       alert('设备已被业务使用,不能删除')
     }
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
       isDeleted:false
     })
 

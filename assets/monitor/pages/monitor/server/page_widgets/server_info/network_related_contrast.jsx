@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import {FEATRUE_IDS} from '../../../../../helpers/constants.jsx'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
+import _ from 'lodash'
 
 export default React.createClass({
   propTypes: {
@@ -19,7 +20,7 @@ export default React.createClass({
     const comparedIntranetOutFlow = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: intranetOutFlowFeatrue.featrueID, object: intranetOutFlowFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -42,7 +43,7 @@ export default React.createClass({
     const comparedIntranetEntFlow = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: intranetEntFlowFeatrue.featrueID, object: intranetEntFlowFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -65,7 +66,7 @@ export default React.createClass({
     const comparedExtranetOutFlow = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedExtranetOutFlowFeatrue.featrueID, object: comparedExtranetOutFlowFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -88,7 +89,7 @@ export default React.createClass({
     const comparedExtranetEntFlow = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedExtranetEntFlowFeatrue.featrueID, object: comparedExtranetEntFlowFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -111,7 +112,7 @@ export default React.createClass({
     const comparedIntranetOutPackageVolume = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedIntranetOutPackageVolumeFeatrue.featrueID, object: comparedIntranetOutPackageVolumeFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -134,7 +135,7 @@ export default React.createClass({
     const comparedIntranetEntPackageVolume = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedIntranetEntPackageVolumeFeatrue.featrueID, object: comparedIntranetEntPackageVolumeFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -157,7 +158,7 @@ export default React.createClass({
     const comparedExtranetOutPackageVolume = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedExtranetOutPackageVolumeFeatrue.featrueID, object: comparedExtranetOutPackageVolumeFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -180,7 +181,7 @@ export default React.createClass({
     const comparedExtranetEntPackageVolume = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedExtranetEntPackageVolumeFeatrue.featrueID, object: comparedExtranetEntPackageVolumeFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -203,7 +204,7 @@ export default React.createClass({
     const comparedPassiveTcpConn = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedPassiveTcpConnFeatrue.featrueID, object: comparedPassiveTcpConnFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -226,7 +227,7 @@ export default React.createClass({
     const comparedTcpConn = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedTcpConnFeatrue.featrueID, object: comparedTcpConnFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -249,7 +250,7 @@ export default React.createClass({
     const comparedUDPReceiveDatagrams = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedUDPReceiveDatagramsFeatrue.featrueID, object: comparedUDPReceiveDatagramsFeatrue.object}),
         rowKey: (row) => {
           return row.x
@@ -272,7 +273,7 @@ export default React.createClass({
     const comparedUDPSendDatagrams = [
       {
         url: '/monitor/getComparedNetworkUsage.do',
-        data: Object.assign({}, this.props.data,
+        data: _.assign({}, this.props.data,
           {featrueID: comparedUDPSendDatagramsFeatrue.featrueID, object: comparedUDPSendDatagramsFeatrue.object}),
         rowKey: (row) => {
           return row.x

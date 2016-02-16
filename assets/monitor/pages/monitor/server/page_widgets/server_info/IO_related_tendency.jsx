@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import MixedPanelContainer from '../../../../../components/mixed_panel/container.jsx'
 import * as utils from 'dejs/lib/utils'
+import _ from 'lodash'
 
 export default React.createClass({
   propTypes: {
@@ -84,7 +85,7 @@ export default React.createClass({
     const svctmIOUseTrend = [
       {
         url: '/monitor/getIOUseTrend.do',
-        data: Object.assign({}, this.props.data, {featrueID: 35, object: 'svctm'}),
+        data: _.assign({}, this.props.data, {featrueID: 35, object: 'svctm'}),
         rowKey: (row) => {
           return row.x
         },
@@ -99,7 +100,7 @@ export default React.createClass({
     const awaitIOUseTrend = [
       {
         url: '/monitor/getIOUseTrend.do',
-        data: Object.assign({}, this.props.data, {featrueID: 36, object: 'await'}),
+        data: _.assign({}, this.props.data, {featrueID: 36, object: 'await'}),
         rowKey: (row) => {
           return row.x
         },
@@ -114,7 +115,7 @@ export default React.createClass({
     const aveqIOUseTrend = [
       {
         url: '/monitor/getIOUseTrend.do',
-        data: Object.assign({}, this.props.data, {featrueID: 37, object: 'aveq'}),
+        data: _.assign({}, this.props.data, {featrueID: 37, object: 'aveq'}),
         rowKey: (row) => {
           return row.x
         },
@@ -129,7 +130,7 @@ export default React.createClass({
     const avgrqSzIOUseTrend = [
       {
         url: '/monitor/getIOUseTrend.do',
-        data: Object.assign({}, this.props.data, {featrueID: 38, object: 'avgrq_sz'}),
+        data: _.assign({}, this.props.data, {featrueID: 38, object: 'avgrq_sz'}),
         rowKey: (row) => {
           return row.x
         },
@@ -144,7 +145,7 @@ export default React.createClass({
     const utilIOUseTrend = [
       {
         url: '/monitor/getIOUseTrend.do',
-        data: Object.assign({}, this.props.data, {featrueID: 39, object: 'util'}),
+        data: _.assign({}, this.props.data, {featrueID: 39, object: 'util'}),
         rowKey: (row) => {
           return row.x
         },
