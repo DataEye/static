@@ -70,7 +70,6 @@
 }
 .main-wrapper{
     margin-left: 260px;
-    transition: margin ease 0.3s;
 }
 #main-container{
     /*padding: 20px;*/

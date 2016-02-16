@@ -44,7 +44,45 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 .display-none {
   display: none;
 }
-
+.to-top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0.7;
+  height: 38px;
+  line-height: 38px;
+  float: left;
+  cursor: pointer;
+  clear: both;
+  width: 38px;
+  text-align: center;
+  background: #F5F5F5;
+  border: 1px solid #ebebeb;
+  transition: all 0.1s ease;
+}
+.to-top>i {
+  font-size: 16px;
+  color: #9C9C9C;
+}
+.to-top>em {
+  display: none;
+  margin: 3px auto 0;
+  width: 24px;
+  font-size: 12px;
+  line-height: 16px;
+  font-style: normal;
+}
+.to-top:hover {
+  opacity: 1;
+  background-color: #cccccc;
+}
+.to-top:hover i {
+  display: none;
+}
+.to-top:hover em {
+  display: block;
+  color: #FFF;
+}
 /*react-select样式覆盖*/
 .select-wrapper{
   width: 200px;
@@ -72,7 +110,10 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 /*modal footer样式*/
 .modal-header{
   color: #FFFFFF;
-  background-color: #2b3541;
+  background-color: #16232d;
+}
+.modal-title {
+  font-size: 16px;
 }
 .modal-footer {
   padding-left: 26%;
@@ -89,5 +130,5 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 
 /*bootStrap样式覆盖*/
 .form-control {
-  border-radius: 0;
+  border-radius: 0 !important;
 }

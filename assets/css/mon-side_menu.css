@@ -1,11 +1,9 @@
 .sidebar{
   position: absolute;
   width: 260px;
-  /*background-color: #2b3541;*/
   background-color: #16232d;
   min-height: calc(100% - 60px);
   color: #FFFFFF;
-  transition: margin ease 0.3s;
 }
 .sidebar .bar-title{
   font-size: 16px;
