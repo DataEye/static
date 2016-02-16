@@ -92,7 +92,6 @@ export default React.createClass({
     return this.props.states.summaryAnalysis.breadCrumbRowList[i]
   },
 
-
   render() {
     let clickInstallLvl0 = [
       {

@@ -505,3 +505,7 @@ body {
 .rc-calendar-today-btn {
   display: none;
 }
+
+.grid-panel-bread-nav {
+  margin: 10px 0 0 10px;
+}
