@@ -221,9 +221,9 @@ export default React.createClass({
     //TCP连接数
     const comparedTcpConnTitle = (
       <div>
-        <span>被动打开TCP连接数</span>
+        <span>TCP连接数</span>
       </div>)
-    const comparedTcpConnFeatrue = FEATRUE_IDS.filter((item) => {return item.name === '被动打开TCP连接数'})[0]
+    const comparedTcpConnFeatrue = FEATRUE_IDS.filter((item) => {return item.name === 'TCP连接数'})[0]
     const comparedTcpConn = [
       {
         url: '/monitor/getComparedNetworkUsage.do',

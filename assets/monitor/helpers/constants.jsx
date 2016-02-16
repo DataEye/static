@@ -171,22 +171,22 @@ export const FEATRUE_IDS = [
   {
     name: '被动打开TCP连接数',
     featrueID: 54,
-    object: 'tcp'
+    object: 'passiveopens'
   },
   {
     name: 'TCP连接数',
     featrueID: 55,
-    object: 'tcp'
+    object: 'TIME_ESTA'
   },
   {
     name: 'UDP接收数据报',
     featrueID: 56,
-    object: 'passiveopens'
+    object: 'indatagrams'
   },
   {
     name: 'UDP发送数据报',
     featrueID: 57,
-    object: 'currestab'
+    object: 'outdatagrams'
   },
   {
     name: '磁盘IO读',
