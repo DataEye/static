@@ -1,7 +1,8 @@
 .sidebar{
   position: absolute;
   width: 260px;
-  background-color: #2b3541;
+  /*background-color: #2b3541;*/
+  background-color: #16232d;
   min-height: calc(100% - 60px);
   color: #FFFFFF;
   transition: margin ease 0.3s;
@@ -10,8 +11,8 @@
   font-size: 16px;
   padding: 10px 20px;
   line-height: 32px;
-  background-color: #1a242e;
-  border-bottom: 1px solid #323f4d;
+  background-color: #121b22;
+  border-bottom: 1px solid #121d26;
 }
 .rc-menu {
   outline: none;
@@ -21,13 +22,13 @@
   z-index: 99999;
 }
 
-.sidebar .rc-menu-submenu-inline > .rc-menu-sub > .rc-menu-item:hover {
-  background-color: #242d36;
+.sidebar .rc-menu-submenu-inline > .rc-menu-sub > .rc-menu-item-active {
+  background-color: #0e161c;
   cursor: pointer;
 }
 
 .sidebar .rc-menu-item-selected {
-  background-color: #1d262f;
+  background-color: #0e161c;
 }
 
 .sidebar .rc-menu > li.rc-menu-submenu {
@@ -41,10 +42,11 @@
   line-height: 32px;
   padding: 10px 20px;
   text-decoration: none;
-  border-bottom: 1px solid #323f4d;
+  border-bottom: 1px solid #121d26;
 }
-.sidebar .rc-menu-submenu-open > .rc-menu-sub {
-  border-bottom: 1px solid #323f4d;
+.sidebar .rc-menu-sub {
+  border-bottom: 1px solid #121d26;
+  background-color: #111b23;
 }
 .sidebar .rc-menu-submenu-inline > a {
 

@@ -45,7 +45,7 @@
   margin:10px 15px 10px 0px;
 }
 .page-wrapper {
-  background-color: #2b3541;
+  background-color: #16232d;
 }
 .main-wrapper {
   background-color: #FFFFFF;
@@ -105,7 +105,7 @@
   font-size: 12px;
 }
 #main-container .container-header .server-info{
-  width: 300px;
+  width: 500px;
 }
 #main-container .container-header .host-name{
   color: #4a4a4a;
