@@ -49,7 +49,7 @@ export default React.createClass({
     //磁盘IO读写
     const diskIOReadWriteTitle = (
       <div>
-        <span>SWAP内存使用率</span>
+        <span>磁盘IO读写</span>
       </div>)
     const diskIOReadWrite = [
       {
