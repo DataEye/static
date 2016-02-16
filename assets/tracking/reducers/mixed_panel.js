@@ -232,6 +232,9 @@ export default function(state = CONSTS.MIXED_PANEL_INITIAL_STATE, action) {
     })
   }
 
+  if (type === 'reset') {
+    return CONSTS.MIXED_PANEL_INITIAL_STATE
+  }
+
   return state
-  // }
 }

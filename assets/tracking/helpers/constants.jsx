@@ -56,7 +56,8 @@ export const ASYNC_ACTION_TYPE_LIST = [
 ]
 export const SYNC_ACTION_TYPE_LIST = [
   'change_client_page',
-  'change_layout'
+  'change_layout',
+  'reset'
 ]
 export const MIXED_PANEL_INITIAL_STATE = {
   currentLayout: DEFAULT_LAYOUT,
