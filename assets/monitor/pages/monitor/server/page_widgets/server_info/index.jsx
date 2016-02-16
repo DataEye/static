@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import ReactDom from 'react-dom'
 import DateFilter from '../../../../../widgets/date_filter.jsx'
 import Tabs from '../../../../../widgets/tabs.jsx'
 import {TABS} from '../../../../../helpers/constants.jsx'
@@ -68,6 +69,10 @@ export default React.createClass({
       this.setState({chartType: 'tendency'})
     }
     this.setState({choicedTab: tabName})
+  },
+
+  toTop() {
+    document.documentElement.scrollTop = document.body.scrollTop = 0
   },
 
   render() {
@@ -146,6 +151,10 @@ export default React.createClass({
         <div>
           {header}
           {content}
+          <div className="to-top" onClick={this.toTop}>
+            <i className="fa fa-arrow-up"></i>
+            <em>回到顶部</em>
+          </div>
         </div>
     )
   }
