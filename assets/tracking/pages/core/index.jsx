@@ -25,8 +25,8 @@ const now = new GregorianCalendar(zhCn)
 now.setTime(Date.now())
 const start = now.clone()
 const end = now.clone()
-start.addDayOfMonth(Number('-14'))
-end.addDayOfMonth(Number('-1'))
+start.addDayOfMonth(Number('-13'))
+end.addDayOfMonth(Number('-7'))
 
 export default React.createClass({
   propTypes: {
