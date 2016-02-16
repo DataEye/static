@@ -92,6 +92,10 @@ export default React.createClass({
     }
   },
 
+  componentWillUnmount() {
+    this.dispatchAction('mixedPanelReset')
+  },
+
   onTabClick(tabIndex) {
     let tabConfig = this.getTabConfig(tabIndex)
     this.dispatchAction('mixedPanelSwitchTab', {

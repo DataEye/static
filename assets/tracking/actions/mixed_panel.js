@@ -125,3 +125,12 @@ export function requestServerPage(info) {
     }
   }
 }
+
+export function reset(info) {
+  return {
+    type: 'reset',
+    meta: {
+      original: info
+    }
+  }
+}
